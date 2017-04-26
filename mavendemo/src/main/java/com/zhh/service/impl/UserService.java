@@ -1,5 +1,6 @@
 package com.zhh.service.impl;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -11,6 +12,7 @@ import com.alibaba.fastjson.JSON;
 import com.zhh.dao.IUserDao;
 import com.zhh.entity.UserEntity;
 import com.zhh.service.IUserService;
+import com.zhh.util.CommonParams;
 import com.zhh.util.PageUtil;
 import com.zhh.util.UUIDUtils;
 
@@ -39,8 +41,12 @@ public class UserService implements IUserService {
 	*/ 
 	
 	public UserEntity add(UserEntity user) {
+		Date now = new Date();
 		/*设置ID*/
 		user.setId(UUIDUtils.getUUID());
+		user.setInsertDate(now);
+		user.setUpdateDate(now);
+		user.setActive(CommonParams.USER_ACTIVE);
 		LOGGER.info("添加用户信息为========"+JSON.toJSONString(user));
 		return userDao.add(user);
 	}
