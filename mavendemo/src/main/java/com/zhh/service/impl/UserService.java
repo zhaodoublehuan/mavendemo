@@ -43,17 +43,25 @@ public class UserService implements IUserService {
 	
 	public UserEntity add(UserEntity user) {
 		
-		String password = user.getPassword();
-		password = DigestUtils.md5Hex(password);
-		Date now = new Date();
-		/*设置ID*/
-		user.setId(UUIDUtils.getUUID());
-		user.setInsertDate(now);
-		user.setUpdateDate(now);
-		user.setActive(CommonParams.USER_ACTIVE);
-		user.setPassword(password);
-		LOGGER.warn("添加用户信息为========"+JSON.toJSONString(user));
-		return userDao.add(user);
+		try{
+			String password = user.getPassword();
+			password = DigestUtils.md5Hex(password);
+			Date now = new Date();
+			/*设置ID*/
+			user.setId(UUIDUtils.getUUID());
+			user.setInsertDate(now);
+			user.setUpdateDate(now);
+			user.setActive(CommonParams.USER_ACTIVE);
+			user.setPassword(password);
+			LOGGER.warn("添加用户信息为========"+JSON.toJSONString(user));
+			return userDao.add(user);
+		}catch (Exception e) {
+			LOGGER.error("添加用户失败========"+e.getMessage());
+			return null;
+		}
+		
+		
+		
 	}
 
 	/* (非 Javadoc) 

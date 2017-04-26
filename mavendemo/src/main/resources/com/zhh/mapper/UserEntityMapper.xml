@@ -85,7 +85,7 @@
       <if test="id != null" >
         #{id,jdbcType=VARCHAR},
       </if>
-      <if test="login_no != null" >
+      <if test="loginNo != null" >
         #{loginNo,jdbcType=VARCHAR},
       </if>
       <if test="userName != null" >
