@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zhh.UserEntity" >
+  <resultMap id="BaseResultMap" type="com.zhh.entity.UserEntity" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="user_name" property="userName" jdbcType="VARCHAR" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
+    <result column="mobile" property="mobile" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="insert_date" property="insertDate" jdbcType="TIMESTAMP" />
+    <result column="update_date" property="updateDate" jdbcType="TIMESTAMP" />
+     <!-- 进行 多表关联插叙，先关联user和role -->
+     <!-- property 表示实体中定义的   column 虚拟数据字段 可有可无 -->
+	<collection property="roleSet" column="roleid" ofType="com.zhh.entity.Role">
+			<id property="id" column="ROLE_ID"/>
+			<result property="name" column="ROLE_NAME"/>
+			<!-- 再在role中关联role和permission -->
+			<!-- property 角色实体中定义的表里名称  column 虚拟数据字段 可有可无-->
+		 	<collection property="permissionSet" column="permissionid" ofType="com.zhh.entity.Permission">
+				<id property="id" column="permission_id"/>
+				<result property="name" column="permission_name"/>
+			</collection>
+	</collection>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, user_name, password, mobile, email, insert_date, update_date
+  </sql>
+  <!-- 根据条件查询用户集合 -->
+  <select id="selectUsers" resultMap="BaseResultMap" parameterType="java.util.Map" >
+    select 
+    <include refid="Base_Column_List" />
+    from sys_user
+    <where>
+    	<if test="user!=null">
+	   	  <if test="user.userName != null" >
+	        user_name = #{user.userName,jdbcType=VARCHAR}
+	      </if>
+	      <if test="user.password != null" >
+	        password = #{user.password,jdbcType=VARCHAR}
+	      </if>
+	      <if test="user.mobile != null" >
+	        mobile = #{user.mobile,jdbcType=VARCHAR}
+	      </if>
+	      <if test="user.email != null" >
+	        email = #{user.email,jdbcType=VARCHAR}
+	      </if>
+       </if>
+    </where> 
+    limit #{page.recordStart},#{page.pageSize}
+  </select>
+  <!-- 新建用户 -->
+  <insert id="insertSelective" parameterType="com.zhh.entity.UserEntity" >
+    insert into sys_user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userName != null" >
+        user_name,
+      </if>
+      <if test="password != null" >
+        password,
+      </if>
+      <if test="mobile != null" >
+        mobile,
+      </if>
+      <if test="email != null" >
+        email,
+      </if>
+      <if test="insertDate != null" >
+        insert_date,
+      </if>
+      <if test="updateDate != null" >
+        update_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null" >
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null" >
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="insertDate != null" >
+        #{insertDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null" >
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <!-- 修改用户信息 -->
+  <update id="updateByPrimaryKeySelective" parameterType="com.zhh.entity.UserEntity" >
+    update sys_user
+    <set >
+      <if test="userName != null" >
+        user_name = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null" >
+        mobile = #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="insertDate != null" >
+        insert_date = #{insertDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null" >
+        update_date = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <!-- 查询用户的角色权限信息 -->
+  <sql id="select-base-01">  
+    SELECT   
+      u.id,  
+      u.user_name,  
+      u.password,  
+      r.id as role_id,  
+      r.name as role_name,  
+      p.id as permission_id,  
+      p.name as permission_name 
+    FROM  
+      	sys_user as u 
+		LEFT JOIN 
+		sys_user_role as ru on u.id = ru.user_id  
+		LEFT JOIN
+		sys_role as r on r.id = ru.role_id 
+		LEFT JOIN
+		sys_role_permission as pr on r.id = pr.role_id
+      	LEFT JOIN
+      	sys_permission as p on p.id = pr.permission_id
+  </sql>  
+  <!-- 通过账号查询用户信息 -->
+  <select id="findUserByUsername" resultMap="BaseResultMap" parameterType="string" >
+  	<include refid="select-base-01" />  
+  	and 
+    u.user_name = #{userName} and active="Y"
+  </select>
+  <!-- 查询用户数量 -->
+  <select id="selectUsersCount" resultType="java.lang.Integer" parameterType="com.zhh.entity.UserEntity">
+   select count(1) from sys_user 
+     <where>
+   	  <if test="userName != null" >
+        user_name = #{userName,jdbcType=VARCHAR}
+      </if>
+      <if test="password != null" >
+        password = #{password,jdbcType=VARCHAR}
+      </if>
+      <if test="mobile != null" >
+        mobile = #{mobile,jdbcType=VARCHAR}
+      </if>
+      <if test="email != null" >
+        email = #{email,jdbcType=VARCHAR}
+      </if>
+    </where> 
+  </select>
+</mapper>

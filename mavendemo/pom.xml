@@ -1,0 +1,148 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.zhh.mavendemo</groupId>
+  <artifactId>mavendemo</artifactId>
+  <packaging>war</packaging>
+  <version>0.0.1-SNAPSHOT</version>
+  <name>mavendemo Maven Webapp</name>
+  <url>http://maven.apache.org</url>
+  <properties>
+  	<spring-version>3.2.4.RELEASE</spring-version>
+  	<shiro-version>1.2.3</shiro-version>
+  </properties>
+  <dependencies>
+  		<!-- 单元测试的jar包 -->
+	    <dependency>
+	      <groupId>junit</groupId>
+	      <artifactId>junit</artifactId>
+	      <version>4.10</version>
+	      <scope>test</scope>
+	    </dependency>
+     	<!-- spring需要的jar包 -->  
+        <dependency>  
+            <groupId>org.springframework</groupId>  
+            <artifactId>spring-context</artifactId>  
+            <version>3.2.4.RELEASE</version>  
+            <type>jar</type>  
+        </dependency>  
+  		<!-- spring核心jar包，其他包需要依赖 -->  
+        <dependency>  
+            <groupId>org.springframework</groupId>  
+            <artifactId>spring-core</artifactId>  
+            <version>${spring-version}</version>  
+            <type>jar</type>  
+        </dependency>  
+  		<!-- 创建和管理bean，所有应用都用的到 -->  
+        <dependency>  
+            <groupId>org.springframework</groupId>  
+            <artifactId>spring-beans</artifactId>  
+            <version>${spring-version}</version> 
+            <type>jar</type>  
+        </dependency>  
+  		<!-- spring mvc -->
+        <dependency>  
+            <groupId>org.springframework</groupId>  
+            <artifactId>spring-webmvc</artifactId>  
+            <version>${spring-version}</version> 
+            <type>jar</type>  
+        </dependency>  
+  		<!-- 整合第三方orm的实现 -->  
+        <dependency>  
+            <groupId>org.springframework</groupId>  
+            <artifactId>spring-orm</artifactId>  
+            <version>${spring-version}</version> 
+            <type>jar</type>  
+        </dependency> 
+        <!-- spring 整合Junit 单元测试使用 -->
+        <dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-test</artifactId>
+		    <version>${spring-version}</version> 
+		    <scope>test</scope>
+		</dependency>
+		<!-- spring 集成mybatis需要的jar包 -->
+		<dependency>
+		    <groupId>org.mybatis</groupId>
+		    <artifactId>mybatis-spring</artifactId>
+		    <version>1.2.2</version>
+		</dependency>
+		<!-- myabatis 需要的jar包 -->
+		<dependency>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis</artifactId>
+			<version>3.2.7</version>
+		</dependency>
+		<!-- 连接mysql需要的jar包 -->
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>5.1.14</version>
+		</dependency>
+		<!-- JSON 工具包 -->
+		<dependency>
+		    <groupId>com.alibaba</groupId>
+		    <artifactId>fastjson</artifactId>
+		    <version>1.2.12</version>
+		</dependency>
+		<!-- 只有在编译与测试时执行 -->
+		<dependency>
+		    <groupId>javax.servlet</groupId>
+		    <artifactId>javax.servlet-api</artifactId>
+		    <version>3.1.0</version>
+		    <scope>provided</scope>
+		</dependency>
+		<!-- 日志需要的jar包 -->
+		<!-- spring 整合shiro依赖jar -->
+		<dependency>
+		    <groupId>log4j</groupId>
+		    <artifactId>log4j</artifactId>
+		    <version>1.2.17</version>
+		</dependency>
+		<dependency>
+		    <groupId>org.apache.shiro</groupId>
+		    <artifactId>shiro-core</artifactId>
+		    <version>${shiro-version}</version>
+		</dependency>
+		<dependency>
+		    <groupId>org.apache.shiro</groupId>
+		    <artifactId>shiro-web</artifactId>
+		    <version>${shiro-version}</version>
+		</dependency>
+		<dependency>
+		    <groupId>org.apache.shiro</groupId>
+		    <artifactId>shiro-ehcache</artifactId>
+		    <version>${shiro-version}</version>
+	    </dependency>
+		<dependency>
+		    <groupId>org.apache.shiro</groupId>
+		    <artifactId>shiro-spring</artifactId>
+		    <version>${shiro-version}</version>
+		</dependency>
+		<!-- jsp使用jstl需要的jar -->
+		<dependency>
+            <groupId>jstl</groupId>
+            <artifactId>jstl</artifactId>
+            <version>1.1.2</version>
+    	 </dependency>
+	     <dependency>
+	         <groupId>taglibs</groupId>
+	         <artifactId>standard</artifactId>
+	         <version>1.1.2</version>
+	     </dependency>
+  </dependencies>
+  <build>
+    <finalName>mavendemo</finalName>
+    <plugins>
+    	<plugin>
+    		<groupId>org.eclipse.jetty</groupId>
+		    <artifactId>jetty-maven-plugin</artifactId>
+		    <version>9.2.7.v20150116</version>
+		    <configuration>
+		    	<scanIntervalSeconds>5</scanIntervalSeconds>
+		    	<webapp>maven</webapp>
+		    </configuration>
+    	</plugin>
+    </plugins>
+  </build>
+</project>
