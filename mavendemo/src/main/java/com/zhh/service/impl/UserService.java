@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
 
@@ -41,12 +42,16 @@ public class UserService implements IUserService {
 	*/ 
 	
 	public UserEntity add(UserEntity user) {
+		
+		String password = user.getPassword();
+		password = DigestUtils.md5Hex(password);
 		Date now = new Date();
 		/*设置ID*/
 		user.setId(UUIDUtils.getUUID());
 		user.setInsertDate(now);
 		user.setUpdateDate(now);
 		user.setActive(CommonParams.USER_ACTIVE);
+		user.setPassword(password);
 		LOGGER.info("添加用户信息为========"+JSON.toJSONString(user));
 		return userDao.add(user);
 	}

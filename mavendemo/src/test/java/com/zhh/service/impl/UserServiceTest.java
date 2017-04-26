@@ -3,24 +3,23 @@ package com.zhh.service.impl;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.annotation.Resource;
-
 import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import com.zhh.base.BaseTest;
 import com.zhh.entity.UserEntity;
 import com.zhh.service.IUserService;
 import com.zhh.util.UUIDUtils;
 
-@SuppressWarnings("restriction")
 public class UserServiceTest extends BaseTest {
-	@Resource
+	@Autowired
 	private IUserService userService;
 	@Test
 	public void testAdd() {
 		UserEntity user = new UserEntity();
 		user.setId(UUIDUtils.getUUID());
 		user.setUserName("zhh");
+		user.setPassword("111111");
 		user = userService.add(user);
 	}
 
