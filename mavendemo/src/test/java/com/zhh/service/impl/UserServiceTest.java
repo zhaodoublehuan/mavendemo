@@ -27,7 +27,7 @@ public class UserServiceTest extends BaseTest {
 	@Test
 	public void testUpdate() {
 		UserEntity user = new UserEntity();
-		user.setId("ebe461553fc0430cb332bcb7fee2d6d9");
+		user.setId("e4a283af541f4b3e89a6fb5d0ba0d403");
 		user.setUserName("zhh");
 		user.setEmail("702324140@qq.com");
 		user = userService.update(user);
@@ -36,7 +36,7 @@ public class UserServiceTest extends BaseTest {
 	@Test
 	public void testDelete() {
 		List<String> ids = new ArrayList<String>();
-		ids.add("111111");
+		ids.add("ebe461553fc0430cb332bcb7fee2d6d9");
 		userService.delete(ids);
 	}
 

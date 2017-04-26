@@ -57,7 +57,9 @@ public class UserDao extends BaseDao implements IUserDao {
 	*/ 
 	
 	public boolean delete(List<String> ids) {
-		int result = getSqlSession().update(NAME_SPACE+".deleteUsers", ids);
+		Map<String, List<String>> param = new HashMap<String, List<String>>();
+		param.put("ids", ids);
+		int result = getSqlSession().update(NAME_SPACE+".deleteUsers", param);
 		return result>0 ? true : false;
 	}
 

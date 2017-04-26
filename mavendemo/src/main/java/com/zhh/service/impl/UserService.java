@@ -8,6 +8,7 @@ import javax.annotation.Resource;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.alibaba.fastjson.JSON;
 import com.zhh.dao.IUserDao;
@@ -73,8 +74,14 @@ public class UserService implements IUserService {
 	*/ 
 	
 	public UserEntity update(UserEntity user) {
-		LOGGER.warn("修改用户信息为========"+JSON.toJSONString(user));
-		return userDao.update(user);
+		try{
+			LOGGER.warn("修改用户信息为========"+JSON.toJSONString(user));
+			return userDao.update(user);
+		}catch (Exception e) {
+			LOGGER.error("修改用户失败========"+e.getMessage());
+			return null;
+		}
+		
 	}
 
 	/* (非 Javadoc) 
@@ -84,9 +91,16 @@ public class UserService implements IUserService {
 	* @return 
 	* @see com.zhh.service.IUserService#delete(com.zhh.entity.UserEntity) 
 	*/ 
-	
+	@Transactional
 	public boolean delete(List<String> ids) {
-		return userDao.delete(ids);
+		try{
+			LOGGER.warn("删除用户信息为========"+JSON.toJSONString(ids));
+			return userDao.delete(ids);
+		}catch (Exception e) {
+			LOGGER.error("删除用户失败========"+e.getMessage());
+			return false;
+		}
+		
 	}
 
 	/* (非 Javadoc) 

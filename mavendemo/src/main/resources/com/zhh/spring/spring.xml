@@ -3,11 +3,13 @@
      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
      xmlns:context="http://www.springframework.org/schema/context"
      xmlns:mvc="http://www.springframework.org/schema/mvc"  
+     xmlns:tx="http://www.springframework.org/schema/tx" 
      xsi:schemaLocation="http://www.springframework.org/schema/beans 
      http://www.springframework.org/schema/beans/spring-beans-3.0.xsd 
      http://www.springframework.org/schema/context 
      http://www.springframework.org/schema/context/spring-context-3.0.xsd
-     http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd  ">  
+     http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd 
+     http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd ">  
     
     <!-- 加载配置文件 -->
     <context:property-placeholder location="classpath:com/zhh/config/maven.properties"/> 
@@ -19,7 +21,7 @@
       <property name="username" value="${jdbc.username}"></property>
       <property name="password" value="${jdbc.password}"></property>
    	</bean>
-   
+  	
    	<!-- sqlSessionFactory配置 -->
    	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
    		<!-- 数据源 -->
@@ -29,7 +31,10 @@
    		<!-- 加载mapper文件 -->
    		<property name="mapperLocations" value="classpath:com/zhh/mapper/*.xml"></property>
    	</bean>
-   
+   	<tx:annotation-driven transaction-manager="transactionManager" />
+   <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+       <property name="dataSource" ref="dataSource" />
+   </bean>
     <!-- 自动注解，扫描包。开启自动注解 -->
 	<context:component-scan base-package="com.zhh"/> 
 	<!-- 静态资源过滤 -->
