@@ -64,6 +64,9 @@
       <if test="email != null" >
         email,
       </if>
+       <if test="active != null" >
+        active,
+      </if>
       <if test="insertDate != null" >
         insert_date,
       </if>
@@ -86,6 +89,9 @@
       </if>
       <if test="email != null" >
         #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="active != null" >
+        #{active,jdbcType=VARCHAR},
       </if>
       <if test="insertDate != null" >
         #{insertDate,jdbcType=TIMESTAMP},
