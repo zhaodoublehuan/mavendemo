@@ -52,7 +52,7 @@ public class UserService implements IUserService {
 		user.setUpdateDate(now);
 		user.setActive(CommonParams.USER_ACTIVE);
 		user.setPassword(password);
-		LOGGER.info("添加用户信息为========"+JSON.toJSONString(user));
+		LOGGER.warn("添加用户信息为========"+JSON.toJSONString(user));
 		return userDao.add(user);
 	}
 
