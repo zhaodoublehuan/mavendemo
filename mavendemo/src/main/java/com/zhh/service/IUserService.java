@@ -67,7 +67,7 @@ public interface IUserService {
 	* @return List<UserEntity>    返回类型 
 	* @throws 
 	*/ 
-	UserEntity findUserByUsername(String userName);
+	UserEntity findUserByLoginNo(String loginNo);
 
 	/** 
 	* @Title: selectUsersCount 

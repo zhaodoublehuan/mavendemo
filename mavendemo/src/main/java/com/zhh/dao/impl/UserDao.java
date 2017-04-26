@@ -84,8 +84,8 @@ public class UserDao extends BaseDao implements IUserDao {
 	* @see com.zhh.dao.IUserDao#findUserByUsername(java.lang.String) 
 	*/ 
 	
-	public UserEntity findUserByUsername(String userName) {
-		List<UserEntity> users = getSqlSession().selectList(NAME_SPACE+".findUserByUsername", userName);
+	public UserEntity findUserByLoginNo(String loginNo) {
+		List<UserEntity> users = getSqlSession().selectList(NAME_SPACE+".findUserByUsername", loginNo);
 		if(users != null && users.size()>0){
 			return users.get(0);
 		}

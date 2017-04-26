@@ -55,10 +55,10 @@ public class UserRealm extends AuthorizingRealm {
 	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
 		LOGGER.info("权限验证开始========");
 		/*获取到登录用户名*/
-		String username = (String) principals.getPrimaryPrincipal();
-		LOGGER.info("登录用户名========"+username);
+		String loginNo = (String) principals.getPrimaryPrincipal();
+		LOGGER.info("登录用户名========"+loginNo);
 	    /*获取用户的角色集合*/
-	    Set<Role> roleSet =  userService.findUserByUsername(username).getRoleSet();
+	    Set<Role> roleSet =  userService.findUserByLoginNo(loginNo).getRoleSet();
 	    LOGGER.info("登录用户角色集合========"+JSON.toJSONString(roleSet));
 	    //角色名的集合
 	    Set<String> roles = new HashSet<String>();
@@ -102,7 +102,7 @@ public class UserRealm extends AuthorizingRealm {
 		String username = (String) token.getPrincipal();
 		LOGGER.info("登录用户的名称======="+username);
 		/*根据账户查询用户*/
-	    UserEntity user = userService.findUserByUsername(username);
+	    UserEntity user = userService.findUserByLoginNo(username);
 	    LOGGER.info("数据库中是否存在该用户======="+JSON.toJSONString(user));
 	    /*如果用户不存在*/
 	    if(user==null){

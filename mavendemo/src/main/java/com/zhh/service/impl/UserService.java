@@ -101,8 +101,8 @@ public class UserService implements IUserService {
 	* @see com.zhh.service.IUserService#findUserByUsername(java.lang.String) 
 	*/ 
 	
-	public UserEntity findUserByUsername(String userName) {
-		UserEntity user = userDao.findUserByUsername(userName);
+	public UserEntity findUserByLoginNo(String loginNo) {
+		UserEntity user = userDao.findUserByLoginNo(loginNo);
 		return user;
 	}
 
