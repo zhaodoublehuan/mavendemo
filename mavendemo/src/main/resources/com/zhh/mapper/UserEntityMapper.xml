@@ -4,6 +4,7 @@
   <resultMap id="BaseResultMap" type="com.zhh.entity.UserEntity" >
     <id column="id" property="id" jdbcType="VARCHAR" />
     <result column="user_name" property="userName" jdbcType="VARCHAR" />
+    <result column="login_no" property="loginNo" jdbcType="VARCHAR" />
     <result column="password" property="password" jdbcType="VARCHAR" />
     <result column="mobile" property="mobile" jdbcType="VARCHAR" />
     <result column="email" property="email" jdbcType="VARCHAR" />
@@ -24,7 +25,7 @@
 	</collection>
   </resultMap>
   <sql id="Base_Column_List" >
-    id, user_name, password, mobile, email,active, insert_date, update_date
+    id, user_name, login_no, password, mobile, email,active, insert_date, update_date
   </sql>
   <!-- 根据条件查询用户集合 -->
   <select id="selectUsers" resultMap="BaseResultMap" parameterType="java.util.Map" >
@@ -35,6 +36,9 @@
     	<if test="user!=null">
 	   	  <if test="user.userName != null" >
 	        and user_name = #{user.userName,jdbcType=VARCHAR}
+	      </if>
+	      <if test="user.loginNo != null" >
+	        and login_no = #{user.loginNo,jdbcType=VARCHAR}
 	      </if>
 	      <if test="user.mobile != null" >
 	        and  mobile = #{user.mobile,jdbcType=VARCHAR}
@@ -52,7 +56,10 @@
       <if test="id != null" >
         id,
       </if>
-      <if test="userName != null" >
+      <if test="loginNo != null" >
+        login_no,
+      </if>
+       <if test="userName != null" >
         user_name,
       </if>
       <if test="password != null" >
@@ -77,6 +84,9 @@
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="login_no != null" >
+        #{loginNo,jdbcType=VARCHAR},
       </if>
       <if test="userName != null" >
         #{userName,jdbcType=VARCHAR},
@@ -106,10 +116,10 @@
     update sys_user
     <set >
       <if test="userName != null" >
-        user_name = #{userName,jdbcType=VARCHAR},
+        login_no = #{loginNo,jdbcType=VARCHAR},
       </if>
-      <if test="password != null" >
-        password = #{password,jdbcType=VARCHAR},
+       <if test="userName != null" >
+        user_name = #{userName,jdbcType=VARCHAR},
       </if>
       <if test="mobile != null" >
         mobile = #{mobile,jdbcType=VARCHAR},
@@ -165,6 +175,9 @@
      <where>
    	  <if test="userName != null" >
         user_name = #{userName,jdbcType=VARCHAR}
+      </if>
+      <if test="login_no != null" >
+        login_no = #{loginNo,jdbcType=VARCHAR}
       </if>
       <if test="mobile != null" >
         mobile = #{mobile,jdbcType=VARCHAR}

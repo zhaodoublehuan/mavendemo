@@ -65,6 +65,7 @@ public class UserService implements IUserService {
 	*/ 
 	
 	public UserEntity update(UserEntity user) {
+		LOGGER.warn("修改用户信息为========"+JSON.toJSONString(user));
 		return userDao.update(user);
 	}
 

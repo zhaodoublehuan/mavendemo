@@ -29,7 +29,10 @@ public class UserEntity {
     * @Fields id : 主键id
     */
     private String id;
-
+    /**
+     * @Fields loginNo : 登录账号
+     */
+    private String loginNo;
     /**
     * @Fields userName : 用户账号
     */
@@ -267,5 +270,13 @@ public class UserEntity {
 
 	public void setRoleSet(Set<Role> roleSet) {
 		this.roleSet = roleSet;
+	}
+
+	public String getLoginNo() {
+		return loginNo;
+	}
+
+	public void setLoginNo(String loginNo) {
+		this.loginNo = loginNo;
 	}
 }

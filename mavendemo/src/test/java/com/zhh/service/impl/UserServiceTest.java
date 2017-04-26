@@ -26,10 +26,10 @@ public class UserServiceTest extends BaseTest {
 	@Test
 	public void testUpdate() {
 		UserEntity user = new UserEntity();
-		user.setId(UUIDUtils.getUUID());
+		user.setId("ebe461553fc0430cb332bcb7fee2d6d9");
 		user.setUserName("zhh");
+		user.setEmail("702324140@qq.com");
 		user = userService.update(user);
-		//System.out.println(JSON.toJSON(user));
 	}
 
 	@Test
