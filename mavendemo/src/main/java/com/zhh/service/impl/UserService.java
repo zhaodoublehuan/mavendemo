@@ -6,7 +6,9 @@ import java.util.List;
 import javax.annotation.Resource;
 
 import org.apache.log4j.Logger;
+import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.crypto.hash.Md5Hash;
+import org.apache.shiro.subject.Subject;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -104,6 +106,7 @@ public class UserService implements IUserService {
 		}
 		
 	}
+	
 
 	/* (非 Javadoc) 
 	* <p>Title: selectUsers</p> 
@@ -142,5 +145,7 @@ public class UserService implements IUserService {
 		// TODO Auto-generated method stub
 		return userDao.selectUsersCount(user);
 	}
+
+	
 
 }

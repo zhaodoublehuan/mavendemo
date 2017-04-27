@@ -39,7 +39,7 @@ public class UserServiceTest extends BaseTest {
 		ids.add("ebe461553fc0430cb332bcb7fee2d6d9");
 		userService.delete(ids);
 	}
-
+	
 	@Test
 	public void testSelectUsers() {
 		UserEntity user = new UserEntity();
