@@ -16,6 +16,7 @@ import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
+import org.apache.shiro.util.ByteSource;
 
 import com.alibaba.fastjson.JSON;
 import com.zhh.entity.Permission;
@@ -99,10 +100,10 @@ public class UserRealm extends AuthorizingRealm {
 	protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
 		LOGGER.info("登录认证开始========");
 		/*获取用户账户*/
-		String username = (String) token.getPrincipal();
-		LOGGER.info("登录用户的名称======="+username);
+		String loginNo = (String) token.getPrincipal();
+		LOGGER.info("登录用户的名称======="+loginNo);
 		/*根据账户查询用户*/
-	    UserEntity user = userService.findUserByLoginNo(username);
+	    UserEntity user = userService.findUserByLoginNo(loginNo);
 	    LOGGER.info("数据库中是否存在该用户======="+JSON.toJSONString(user));
 	    /*如果用户不存在*/
 	    if(user==null){
@@ -113,7 +114,8 @@ public class UserRealm extends AuthorizingRealm {
 	    /**
 	     * 交给AuthenticatingRealm使用CredentialsMatcher进行密码匹配，如果觉得人家的不好可以在此判断或自定义实现  
 	     */
-	    SimpleAuthenticationInfo info = new SimpleAuthenticationInfo(user.getUserName(), user.getPassword(),getName());
+	    SimpleAuthenticationInfo info = new SimpleAuthenticationInfo(user.getLoginNo(), user.getPassword(),getName());
+	    info.setCredentialsSalt(ByteSource.Util.bytes(user.getSalt()));
 	    LOGGER.info("由shiro验证用户信息的结果======="+JSON.toJSONString(info));
 	    return info;
 	  }

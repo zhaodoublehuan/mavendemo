@@ -32,15 +32,27 @@
          </value>   
      </property>   
 	</bean>
-	<bean id = "myRealm" class="com.zhh.realm.UserRealm"></bean>
+	<bean id = "myRealm" class="com.zhh.realm.UserRealm">
+		<property name="cacheManager" ref="cacheManagerShiro"/>
+		<!-- 配置密码匹配器 -->  
+        <property name="credentialsMatcher">    
+            <bean class="org.apache.shiro.authc.credential.HashedCredentialsMatcher">    
+            	<!-- 加密算法 -->
+                <property name="hashAlgorithmName" value="MD5" />  
+                <!-- 加密次数 -->
+                <property name="hashIterations" value="2"></property>
+                <property name="storedCredentialsHexEncoded" value="true"></property>
+            </bean>    
+        </property>    
+	</bean>
 	<!-- 配置权限管理器 -->
 	<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager" >   
       <property name="realm" ref="myRealm"/> 
       <!-- 使用下面配置的缓存管理器 -->  
-      <!-- <property name="cacheManagerShiro" ref="cacheManagerShiro"/>  -->
+      <property name="cacheManager" ref="cacheManagerShiro"/>
 	</bean>   
 	<!-- 配置缓存管理器 -->
-	<!-- <bean id="cacheManagerShiro" class="org.apache.shiro.cache.ehcache.EhCacheManager"/> -->
+	<bean id="cacheManagerShiro" class="org.apache.shiro.cache.MemoryConstrainedCacheManager"/>
 	
 	<bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"/>
  </beans>

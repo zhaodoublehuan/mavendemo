@@ -37,6 +37,10 @@ public class UserEntity {
     * @Fields userName : 用户账号
     */
     private String userName;
+    /**
+     * @Fields salt : 加密用的盐
+     */
+    private String salt;
 
     /**
     * @Fields password : 密码
@@ -278,5 +282,13 @@ public class UserEntity {
 
 	public void setLoginNo(String loginNo) {
 		this.loginNo = loginNo;
+	}
+
+	public String getSalt() {
+		return salt;
+	}
+
+	public void setSalt(String salt) {
+		this.salt = salt;
 	}
 }

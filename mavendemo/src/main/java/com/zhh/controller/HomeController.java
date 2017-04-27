@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.apache.log4j.Logger;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.UsernamePasswordToken;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.zhh.service.IMenuService;
+import com.zhh.service.impl.UserService;
 import com.zhh.entity.UserEntity;
 import com.zhh.entity.Menu;
 
@@ -28,6 +30,9 @@ import com.zhh.entity.Menu;
 @SuppressWarnings("restriction")
 @Controller
 public class HomeController {
+	
+	private static final Logger LOGGER = Logger.getLogger(HomeController.class);
+	
 	@Resource
 	private IMenuService menuService;
 	/** 
@@ -61,7 +66,8 @@ public class HomeController {
             List<Menu> menuList = menuService.selectMenus(null);
             model.addAttribute("menuList", menuList);
             return "user/userList";  
-        } catch (AuthenticationException e) {  
+        } catch (Exception e) {  
+        	e.printStackTrace();
             return "login";  
         }  
     }  

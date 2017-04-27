@@ -18,7 +18,7 @@ public class UserServiceTest extends BaseTest {
 	public void testAdd() {
 		UserEntity user = new UserEntity();
 		user.setId(UUIDUtils.getUUID());
-		user.setLoginNo("zhh");
+		user.setLoginNo("admin");
 		user.setUserName("赵欢欢");
 		user.setPassword("111111");
 		user = userService.add(user);
@@ -45,8 +45,7 @@ public class UserServiceTest extends BaseTest {
 		UserEntity user = new UserEntity();
 		user.setId(UUIDUtils.getUUID());
 		user.setUserName("zhh");
-		//userService.selectUsers(user);
-		//System.out.println(JSON.toJSON(userList));
+
 	}
 	
 	@Test

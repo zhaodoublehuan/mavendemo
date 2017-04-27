@@ -5,6 +5,7 @@
     <id column="id" property="id" jdbcType="VARCHAR" />
     <result column="user_name" property="userName" jdbcType="VARCHAR" />
     <result column="login_no" property="loginNo" jdbcType="VARCHAR" />
+    <result column="salt" property="salt" jdbcType="VARCHAR" />
     <result column="password" property="password" jdbcType="VARCHAR" />
     <result column="mobile" property="mobile" jdbcType="VARCHAR" />
     <result column="email" property="email" jdbcType="VARCHAR" />
@@ -62,6 +63,9 @@
        <if test="userName != null" >
         user_name,
       </if>
+      <if test="salt != null" >
+        salt,
+      </if>
       <if test="password != null" >
         password,
       </if>
@@ -90,6 +94,9 @@
       </if>
       <if test="userName != null" >
         #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="salt != null" >
+        #{salt,jdbcType=VARCHAR},
       </if>
       <if test="password != null" >
         #{password,jdbcType=VARCHAR},
@@ -143,7 +150,9 @@
   <sql id="select-base-01">  
     SELECT   
       u.id,  
-      u.user_name,  
+      u.login_no,
+      u.user_name,
+      u.salt,    
       u.password,  
       r.id as role_id,  
       r.name as role_name,  
