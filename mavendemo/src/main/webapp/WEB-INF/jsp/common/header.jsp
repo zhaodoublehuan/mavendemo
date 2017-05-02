@@ -39,7 +39,7 @@
                     <a href="#" class="btn btn-default btn-flat">修改密码</a>
                   </div>
                   <div class="pull-right">
-                    <a href="#" class="btn btn-default btn-flat">退出登录</a>
+                    <a href="http://localhost:8080/logout" class="btn btn-default btn-flat">退出登录</a>
                   </div>
                 </li>
               </ul>

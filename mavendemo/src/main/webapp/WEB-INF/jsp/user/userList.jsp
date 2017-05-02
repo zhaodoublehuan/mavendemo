@@ -19,7 +19,7 @@
       <!-- Content Header (Page header) 内容区域顶部信息-->
       <section class="content-header">
         <h1>
-          网站基本信息
+          	网站基本信息
         </h1>
       </section>
 

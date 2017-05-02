@@ -1,6 +1,17 @@
 package com.zhh.controller;
 
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.zhh.entity.Role;
+import com.zhh.service.IRoleService;
 
 /**
 * @ClassName: RoleController
@@ -11,6 +22,21 @@ import org.springframework.stereotype.Controller;
 */
 
 @Controller
-public class RoleController {
-
+@RequestMapping("/role")
+public class RoleController extends BaseController {
+	private static final Logger LOGGER = Logger.getLogger(RoleController.class);
+	
+	@Autowired
+	private IRoleService roleService;
+	
+	/**
+	 * 添加角色信息
+	 * @param role
+	 */
+	@RequestMapping(value="/addRole", method = RequestMethod.POST)
+	public void addRole(@RequestBody Role role,HttpServletResponse response){
+		LOGGER.info("添加角色信息");
+		Role role1 = roleService.addRole(role);
+		writeJson(role1, response);
+	}
 }
