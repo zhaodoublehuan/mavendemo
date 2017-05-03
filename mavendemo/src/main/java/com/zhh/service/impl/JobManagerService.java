@@ -13,6 +13,7 @@ import org.quartz.SchedulerException;
 import org.quartz.TriggerBuilder;
 import org.quartz.TriggerKey;
 import org.springframework.beans.factory.InitializingBean;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.alibaba.fastjson.JSON;
@@ -37,20 +38,16 @@ public class JobManagerService implements InitializingBean, IJobManagerService {
 	 * @Fields scheduler : TODO(用一句话描述这个变量表示什么)
 	 */
 	private Scheduler scheduler;
-
+	
+	@Autowired
 	private IScheduleJobService scheduleJobService;
-
-	public void setScheduleJobService(IScheduleJobService scheduleJobService) {
-		this.scheduleJobService = scheduleJobService;
-	}
-
-	public void setScheduler(Scheduler scheduler) {
-		this.scheduler = scheduler;
-	}
 	
 	public void afterPropertiesSet() throws Exception {
-		LOGGER.error("项目启动初始化方法===========开始");
-		
+		try{
+			init();
+		}catch (Exception e) {
+			LOGGER.error("初始化定时任务失败===="+e.getMessage());
+		}
 	}
 	
 	/** 

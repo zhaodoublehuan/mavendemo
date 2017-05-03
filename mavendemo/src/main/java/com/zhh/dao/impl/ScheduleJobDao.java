@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.stereotype.Repository;
+
 import com.zhh.dao.IScheduleJobDao;
 import com.zhh.entity.ScheduleJob;
 
@@ -14,7 +16,7 @@ import com.zhh.entity.ScheduleJob;
  * @date 2016-8-5 上午10:57:26
  * 
  */
-
+@Repository	
 public class ScheduleJobDao extends BaseDao  implements IScheduleJobDao {
 
 	/**

@@ -2,8 +2,9 @@ package com.zhh.service.impl;
 
 import java.util.List;
 
-import org.apache.shiro.util.StringUtils;
 import org.quartz.SchedulerException;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.zhh.dao.IScheduleJobDao;
@@ -19,6 +20,7 @@ import com.zhh.util.UUIDUtils;
  * @date 2016-8-5 上午11:05:57
  * 
  */
+@Service
 public class ScheduleJobService implements IScheduleJobService {
 
 	
@@ -37,17 +39,13 @@ public class ScheduleJobService implements IScheduleJobService {
 	/*
 	 * 定时dao
 	 */
+	@Autowired
 	private IScheduleJobDao scheduleJobDao;
 	/*
 	 * 定时程序实现service
 	 */
+	@Autowired
 	private IJobManagerService jobManagerService;
-	/*
-	 * 定时程序实现service
-	 */
-	public void setJobManagerService(IJobManagerService jobManagerService) {
-		this.jobManagerService = jobManagerService;
-	}
 
 	/*
 	 * (non-Javadoc)
@@ -226,10 +224,6 @@ public class ScheduleJobService implements IScheduleJobService {
 		}
 		entity.setJobStatus(JOB_STATUS_NORMAL);
 		return null;
-	}
-
-	public void setScheduleJobDao(IScheduleJobDao scheduleJobDao) {
-		this.scheduleJobDao = scheduleJobDao;
 	}
 
 	public List<ScheduleJob> queryAllScheduleJobPage(
