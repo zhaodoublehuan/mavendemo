@@ -2,6 +2,7 @@ package com.zhh.service.impl;
 
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.quartz.CronScheduleBuilder;
 import org.quartz.CronTrigger;
 import org.quartz.JobBuilder;
@@ -11,8 +12,8 @@ import org.quartz.Scheduler;
 import org.quartz.SchedulerException;
 import org.quartz.TriggerBuilder;
 import org.quartz.TriggerKey;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.InitializingBean;
+import org.springframework.stereotype.Service;
 
 import com.alibaba.fastjson.JSON;
 import com.google.common.collect.Sets;
@@ -28,15 +29,15 @@ import com.zhh.util.QuartzJobFactory;
 * @date 2016-8-5 上午10:57:54
 * 
 */
-public class JobManagerService implements IJobManagerService {
+@Service
+public class JobManagerService implements InitializingBean, IJobManagerService {
 	
-	private final static Logger LOGGER = LoggerFactory.getLogger(JobManagerService.class);
+	private final static Logger LOGGER =  Logger.getLogger(JobManagerService.class);
 	/**
 	 * @Fields scheduler : TODO(用一句话描述这个变量表示什么)
 	 */
 	private Scheduler scheduler;
 
-	
 	private IScheduleJobService scheduleJobService;
 
 	public void setScheduleJobService(IScheduleJobService scheduleJobService) {
@@ -46,7 +47,12 @@ public class JobManagerService implements IJobManagerService {
 	public void setScheduler(Scheduler scheduler) {
 		this.scheduler = scheduler;
 	}
-
+	
+	public void afterPropertiesSet() throws Exception {
+		LOGGER.error("项目启动初始化方法===========开始");
+		
+	}
+	
 	/** 
 	* @Title: init 
 	* @Description: 初始化方法   项目启动的时候加载定时器
