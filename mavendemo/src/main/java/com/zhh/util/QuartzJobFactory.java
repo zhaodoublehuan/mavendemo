@@ -1,10 +1,9 @@
 package com.zhh.util;
 
+import org.apache.log4j.Logger;
 import org.quartz.Job;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import com.zhh.entity.ScheduleJob;
 
@@ -18,7 +17,7 @@ import com.zhh.entity.ScheduleJob;
 
 public class QuartzJobFactory implements Job {
 	
-	private static final Logger LOGGER = LoggerFactory.getLogger(QuartzJobFactory.class);
+	private static final Logger LOGGER = Logger.getLogger(QuartzJobFactory.class);
 
 	/* (非 Javadoc) 
 	* <p>Title: execute</p> 
