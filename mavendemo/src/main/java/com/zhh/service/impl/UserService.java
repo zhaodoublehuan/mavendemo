@@ -54,7 +54,7 @@ public class UserService implements IUserService {
 			user.setInsertDate(now);
 			user.setUpdateDate(now);
 			user.setSalt(salt);
-			user.setActive(CommonParams.USER_ACTIVE);
+			user.setActive(CommonParams.ACTIVE);
 			user.setPassword(password);
 			LOGGER.warn("添加用户信息为========"+JSON.toJSONString(user));
 			return userDao.add(user);

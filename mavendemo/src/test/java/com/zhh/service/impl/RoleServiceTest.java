@@ -1,7 +1,5 @@
 package com.zhh.service.impl;
 
-import java.util.Date;
-
 import javax.annotation.Resource;
 
 import org.junit.Test;
@@ -9,7 +7,6 @@ import org.junit.Test;
 import com.zhh.base.BaseTest;
 import com.zhh.entity.Role;
 import com.zhh.service.IRoleService;
-import com.zhh.util.UUIDUtils;
 @SuppressWarnings("restriction")
 public class RoleServiceTest extends BaseTest{
 	
@@ -17,38 +14,24 @@ public class RoleServiceTest extends BaseTest{
 	private IRoleService roleService;
 	@Test
 	public void testAddRole() {
-		Date date = new Date();
 		Role role = new Role();
-		role.setId(UUIDUtils.getUUID());
-		role.setName("���Խ�ɫ");
-		role.setDescription("���Խ�ɫ����");
-		role.setInsertDate(date);
-		role.setUpdateDate(date);
+		role.setName("测试角色");
+		role.setDescription("用来测试的角色");
 		roleService.addRole(role);
 	}
 
 	@Test
 	public void testUpdateRole() {
-		Date date = new Date();
 		Role role = new Role();
-		role.setId(UUIDUtils.getUUID());
-		role.setName("���Խ�ɫ");
-		role.setDescription("���Խ�ɫ����");
-		role.setInsertDate(date);
-		role.setUpdateDate(date);
+		role.setId("63ffc310d76d4712b541f8cd94573a40");
+		role.setName("测试角色修改");
+		role.setDescription("测试描述修改");
 		roleService.updateRole(role);
 	}
 
 	@Test
 	public void testDeleteRole() {
-		Date date = new Date();
-		Role role = new Role();
-		role.setId(UUIDUtils.getUUID());
-		role.setName("���Խ�ɫ");
-		role.setDescription("���Խ�ɫ����");
-		role.setInsertDate(date);
-		role.setUpdateDate(date);
-		roleService.deleteRole(role);
+		roleService.deleteRole("63ffc310d76d4712b541f8cd94573a40");
 	}
 
 }

@@ -43,10 +43,9 @@ public class RoleDao extends BaseDao implements IRoleDao {
 	* @see com.zhh.dao.IRoleDao#delete(com.zhh.entity.Role) 
 	*/ 
 	
-	public Role deleteRole(Role role) {
-		String id = role.getId();
-		int result = this.getSqlSession().delete(NAME_SPACE+".deleteByPrimaryKey",id);
-		return result>0 ? role : null;
+	public boolean deleteRole(String roleId) {
+		int result = this.getSqlSession().delete(NAME_SPACE+".deleteRoleById",roleId);
+		return result>0 ? true : false;
 	}
 
 }

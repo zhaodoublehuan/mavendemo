@@ -40,6 +40,10 @@ public class Role implements Serializable {
 	* @Fields description : 角色描述
 	*/
 	private String description;
+	/**
+	 * 角色状态
+	 */
+	private String active;
 	
 	/**
 	* @Fields insertDate : 插入时间
@@ -243,4 +247,12 @@ public class Role implements Serializable {
 	      return false;
 	    return true;
 	  }
+
+	public String getActive() {
+		return active;
+	}
+
+	public void setActive(String active) {
+		this.active = active;
+	}
 }

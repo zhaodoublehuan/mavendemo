@@ -43,5 +43,5 @@ public interface IRoleDao {
 	* @throws 
 	*/ 
 	
-	Role deleteRole(Role role);
+	boolean deleteRole(String roleId);
 }

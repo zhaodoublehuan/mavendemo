@@ -1,6 +1,7 @@
 package com.zhh.service.impl;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.annotation.Resource;
 
@@ -11,6 +12,7 @@ import com.alibaba.fastjson.JSON;
 import com.zhh.dao.IRoleDao;
 import com.zhh.entity.Role;
 import com.zhh.service.IRoleService;
+import com.zhh.util.CommonParams;
 import com.zhh.util.UUIDUtils;
 
 /**
@@ -43,6 +45,7 @@ public class RoleService implements IRoleService {
 			Date now = new Date();
 			role.setId(UUIDUtils.getUUID());
 			role.setInsertDate(now);
+			role.setActive(CommonParams.ACTIVE);
 			role.setUpdateDate(now);
 			return roleDao.addRole(role);
 		}catch (Exception e) {
@@ -81,8 +84,14 @@ public class RoleService implements IRoleService {
 	* @see com.zhh.service.IRoleService#delete(com.zhh.entity.Role) 
 	*/ 
 	
-	public Role deleteRole(Role role) {
-		return roleDao.deleteRole(role);
+	public boolean deleteRole(String roleId) {
+		return roleDao.deleteRole(roleId);
+	}
+	/**
+	 * 根据登录账号查询对应的角色信息
+	 */
+	public List<Role> selectRolesByLoginNo(String loginNo) {
+		return null;
 	}
 
 }

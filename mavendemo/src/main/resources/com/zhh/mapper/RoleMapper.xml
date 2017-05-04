@@ -5,11 +5,12 @@
     <id column="id" property="id" jdbcType="VARCHAR" />
     <result column="name" property="name" jdbcType="VARCHAR" />
     <result column="description" property="description" jdbcType="VARCHAR" />
+    <result column="active" property="active" jdbcType="VARCHAR" />
     <result column="insert_date" property="insertDate" jdbcType="TIMESTAMP" />
     <result column="update_date" property="updateDate" jdbcType="TIMESTAMP" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, name, description, insert_date, update_date
+    id, name, description,active, insert_date, update_date
   </sql>
 <!-- 插入角色信息 -->
   <insert id="insertSelective" parameterType="com.zhh.entity.Role" >
@@ -23,6 +24,9 @@
       </if>
       <if test="description != null" >
         description,
+      </if>
+      <if test="active != null" >
+        active,
       </if>
       <if test="insertDate != null" >
         insert_date,
@@ -40,6 +44,9 @@
       </if>
       <if test="description != null" >
         #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="active != null" >
+        #{active,jdbcType=VARCHAR},
       </if>
       <if test="insertDate != null" >
         #{insertDate,jdbcType=TIMESTAMP},
@@ -59,13 +66,15 @@
       <if test="description != null" >
         description = #{description,jdbcType=VARCHAR},
       </if>
-      <if test="insertDate != null" >
-        insert_date = #{insertDate,jdbcType=TIMESTAMP},
-      </if>
       <if test="updateDate != null" >
         update_date = #{updateDate,jdbcType=TIMESTAMP},
       </if>
     </set>
     where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="deleteRoleById" parameterType="java.lang.String" >
+    update sys_role 
+    set active="N" 
+    where id = #{id}
   </update>
 </mapper>
