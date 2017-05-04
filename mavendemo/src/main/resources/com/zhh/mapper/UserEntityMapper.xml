@@ -173,7 +173,7 @@
   <select id="findUserByUsername" resultMap="BaseResultMap" parameterType="string" >
   	<include refid="select-base-01" />  
   	and 
-    u.login_no = #{loginNo} and active="Y"
+    u.login_no = #{loginNo} and u.active="Y"
   </select>
   <!-- 查询用户数量 -->
   <select id="selectUsersCount" resultType="java.lang.Integer" parameterType="com.zhh.entity.UserEntity">
