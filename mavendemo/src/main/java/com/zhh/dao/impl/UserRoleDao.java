@@ -1,18 +1,24 @@
 package com.zhh.dao.impl;
 
+import java.util.List;
+
+import org.springframework.stereotype.Repository;
+
 import com.zhh.dao.IUserRoleDao;
 import com.zhh.entity.UserRole;
-
-public class UserRoleDao implements IUserRoleDao {
+@Repository	
+public class UserRoleDao extends BaseDao implements IUserRoleDao {
 
 	public UserRole addUserRole(UserRole userRole) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	public boolean deleteUserRole(UserRole userRole) {
-		// TODO Auto-generated method stub
 		return false;
+	}
+
+	public List<String> getRolesByUserId(String userId) {
+		return null;
 	}
 
 }

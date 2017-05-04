@@ -85,7 +85,13 @@ public class RoleService implements IRoleService {
 	*/ 
 	
 	public boolean deleteRole(String roleId) {
-		return roleDao.deleteRole(roleId);
+		LOGGER.info("删除角色信息===="+roleId);
+		try{
+			return roleDao.deleteRole(roleId);
+		}catch (Exception e) {
+			LOGGER.error("删除角色失败===="+e.getMessage());
+			return false;
+		}
 	}
 	/**
 	 * 根据登录账号查询对应的角色信息

@@ -1,5 +1,7 @@
 package com.zhh.dao;
 
+import java.util.List;
+
 import com.zhh.entity.UserRole;
 
 public interface IUserRoleDao {
@@ -24,4 +26,15 @@ public interface IUserRoleDao {
 	*/ 
 	
 	public boolean deleteUserRole(UserRole userRole);
+
+	/** 
+	* @Title: getRolesByUserId 
+	* @Description: 通过用户id查询用户所拥有的角色集合
+	* @param @param userId
+	* @param @return    设定文件 
+	* @return List<String>    返回类型 
+	* @throws 
+	*/ 
+	
+	public List<String> getRolesByUserId(String userId);
 }
