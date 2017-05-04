@@ -1,5 +1,7 @@
 package com.zhh.dao;
 
+import java.util.List;
+
 import com.zhh.entity.Role;
 
 /**
@@ -44,4 +46,15 @@ public interface IRoleDao {
 	*/ 
 	
 	boolean deleteRole(String roleId);
+
+	/** 
+	* @Title: getRolesByRoleIds 
+	* @Description: 根据角色id查询角色信息 
+	* @param @param roleIds
+	* @param @return    设定文件 
+	* @return List<Role>    返回类型 
+	* @throws 
+	*/ 
+	
+	List<Role> getRolesByRoleIds(List<String> roleIds);
 }

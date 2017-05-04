@@ -6,12 +6,14 @@ import java.util.List;
 import javax.annotation.Resource;
 
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.alibaba.fastjson.JSON;
 import com.zhh.dao.IRoleDao;
 import com.zhh.entity.Role;
 import com.zhh.service.IRoleService;
+import com.zhh.service.IUserRoleService;
 import com.zhh.util.CommonParams;
 import com.zhh.util.UUIDUtils;
 
@@ -32,6 +34,8 @@ public class RoleService implements IRoleService {
 	*/
 	@Resource
 	private IRoleDao roleDao;
+	@Autowired
+	private IUserRoleService userRoleService;
 	/* (非 Javadoc) 
 	* <p>Title: add</p> 
 	* <p>Description: </p> 
@@ -96,8 +100,20 @@ public class RoleService implements IRoleService {
 	/**
 	 * 根据登录账号查询对应的角色信息
 	 */
-	public List<Role> selectRolesByLoginNo(String loginNo) {
-		return null;
+	public List<Role> selectRolesByLoginNo(String userId) {
+		LOGGER.info("查询用户所拥有的的角色信息===="+userId);
+		try{
+			List<String> roleIds = userRoleService.getRolesByUserId(userId);
+			if(roleIds==null){
+				return null;
+			}else{
+				return roleDao.getRolesByRoleIds(roleIds);
+			}
+		}catch (Exception e) {
+			LOGGER.info("查询用户所拥有的的角色信息失败===="+userId);
+			return null;
+		}
+		
 	}
 
 }

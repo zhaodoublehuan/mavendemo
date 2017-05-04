@@ -1,5 +1,7 @@
 package com.zhh.dao.impl;
 
+import java.util.List;
+
 import org.springframework.stereotype.Repository;
 
 import com.zhh.dao.IRoleDao;
@@ -46,6 +48,19 @@ public class RoleDao extends BaseDao implements IRoleDao {
 	public boolean deleteRole(String roleId) {
 		int result = this.getSqlSession().delete(NAME_SPACE+".deleteRoleById",roleId);
 		return result>0 ? true : false;
+	}
+
+	/* (非 Javadoc) 
+	* <p>Title: getRolesByRoleIds</p> 
+	* <p>Description: </p> 
+	* @param roleIds
+	* @return 
+	* @see com.zhh.dao.IRoleDao#getRolesByRoleIds(java.util.List) 
+	*/ 
+	
+	public List<Role> getRolesByRoleIds(List<String> roleIds) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
