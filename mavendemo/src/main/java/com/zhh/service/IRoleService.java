@@ -51,5 +51,5 @@ public interface IRoleService {
 	 * @param userId
 	 * @return
 	 */
-	List<Role> selectRolesByLoginNo(String userId);
+	List<Role> selectRolesByLoginNo(String loginNo);
 }

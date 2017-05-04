@@ -17,7 +17,7 @@ public class UserRoleDao extends BaseDao implements IUserRoleDao {
 		return false;
 	}
 
-	public List<String> getRolesByUserId(String userId) {
+	public List<String> selectRolesByLoginNo(String loginNo) {
 		return null;
 	}
 

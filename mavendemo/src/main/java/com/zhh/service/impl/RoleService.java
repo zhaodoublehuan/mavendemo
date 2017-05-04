@@ -100,17 +100,17 @@ public class RoleService implements IRoleService {
 	/**
 	 * 根据登录账号查询对应的角色信息
 	 */
-	public List<Role> selectRolesByLoginNo(String userId) {
-		LOGGER.info("查询用户所拥有的的角色信息===="+userId);
+	public List<Role> selectRolesByLoginNo(String loginNo) {
+		LOGGER.info("查询用户所拥有的的角色信息===="+loginNo);
 		try{
-			List<String> roleIds = userRoleService.getRolesByUserId(userId);
+			List<String> roleIds = userRoleService.selectRolesByLoginNo(loginNo);
 			if(roleIds==null){
 				return null;
 			}else{
 				return roleDao.getRolesByRoleIds(roleIds);
 			}
 		}catch (Exception e) {
-			LOGGER.info("查询用户所拥有的的角色信息失败===="+userId);
+			LOGGER.info("查询用户所拥有的的角色信息失败===="+loginNo);
 			return null;
 		}
 		

@@ -2,6 +2,7 @@ package com.zhh.realm;
 
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Set;
 
 import javax.annotation.Resource;
@@ -17,11 +18,13 @@ import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.util.ByteSource;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import com.alibaba.fastjson.JSON;
 import com.zhh.entity.Permission;
 import com.zhh.entity.Role;
 import com.zhh.entity.UserEntity;
+import com.zhh.service.IRoleService;
 import com.zhh.service.IUserService;
 
 /**
@@ -44,6 +47,9 @@ public class UserRealm extends AuthorizingRealm {
 	@Resource
 	private IUserService userService;
 	
+	@Autowired
+	private IRoleService roleService;
+	
 	/* (非 Javadoc) 
 	* <p>Title: 权限认证方法</p> 
 	* <p>Description: </p> 
@@ -59,23 +65,24 @@ public class UserRealm extends AuthorizingRealm {
 		String loginNo = (String) principals.getPrimaryPrincipal();
 		LOGGER.info("登录用户名========"+loginNo);
 	    /*获取用户的角色集合*/
-	    Set<Role> roleSet =  userService.findUserByLoginNo(loginNo).getRoleSet();
-	    LOGGER.info("登录用户角色集合========"+JSON.toJSONString(roleSet));
+	    List<Role> roleList =  roleService.selectRolesByLoginNo(loginNo);
+	    LOGGER.info("登录用户角色集合========"+JSON.toJSONString(roleList));
 	    //角色名的集合
 	    Set<String> roles = new HashSet<String>();
 	    //权限名的集合
 	    Set<String> permissions = new HashSet<String>();
-	    /*循环角色集合*/
-	    Iterator<Role> it = roleSet.iterator();
-	    while(it.hasNext()){
-	      /*角色集合名称拼接字符串*/
-	      roles.add(it.next().getName());
-	      LOGGER.info("角色拥有的权限信息====="+it.next().getName()+"===="+JSON.toJSONString(it.next().getPermissionSet()));
-	      /*循环权限信息*/
-	      for(Permission per:it.next().getPermissionSet()){
-	    	/*权限集合字符串拼接权限名称*/
-	        permissions.add(per.getName());
-	      }
+	    if(roleList!=null){
+	    	/*循环角色集合*/
+		    for(Role role:roleList){
+		    	/*角色集合名称拼接字符串*/
+			      roles.add(role.getName());
+			      LOGGER.info("角色拥有的权限信息====="+role.getName()+"===="+JSON.toJSONString(role.getPermissionSet()));
+			      /*循环权限信息*/
+			      for(Permission per:role.getPermissionSet()){
+			    	/*权限集合字符串拼接权限名称*/
+			        permissions.add(per.getName());
+			      }
+		    }
 	    }
 	    /*新建权限认证信息*/
 	    SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();

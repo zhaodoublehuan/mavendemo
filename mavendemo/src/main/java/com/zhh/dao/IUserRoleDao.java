@@ -28,13 +28,12 @@ public interface IUserRoleDao {
 	public boolean deleteUserRole(UserRole userRole);
 
 	/** 
-	* @Title: getRolesByUserId 
-	* @Description: 通过用户id查询用户所拥有的角色集合
-	* @param @param userId
+	* @Title: selectRolesByLoginNo 
+	* @Description: 通过loginNo查询用户所拥有的角色集合
+	* @param @param loginNo
 	* @param @return    设定文件 
 	* @return List<String>    返回类型 
 	* @throws 
 	*/ 
-	
-	public List<String> getRolesByUserId(String userId);
+	public List<String> selectRolesByLoginNo(String loginNo);
 }

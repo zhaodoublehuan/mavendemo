@@ -12,18 +12,6 @@
     <result column="active" property="active" jdbcType="VARCHAR" />
     <result column="insert_date" property="insertDate" jdbcType="TIMESTAMP" />
     <result column="update_date" property="updateDate" jdbcType="TIMESTAMP" />
-     <!-- 进行 多表关联插叙，先关联user和role -->
-     <!-- property 表示实体中定义的   column 虚拟数据字段 可有可无 -->
-	<collection property="roleSet" column="roleid" ofType="com.zhh.entity.Role">
-			<id property="id" column="ROLE_ID"/>
-			<result property="name" column="ROLE_NAME"/>
-			<!-- 再在role中关联role和permission -->
-			<!-- property 角色实体中定义的表里名称  column 虚拟数据字段 可有可无-->
-		 	<collection property="permissionSet" column="permissionid" ofType="com.zhh.entity.Permission">
-				<id property="id" column="permission_id"/>
-				<result property="name" column="permission_name"/>
-			</collection>
-	</collection>
   </resultMap>
   <sql id="Base_Column_List" >
     id, user_name, login_no, password, mobile, email,active, insert_date, update_date
@@ -146,34 +134,18 @@
             #{userId}
         </foreach>
   </update>
-  <!-- 查询用户的角色权限信息 -->
-  <sql id="select-base-01">  
-    SELECT   
-      u.id,  
-      u.login_no,
-      u.user_name,
-      u.salt,    
-      u.password,  
-      r.id as role_id,  
-      r.name as role_name,  
-      p.id as permission_id,  
-      p.name as permission_name 
-    FROM  
-      	sys_user as u 
-		LEFT JOIN 
-		sys_user_role as ru on u.id = ru.user_id  
-		LEFT JOIN
-		sys_role as r on r.id = ru.role_id 
-		LEFT JOIN
-		sys_role_permission as pr on r.id = pr.role_id
-      	LEFT JOIN
-      	sys_permission as p on p.id = pr.permission_id
-  </sql>  
   <!-- 通过账号查询用户信息 -->
   <select id="findUserByUsername" resultMap="BaseResultMap" parameterType="string" >
-  	<include refid="select-base-01" />  
-  	and 
-    u.login_no = #{loginNo} and u.active="Y"
+  	SELECT   
+     id,  
+     login_no,
+     user_name,
+     salt,    
+     password
+    FROM  
+      	sys_user
+  	where  
+    login_no = #{loginNo} and active="Y"
   </select>
   <!-- 查询用户数量 -->
   <select id="selectUsersCount" resultType="java.lang.Integer" parameterType="com.zhh.entity.UserEntity">

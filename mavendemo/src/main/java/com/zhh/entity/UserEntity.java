@@ -13,8 +13,6 @@ PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 */
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
 
 /**
 * @ClassName: UserEntity
@@ -71,11 +69,6 @@ public class UserEntity {
     * @Fields updateDate : 修改时间
     */
     private Date updateDate;
-    /**
-     * @Fields roleSet : 用户角色集合
-     */
-    private Set<Role> roleSet = new HashSet<Role>();
-
     /** 
     * @Title: getId 
     * @Description: TODO(这里用一句话描述这个方法的作用) 
@@ -266,14 +259,6 @@ public class UserEntity {
 	
 	public void setActive(String active) {
 		this.active = active;
-	}
-	
-    public Set<Role> getRoleSet() {
-		return roleSet;
-	}
-
-	public void setRoleSet(Set<Role> roleSet) {
-		this.roleSet = roleSet;
 	}
 
 	public String getLoginNo() {

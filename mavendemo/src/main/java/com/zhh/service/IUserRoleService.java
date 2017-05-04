@@ -38,13 +38,12 @@ public interface IUserRoleService {
 	
 	
 	/** 
-	* @Title: getRolesByUserId 
-	* @Description: 通过用户id查询用户所拥有的的角色id集合
+	* @Title: selectRolesByLoginNo 
+	* @Description: 通过loginNo查询用户所拥有的的角色id集合
 	* @param @param userId
 	* @param @return    设定文件 
 	* @return List<String>    返回类型 
 	* @throws 
 	*/ 
-	
-	public List<String> getRolesByUserId(String userId);
+	public List<String> selectRolesByLoginNo(String loginNo);
 }

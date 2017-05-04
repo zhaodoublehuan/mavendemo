@@ -47,23 +47,23 @@ public class UserRoleService implements IUserRoleService {
 		}
 	}
 
+
 	/* (非 Javadoc) 
-	* <p>Title: getRolesByUserId</p> 
+	* <p>Title: selectRolesByLoginNo</p> 
 	* <p>Description: </p> 
-	* @param userId
+	* @param loginNo
 	* @return 
-	* @see com.zhh.service.IUserRoleService#getRolesByUserId(java.lang.String) 
+	* @see com.zhh.service.IUserRoleService#selectRolesByLoginNo(java.lang.String) 
 	*/ 
 	
-	public List<String> getRolesByUserId(String userId) {
-		LOGGER.info("查询用户所拥有的角色信息===="+JSON.toJSONString(userId));
+	public List<String> selectRolesByLoginNo(String loginNo) {
+		LOGGER.info("查询用户所拥有的角色信息===="+JSON.toJSONString(loginNo));
 		try{
-			return userRoleDao.getRolesByUserId(userId);
+			return userRoleDao.selectRolesByLoginNo(loginNo);
 		}catch (Exception e) {
 			LOGGER.info("查询用户所拥有的角色信息失败===="+e.getMessage());
 			return null;
 		}
-		
 	}
 
 }
