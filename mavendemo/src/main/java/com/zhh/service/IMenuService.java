@@ -3,6 +3,7 @@ package com.zhh.service;
 import java.util.List;
 
 import com.zhh.entity.Menu;
+import com.zhh.util.PageUtil;
 
 /**
 * @ClassName: IMenuService
@@ -56,7 +57,7 @@ public interface IMenuService {
 	* @throws 
 	*/ 
 	
-	List<Menu> selectMenus(Menu menu);
+	List<Menu> selectMenus(Menu menu, PageUtil page);
 	
 	/** 
 	* @Title: selectMenusByLoginNo 

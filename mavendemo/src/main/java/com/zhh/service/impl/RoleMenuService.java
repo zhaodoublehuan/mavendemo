@@ -2,6 +2,8 @@ package com.zhh.service.impl;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import com.zhh.service.IRoleMenuService;
 
 /**
@@ -11,7 +13,7 @@ import com.zhh.service.IRoleMenuService;
 * @date 2017-5-5 上午9:37:25
 * 
 */
-
+@Service
 public class RoleMenuService implements IRoleMenuService {
 
 	/* (非 Javadoc) 

@@ -63,7 +63,7 @@ public class HomeController {
             //使用权限工具进行用户登录，登录成功后跳到shiro配置的successUrl中，与下面的return没什么关系！  
             SecurityUtils.getSubject().login(new UsernamePasswordToken(user.getUserName(), user.getPassword()));  
             LOGGER.info("登录用户==="+JSON.toJSONString(user));
-            List<Menu> menuList = menuService.selectMenus(null);
+            List<Menu> menuList = menuService.selectMenus(null,null);
             model.addAttribute("menuList", menuList);
             return "user/userList";  
         } catch (Exception e) {  

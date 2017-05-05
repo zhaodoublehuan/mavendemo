@@ -44,7 +44,7 @@ public class MenuServiceTest extends BaseTest {
 		menu.setInsertDate(date);
 		menu.setUpdateDate(date);
 		try {
-			menuService.selectMenus(menu);
+			menuService.selectMenus(menu,null);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

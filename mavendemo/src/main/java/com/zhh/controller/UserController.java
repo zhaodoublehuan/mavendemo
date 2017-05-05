@@ -45,7 +45,7 @@ public class UserController extends BaseController {
 	*/ 
 	@RequestMapping("/userList")
 	public String userIndex(Model model){
-		List<Menu> menuList = menuService.selectMenus(null);
+		List<Menu> menuList = menuService.selectMenus(null,null);
         model.addAttribute("menuList", menuList);
 		return "user/userList";
 	}

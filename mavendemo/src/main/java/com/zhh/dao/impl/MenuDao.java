@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 
 import com.zhh.dao.IMenuDao;
 import com.zhh.entity.Menu;
+import com.zhh.util.PageUtil;
 @Repository
 public class MenuDao extends BaseDao implements IMenuDao {
 	
@@ -51,7 +52,7 @@ public class MenuDao extends BaseDao implements IMenuDao {
 	
 	public boolean deleteMenu(String menuId) {
 		
-		int result = this.getSqlSession().update(NAME_SPACE+".updateByPrimaryKeySelective", menuId);
+		int result = this.getSqlSession().update(NAME_SPACE+".deleteMenuById", menuId);
 		
 		return result>0?true:false;
 	}
@@ -64,7 +65,7 @@ public class MenuDao extends BaseDao implements IMenuDao {
 	* @see com.zhh.dao.IMenuDao#selectMenus(com.zhh.entity.Menu) 
 	*/ 
 	
-	public List<Menu> selectMenus(Menu menu) {
+	public List<Menu> selectMenus(Menu menu, PageUtil page) {
 		
 		return this.getSqlSession().selectList(NAME_SPACE+".selectMenus", menu);
 	}

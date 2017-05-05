@@ -1,5 +1,6 @@
 package com.zhh.service.impl;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -11,10 +12,10 @@ import org.springframework.stereotype.Service;
 import com.alibaba.fastjson.JSON;
 import com.zhh.dao.IMenuDao;
 import com.zhh.entity.Menu;
-import com.zhh.entity.Role;
 import com.zhh.service.IMenuService;
 import com.zhh.service.IRoleMenuService;
 import com.zhh.service.IUserRoleService;
+import com.zhh.util.PageUtil;
 import com.zhh.util.UUIDUtils;
 
 /**
@@ -50,10 +51,18 @@ public class MenuService implements IMenuService {
 	*/ 
 	
 	public Menu addMenu(Menu menu) {
-		/*设置id*/
-		menu.setId(UUIDUtils.getUUID());
-		LOGGER.info("添加菜单======"+JSON.toJSONString(menu));
-		return menuDao.addMenu(menu);
+		LOGGER.info("添加菜单信息===="+JSON.toJSONString(menu));
+		try{
+			Date today = new Date();
+			/*设置id*/
+			menu.setId(UUIDUtils.getUUID());
+			menu.setInsertDate(today);
+			menu.setUpdateDate(today);
+			return menuDao.addMenu(menu);			
+		}catch (Exception e) {
+			LOGGER.error("添加菜单信息失败==="+e.getMessage());
+			return null;
+		}
 	}
 
 	/* (非 Javadoc) 
@@ -66,7 +75,14 @@ public class MenuService implements IMenuService {
 	
 	public Menu updateMenu(Menu menu) {
 		LOGGER.info("修改菜单======"+JSON.toJSONString(menu));
-		return menuDao.updateMenu(menu);
+		try{
+			Date today = new Date();
+			menu.setUpdateDate(today);
+			return menuDao.updateMenu(menu);			
+		}catch (Exception e) {
+			LOGGER.error("修改菜单失败====="+e.getMessage());
+			return null;
+		}
 	}
 
 	/* (非 Javadoc) 
@@ -79,7 +95,12 @@ public class MenuService implements IMenuService {
 	
 	public boolean deleteMenu(String menuId) {
 		LOGGER.info("删除菜单======"+menuId);
-		return menuDao.deleteMenu(menuId);
+		try{
+			return menuDao.deleteMenu(menuId);			
+		}catch (Exception e) {
+			LOGGER.error("删除菜单失败===="+e.getMessage());
+			return false;
+		}
 	}
 
 	/* (非 Javadoc) 
@@ -90,14 +111,19 @@ public class MenuService implements IMenuService {
 	* @see com.zhh.service.IMenuService#selectMenus(com.zhh.entity.Menu) 
 	*/ 
 	
-	public List<Menu> selectMenus(Menu menu) {
-		LOGGER.info("查询菜单条件======"+JSON.toJSONString(menu));
-		List<Menu> menus = menuDao.selectMenus(menu);
-		LOGGER.info("查询出的菜单为======"+JSON.toJSONString(menus));
-		return menus;
-	}
-
-	/* (非 Javadoc) 
+	public List<Menu> selectMenus(Menu menu, PageUtil page) {
+		try{
+			LOGGER.info("查询菜单条件======"+JSON.toJSONString(menu));
+			List<Menu> menus = menuDao.selectMenus(menu,page);
+			LOGGER.info("查询出的菜单为======"+JSON.toJSONString(menus));
+			return menus;			
+		}catch (Exception e) {
+						LOGGER.error("查询失败====="+e.getMessage());
+						return null;
+					}
+				}
+			
+				/* (非 Javadoc) 
 	* <p>Title: selectMenusByLoginNo</p> 
 	* <p>Description: </p> 
 	* @param loginNo

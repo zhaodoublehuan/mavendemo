@@ -3,6 +3,7 @@ package com.zhh.dao;
 import java.util.List;
 
 import com.zhh.entity.Menu;
+import com.zhh.util.PageUtil;
 
 /**
 * @ClassName: IMenuDao
@@ -56,7 +57,7 @@ public interface IMenuDao {
 	* @throws 
 	*/ 
 	
-	List<Menu> selectMenus(Menu menu);
+	List<Menu> selectMenus(Menu menu, PageUtil page);
 	
 	/** 
 	* @Title: selectMenusByIds 
