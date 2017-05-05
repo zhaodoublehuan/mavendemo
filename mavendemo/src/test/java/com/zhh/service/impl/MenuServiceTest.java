@@ -16,35 +16,23 @@ public class MenuServiceTest extends BaseTest {
 	private IMenuService menuService;
 	@Test
 	public void testAddMenu() {
-		Date date = new Date();
 		Menu menu = new Menu();
 		menu.setMenuUrl("baidu.com");
-		menu.setDescription("�˵�����");
-		menu.setInsertDate(date);
-		menu.setUpdateDate(date);
+		menu.setDescription("添加菜单描述");
 		menuService.addMenu(menu);
 	}
 
 	@Test
 	public void testUpdateMenu() {
-		Date date = new Date();
 		Menu menu = new Menu();
 		menu.setMenuUrl("baidu.com");
-		menu.setDescription("�˵�����");
-		menu.setInsertDate(date);
-		menu.setUpdateDate(date);
+		menu.setDescription("修改菜单描述");
 		menuService.updateMenu(menu);
 	}
 
 	@Test
 	public void testDeleteMenu() {
-		Date date = new Date();
-		Menu menu = new Menu();
-		menu.setMenuUrl("baidu.com");
-		menu.setDescription("�˵�����");
-		menu.setInsertDate(date);
-		menu.setUpdateDate(date);
-		menuService.deleteMenu(menu);
+		menuService.deleteMenu("");
 	}
 
 	@Test
@@ -52,7 +40,7 @@ public class MenuServiceTest extends BaseTest {
 		Date date = new Date();
 		Menu menu = new Menu();
 		menu.setMenuUrl("baidu.com");
-		menu.setDescription("�˵�����");
+		menu.setDescription("根据条件查询");
 		menu.setInsertDate(date);
 		menu.setUpdateDate(date);
 		try {

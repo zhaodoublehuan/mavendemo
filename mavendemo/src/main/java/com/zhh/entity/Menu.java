@@ -75,7 +75,7 @@ public class Menu implements Serializable {
     /**
     * @Fields status : 菜单状态
     */
-    private String status;
+    private String active;
 
     /**
     * @Fields parentId : 父菜单id
@@ -367,30 +367,6 @@ public class Menu implements Serializable {
 	}
 
 	/** 
-	* @Title: getStatus 
-	* @Description: TODO(这里用一句话描述这个方法的作用) 
-	* @param @return    设定文件 
-	* @return String    返回类型 
-	* @throws 
-	*/ 
-	
-	public String getStatus() {
-		return status;
-	}
-
-	/** 
-	* @Title: setStatus 
-	* @Description: TODO(这里用一句话描述这个方法的作用) 
-	* @param @param status    设定文件 
-	* @return void    返回类型 
-	* @throws 
-	*/ 
-	
-	public void setStatus(String status) {
-		this.status = status;
-	}
-
-	/** 
 	* @Title: getParentMenu 
 	* @Description: TODO(这里用一句话描述这个方法的作用) 
 	* @param @return    设定文件 
@@ -436,6 +412,14 @@ public class Menu implements Serializable {
 	
 	public void setChildrenMenus(List<Menu> childrenMenus) {
 		this.childrenMenus = childrenMenus;
+	}
+
+	public String getActive() {
+		return active;
+	}
+
+	public void setActive(String active) {
+		this.active = active;
 	}
 	
 	

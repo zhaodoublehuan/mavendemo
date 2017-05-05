@@ -49,11 +49,11 @@ public class MenuDao extends BaseDao implements IMenuDao {
 	* @see com.zhh.dao.IMenuDao#deleteMenu(java.lang.String) 
 	*/ 
 	
-	public Menu deleteMenu(Menu menu) {
+	public boolean deleteMenu(String menuId) {
 		
-		int result = this.getSqlSession().update(NAME_SPACE+".updateByPrimaryKeySelective", menu);
+		int result = this.getSqlSession().update(NAME_SPACE+".updateByPrimaryKeySelective", menuId);
 		
-		return result>0?menu:null;
+		return result>0?true:false;
 	}
 
 	/* (非 Javadoc) 

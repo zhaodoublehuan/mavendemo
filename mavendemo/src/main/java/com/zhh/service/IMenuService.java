@@ -45,7 +45,7 @@ public interface IMenuService {
 	* @throws 
 	*/ 
 	
-	Menu deleteMenu(Menu menu);
+	boolean deleteMenu(String menuId);
 	
 	/** 
 	* @Title: selectMenus 

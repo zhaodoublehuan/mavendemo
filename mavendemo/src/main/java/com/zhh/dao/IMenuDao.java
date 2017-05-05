@@ -39,13 +39,13 @@ public interface IMenuDao {
 	/** 
 	* @Title: deleteMenu 
 	* @Description: 删除菜单
-	* @param @param menu
+	* @param @param menuId
 	* @param @return    设定文件 
 	* @return Menu    返回类型 
 	* @throws 
 	*/ 
 	
-	Menu deleteMenu(Menu menu);
+	boolean deleteMenu(String menuId);
 	
 	/** 
 	* @Title: selectMenus 

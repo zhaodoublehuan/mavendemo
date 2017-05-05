@@ -77,9 +77,9 @@ public class MenuService implements IMenuService {
 	* @see com.zhh.service.IMenuService#deleteMenu(java.lang.String) 
 	*/ 
 	
-	public Menu deleteMenu(Menu menu) {
-		LOGGER.info("删除菜单======"+JSON.toJSONString(menu));
-		return menuDao.deleteMenu(menu);
+	public boolean deleteMenu(String menuId) {
+		LOGGER.info("删除菜单======"+menuId);
+		return menuDao.deleteMenu(menuId);
 	}
 
 	/* (非 Javadoc) 
