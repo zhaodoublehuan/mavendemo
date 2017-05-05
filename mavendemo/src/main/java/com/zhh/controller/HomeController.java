@@ -6,9 +6,7 @@ import javax.annotation.Resource;
 
 import org.apache.log4j.Logger;
 import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.UsernamePasswordToken;
-import org.apache.shiro.subject.Subject;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,10 +14,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.alibaba.fastjson.JSON;
-import com.zhh.service.IMenuService;
-import com.zhh.service.impl.UserService;
-import com.zhh.entity.UserEntity;
 import com.zhh.entity.Menu;
+import com.zhh.entity.UserEntity;
+import com.zhh.service.IMenuService;
 
 /**
 * @ClassName: HomeController
