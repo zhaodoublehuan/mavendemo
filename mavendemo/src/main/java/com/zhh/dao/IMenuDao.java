@@ -14,11 +14,58 @@ import com.zhh.entity.Menu;
 
 public interface IMenuDao {
 	
+	/** 
+	* @Title: addMenu 
+	* @Description: 添加菜单
+	* @param @param menu
+	* @param @return    设定文件 
+	* @return Menu    返回类型 
+	* @throws 
+	*/ 
+	
 	Menu addMenu(Menu menu);
+	
+	/** 
+	* @Title: updateMenu 
+	* @Description: 修改菜单 
+	* @param @param menu
+	* @param @return    设定文件 
+	* @return Menu    返回类型 
+	* @throws 
+	*/ 
 	
 	Menu updateMenu(Menu menu);
 	
+	/** 
+	* @Title: deleteMenu 
+	* @Description: 删除菜单
+	* @param @param menu
+	* @param @return    设定文件 
+	* @return Menu    返回类型 
+	* @throws 
+	*/ 
+	
 	Menu deleteMenu(Menu menu);
 	
+	/** 
+	* @Title: selectMenus 
+	* @Description: 查询菜单集合，根据查询条件
+	* @param @param menu
+	* @param @return    设定文件 
+	* @return List<Menu>    返回类型 
+	* @throws 
+	*/ 
+	
 	List<Menu> selectMenus(Menu menu);
+	
+	/** 
+	* @Title: selectMenusByIds 
+	* @Description: TODO(这里用一句话描述这个方法的作用) 
+	* @param @param ids
+	* @param @return    设定文件 
+	* @return List<Menu>    返回类型 
+	* @throws 
+	*/ 
+	
+	List<Menu> selectMenusByIds(List<String> ids);
 }

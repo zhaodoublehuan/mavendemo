@@ -69,4 +69,16 @@ public class MenuDao extends BaseDao implements IMenuDao {
 		return this.getSqlSession().selectList(NAME_SPACE+".selectMenus", menu);
 	}
 
+	/* (非 Javadoc) 
+	* <p>Title: selectMenusByIds</p> 
+	* <p>Description: </p> 
+	* @param ids
+	* @return 
+	* @see com.zhh.dao.IMenuDao#selectMenusByIds(java.util.List) 
+	*/ 
+	
+	public List<Menu> selectMenusByIds(List<String> ids) {
+		return null;
+	}
+
 }

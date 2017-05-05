@@ -57,5 +57,16 @@ public interface IMenuService {
 	*/ 
 	
 	List<Menu> selectMenus(Menu menu);
+	
+	/** 
+	* @Title: selectMenusByLoginNo 
+	* @Description: 通过loginNo查询该用户所能查看的菜单
+	* @param @param loginNo
+	* @param @return    设定文件 
+	* @return List<Menu>    返回类型 
+	* @throws 
+	*/ 
+	
+	List<Menu> selectMenusByLoginNo(String loginNo);
 
 }

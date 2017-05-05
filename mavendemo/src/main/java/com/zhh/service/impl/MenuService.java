@@ -5,12 +5,16 @@ import java.util.List;
 import javax.annotation.Resource;
 
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.alibaba.fastjson.JSON;
 import com.zhh.dao.IMenuDao;
 import com.zhh.entity.Menu;
+import com.zhh.entity.Role;
 import com.zhh.service.IMenuService;
+import com.zhh.service.IRoleMenuService;
+import com.zhh.service.IUserRoleService;
 import com.zhh.util.UUIDUtils;
 
 /**
@@ -29,11 +33,13 @@ public class MenuService implements IMenuService {
 	*/
 	private static final Logger LOGGER = Logger.getLogger(MenuService.class);
 	
-	/**
-	* @Fields menuDao : dao注入
-	*/
 	@Resource
 	private IMenuDao menuDao;
+	
+	@Autowired
+	private IUserRoleService userRoleService;
+	@Autowired
+	private IRoleMenuService roleMenuService;
 	
 	/* (非 Javadoc) 
 	* <p>Title: addMenu</p> 
@@ -89,6 +95,23 @@ public class MenuService implements IMenuService {
 		List<Menu> menus = menuDao.selectMenus(menu);
 		LOGGER.info("查询出的菜单为======"+JSON.toJSONString(menus));
 		return menus;
+	}
+
+	/* (非 Javadoc) 
+	* <p>Title: selectMenusByLoginNo</p> 
+	* <p>Description: </p> 
+	* @param loginNo
+	* @return 
+	* @see com.zhh.service.IMenuService#selectMenusByLoginNo(java.lang.String) 
+	*/ 
+	
+	public List<Menu> selectMenusByLoginNo(String loginNo) {
+		/*根据登录账号查询用户所拥有的角色*/
+		List<String> roleIds = userRoleService.selectRolesByLoginNo(loginNo);
+		/*根据角色集合查询所有的菜单id*/
+		List<String> menuIds = roleMenuService.selectMenuIdsByRoleIds(roleIds);
+		/*根据菜单id集合查询对应的菜单*/
+		return menuDao.selectMenusByIds(menuIds);
 	}
 
 }
