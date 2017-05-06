@@ -27,7 +27,7 @@
    </select> 
   <!-- 新增菜单信息 -->
   <insert id="insertSelective" parameterType="com.zhh.entity.Menu" >
-    insert into sys_menu
+     insert into sys_menu
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         id,
@@ -37,6 +37,21 @@
       </if>
       <if test="menuName != null" >
         menu_name,
+      </if>
+      <if test="level != null" >
+        level,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+      <if test="sort != null" >
+        sort,
+      </if>
+      <if test="active != null" >
+        active,
+      </if>
+      <if test="leaf != null" >
+        leaf,
       </if>
       <if test="description != null" >
         description,
@@ -61,11 +76,26 @@
       <if test="menuName != null" >
         #{menuName,jdbcType=VARCHAR},
       </if>
+      <if test="level != null" >
+        #{level,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null" >
+        #{sort,jdbcType=VARCHAR},
+      </if>
+      <if test="active != null" >
+        #{active,jdbcType=VARCHAR},
+      </if>
+      <if test="leaf != null" >
+        #{leaf,jdbcType=VARCHAR},
+      </if>
       <if test="description != null" >
         #{description,jdbcType=VARCHAR},
       </if>
       <if test="parentId != null" >
-        #{parentId,jdbcType=INTEGER},
+        #{parentId,jdbcType=VARCHAR},
       </if>
       <if test="insertDate != null" >
         #{insertDate,jdbcType=TIMESTAMP},
@@ -85,11 +115,26 @@
       <if test="menuName != null" >
         menu_name = #{menuName,jdbcType=VARCHAR},
       </if>
+      <if test="level != null" >
+        level = #{level,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        state = #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null" >
+        sort = #{sort,jdbcType=VARCHAR},
+      </if>
+      <if test="active != null" >
+        active = #{active,jdbcType=VARCHAR},
+      </if>
+      <if test="leaf != null" >
+        leaf = #{leaf,jdbcType=VARCHAR},
+      </if>
       <if test="description != null" >
         description = #{description,jdbcType=VARCHAR},
       </if>
       <if test="parentId != null" >
-        parent_id = #{parentId,jdbcType=INTEGER},
+        parent_id = #{parentId,jdbcType=VARCHAR},
       </if>
       <if test="insertDate != null" >
         insert_date = #{insertDate,jdbcType=TIMESTAMP},
@@ -109,6 +154,15 @@
 		 select 
 	    <include refid="Base_Column_List" />
 	    from sys_menu 
-	    where active = "Y"
+	    where active = "Y" 
+	  <if test="menuUrl != null" >
+        and menu_url = #{menuUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="menuName != null" >
+        and menu_name = #{menuName,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        and description = #{description,jdbcType=VARCHAR},
+      </if>
   </select>
 </mapper>
