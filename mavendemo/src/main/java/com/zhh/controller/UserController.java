@@ -81,9 +81,17 @@ public class UserController extends BaseController {
 	*/ 
 	
 	@RequestMapping("/updateUser")
-	public String updateUser(UserEntity user,HttpServletResponse response){
-		userService.update(user);
-		return "user/userList";
+	public @ResponseBody ReturnResult updateUser(@RequestBody UserEntity user,HttpServletResponse response){
+		ReturnResult result = new ReturnResult();
+		UserEntity userEntity =  userService.update(user);
+		if(userEntity==null){
+			result.setStatus(0);
+			result.setMsg("修改用户成功");
+		}else{
+			result.setStatus(1);
+			result.setMsg("修改用户失败");
+		}
+		return result;
 	}
 	
 	/** 
@@ -94,9 +102,17 @@ public class UserController extends BaseController {
 	* @throws 
 	*/ 
 	
-	public String deleteUser(List<String> ids,HttpServletResponse response){
-		userService.delete(ids);
-		return "user/userList";
+	public @ResponseBody ReturnResult deleteUser(@RequestBody List<String> ids,HttpServletResponse response){
+		ReturnResult result = new ReturnResult();
+		boolean isDel = userService.delete(ids);
+		if(isDel){
+			result.setStatus(0);
+			result.setMsg("删除用户成功");
+		}else{
+			result.setStatus(1);
+			result.setMsg("删除用户失败");
+		}
+		return result;
 	}
 	
 	/** 
