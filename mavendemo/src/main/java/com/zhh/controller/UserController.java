@@ -2,23 +2,24 @@ package com.zhh.controller;
 
 import java.util.List;
 
-import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSON;
 import com.zhh.entity.Menu;
 import com.zhh.entity.UserEntity;
 import com.zhh.service.IMenuService;
 import com.zhh.service.IUserService;
+import com.zhh.util.PageReturnParam;
 import com.zhh.util.PageUtil;
 
-@SuppressWarnings("restriction")
 @Controller
 @RequestMapping("/user")
 public class UserController extends BaseController {
@@ -27,13 +28,13 @@ public class UserController extends BaseController {
 	/**
 	* @Fields userService : 用户信息service
 	*/
-	@Resource
+	@Autowired
 	private IUserService userService;
 	
 	/**
 	* @Fields menuService : 菜单信息service
 	*/
-	@Resource
+	@Autowired
 	private IMenuService menuService;
 	
 	/** 
@@ -97,7 +98,7 @@ public class UserController extends BaseController {
 	* @throws 
 	*/ 
 	@RequestMapping("/userPage")
-	public void userPage(HttpServletRequest request,HttpServletResponse response){
+	public @ResponseBody PageReturnParam userPage(HttpServletRequest request,HttpServletResponse response){
 		/*查询出来的数量*/ 
 		int count = 10;
 		/*接收前台datatabel传来分页用的参数*/
@@ -108,8 +109,13 @@ public class UserController extends BaseController {
 		/*查询符合条件的用户*/
 		List<UserEntity> userList = userService.selectUsers(null,page);
 		/*查询总条数*/
-		count = userService.selectUsersCount(null);
-		String json = "{\"sEcho\":" + page.getsEcho() + ",\"iTotalRecords\":" + count + ",\"iTotalDisplayRecords\":" + count + ",\"aaData\":" + JSON.toJSONString(userList) + "}";
-		writeJson(json,response);
+		count = userService.selectUsersCount(null);	
+		/*返回需要的分页参数*/
+		PageReturnParam pageReturnParam = new PageReturnParam();
+		pageReturnParam.setsEcho(page.getsEcho());
+		pageReturnParam.setiTotalDisplayRecords(count);
+		pageReturnParam.setiTotalRecords(count);
+		pageReturnParam.setAaData(userList);
+		return pageReturnParam;
 	}
 }
