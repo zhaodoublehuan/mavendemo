@@ -152,6 +152,9 @@ public class SafeCompute {
 		if(roundingMode==null){
 			roundingMode = RoundingMode.HALF_UP;
 		}
+		if(scale==null){
+			scale = 0;
+		}
 		return b1.setScale(scale,roundingMode).doubleValue();
 	}
 }
