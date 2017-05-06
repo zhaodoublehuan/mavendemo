@@ -9,16 +9,17 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.alibaba.fastjson.JSON;
 import com.zhh.entity.Menu;
 import com.zhh.entity.UserEntity;
 import com.zhh.service.IMenuService;
 import com.zhh.service.IUserService;
 import com.zhh.util.PageReturnParam;
 import com.zhh.util.PageUtil;
+import com.zhh.util.ReturnResult;
 
 @Controller
 @RequestMapping("/user")
@@ -59,9 +60,17 @@ public class UserController extends BaseController {
 	*/ 
 	
 	@RequestMapping("/addUser")
-	public String addUser(UserEntity user,HttpServletResponse response){
-		writeJson(user, response);
-		return "user/userList";
+	public @ResponseBody ReturnResult addUser(@RequestBody UserEntity user,HttpServletResponse response){
+		ReturnResult result = new ReturnResult();
+		UserEntity userEntity = userService.add(user);
+		if(userEntity==null){
+			result.setStatus(0);
+			result.setMsg("添加用户成功");
+		}else{
+			result.setStatus(1);
+			result.setMsg("添加用户失败");
+		}
+		return result;
 	}
 	/** 
 	* @Title: updateUser 
