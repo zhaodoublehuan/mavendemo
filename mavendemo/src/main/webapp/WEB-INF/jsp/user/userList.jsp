@@ -19,7 +19,7 @@
       <!-- Content Header (Page header) 内容区域顶部信息-->
       <section class="content-header">
         <h1>
-          	网站基本信息
+          	用户信息
         </h1>
       </section>
 
@@ -30,39 +30,16 @@
           <section class="col-lg-12 connectedSortable">
             <!-- quick email widget -->
             <div class="box box-info">
-              <div class="box-header">
-                <i class="fa fa-pencil-square-o"></i>
-
-                <h3 class="box-title">基本信息设置</h3>
-
-              </div>
               <div class="box-body">
-                <form action="#" method="post">
-                  <div class="form-group">
-                    <label>网站名称：</label>
-                    <input type="email" class="form-control" name="emailto">
-                  </div>
-                  <div class="form-group">
-                    <label>网站标题：</label>
-                    <input type="email" class="form-control" name="emailto">
-                  </div>
-                  <div class="form-group">
-                    <label>网站关键字：</label>
-                    <input type="email" class="form-control" name="emailto">
-                  </div>
-                  <div class="form-group">
-                    <label>网站logo：</label>
-                    <input type="file" class="form-control" name="logo">
-                  </div>
-                  <div>
-                    <label>网站简介：</label>
-                    <textarea class="textarea" style="width: 100%; height: 125px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
-                  </div>
-                </form>
-              </div>
-              <div class="box-footer clearfix">
-                <button type="button" class="pull-right btn btn-default" id="sendEmail">保存设置
-                  <i class="fa fa-check"></i></button>
+                <table id="user_table" class="table table-bordered table-hover">
+     				<thead>
+		                <tr>
+		                  <th>登录账号</th>
+		                  <th>用户名称</th>
+		                  <th>操作</th>
+		                </tr>
+	                </thead>
+   				</table>
               </div>
             </div>
 
