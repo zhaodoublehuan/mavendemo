@@ -145,9 +145,12 @@ public class SafeCompute {
 	public static Double setScale(Double d1,Integer scale,RoundingMode roundingMode){
 		BigDecimal b1;
 		if(d1==null){
-			b1 = BigDecimal.ZERO;
+			return BigDecimal.ZERO.doubleValue();
 		}else{
 			b1 = BigDecimal.valueOf(d1);
+		}
+		if(roundingMode==null){
+			roundingMode = RoundingMode.HALF_UP;
 		}
 		return b1.setScale(scale,roundingMode).doubleValue();
 	}
