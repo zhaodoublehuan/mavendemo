@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.zhh.entity.Role;
 import com.zhh.service.IRoleService;
@@ -22,7 +23,7 @@ import com.zhh.service.IRoleService;
 
 @Controller
 @RequestMapping("/role")
-public class RoleController extends BaseController {
+public class RoleController {
 	private static final Logger LOGGER = Logger.getLogger(RoleController.class);
 	
 	@Autowired
@@ -33,9 +34,9 @@ public class RoleController extends BaseController {
 	 * @param role
 	 */
 	@RequestMapping(value="/addRole", method = RequestMethod.POST)
-	public void addRole(@RequestBody Role role,HttpServletResponse response){
+	public @ResponseBody Role addRole(@RequestBody Role role,HttpServletResponse response){
 		LOGGER.info("添加角色信息");
-		Role role1 = roleService.addRole(role);
-		writeJson(role1, response);
+		Role roleEntity = roleService.addRole(role);
+		return roleEntity;
 	}
 }

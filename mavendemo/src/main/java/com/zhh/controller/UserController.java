@@ -23,7 +23,7 @@ import com.zhh.util.ReturnResult;
 
 @Controller
 @RequestMapping("/user")
-public class UserController extends BaseController {
+public class UserController {
 	
 	private static final Logger LOGGER = Logger.getLogger(UserController.class);
 	/**
