@@ -123,7 +123,7 @@ public class UserController {
 	* @throws 
 	*/ 
 	@RequestMapping("/userPage")
-	public @ResponseBody PageReturnParam userPage(HttpServletRequest request,HttpServletResponse response){
+	public @ResponseBody PageReturnParam userPage(@RequestBody UserEntity user ,HttpServletRequest request,HttpServletResponse response){
 		/*查询出来的数量*/ 
 		int count = 10;
 		/*接收前台datatabel传来分页用的参数*/
@@ -132,9 +132,9 @@ public class UserController {
 		/*转换需要的参数*/
 		PageUtil page = PageUtil.getPageParams(aoData);
 		/*查询符合条件的用户*/
-		List<UserEntity> userList = userService.selectUsers(null,page);
+		List<UserEntity> userList = userService.selectUsers(user,page);
 		/*查询总条数*/
-		count = userService.selectUsersCount(null);	
+		count = userService.selectUsersCount(user);	
 		/*返回需要的分页参数*/
 		PageReturnParam pageReturnParam = new PageReturnParam();
 		pageReturnParam.setsEcho(page.getsEcho());
