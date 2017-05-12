@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="mapper.ScheduleJobMapper" >
+  <resultMap id="BaseResultMap" type="com.zhh.entity.ScheduleJob" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="job_name" property="jobName" jdbcType="VARCHAR" />
+    <result column="job_group" property="jobGroup" jdbcType="VARCHAR" />
+    <result column="job_status" property="jobStatus" jdbcType="CHAR" />
+    <result column="cron_expression" property="cronExpression" jdbcType="VARCHAR" />
+    <result column="memo" property="memo" jdbcType="VARCHAR" />
+    <result column="job_url" property="jobUrl" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, job_name, job_group, job_status, cron_expression, memo,job_url
+  </sql>
+  <select id="queryScheduleJob" resultMap="BaseResultMap" parameterType="com.zhh.entity.ScheduleJob" >
+    select 
+    <include refid="Base_Column_List" /> 
+     from wqs_job_task
+   	<where>
+	 		<if test="id!=null and id!=''">
+	 			AND id = #{id,jdbcType=VARCHAR}
+	 		</if>
+	 		<if test="jobStatus!=null and jobStatus!=''">
+	 			AND job_status = #{jobStatus,jdbcType=VARCHAR}
+	 		</if>
+	 		<if test="jobGroup!=null and jobGroup!=''">
+	 			AND job_group = #{jobGroup,jdbcType=VARCHAR}
+	 		</if>
+	 		<if test="jobName!=null and jobName!=''">
+	 			AND job_name like CONCAT(CONCAT('%',#{jobName,jdbcType=VARCHAR}),'%')
+	 		</if>
+	 </where>
+  </select>
+   <select id="queryScheduleJobPage" resultMap="BaseResultMap" parameterType="java.util.Map" >
+    select 
+    <include refid="Base_Column_List" /> 
+     from wqs_job_task
+   	<where>
+   		<if test="entity!=null">
+	 		<if test="entity.id!=null and entity.id!=''">
+	 			AND id = #{entity.id,jdbcType=VARCHAR}
+	 		</if>
+	 		<if test="entity.jobStatus!=null and entity.jobStatus!=''">
+	 			AND job_status = #{entity.jobStatus,jdbcType=VARCHAR}
+	 		</if>
+	 		<if test="entity.jobGroup!=null and entity.jobGroup!=''">
+	 			AND job_group = #{entity.jobGroup,jdbcType=VARCHAR}
+	 		</if>
+	 		<if test="entity.jobName!=null and entity.jobName!=''">
+	 			AND job_name like CONCAT(CONCAT('%',#{entity.jobName,jdbcType=VARCHAR}),'%')
+	 		</if>
+ 		</if>
+	 </where> 
+	 limit #{start},#{end}
+  </select>
+  <select id="queryAllScheduleJobCount" resultType="java.lang.Integer" parameterType="com.zhh.entity.ScheduleJob">
+   	select 
+  	 count(1) 
+     from wqs_job_task
+   	<where>
+	 		<if test="id!=null and id!=''">
+	 			AND id = #{id,jdbcType=VARCHAR}
+	 		</if>
+	 		<if test="jobStatus!=null and jobStatus!=''">
+	 			AND job_status = #{jobStatus,jdbcType=VARCHAR}
+	 		</if>
+	 		<if test="jobGroup!=null and jobGroup!=''">
+	 			AND job_group = #{jobGroup,jdbcType=VARCHAR}
+	 		</if>
+	 		<if test="jobName!=null and jobName!=''">
+	 			AND job_name like CONCAT(CONCAT('%',#{jobName,jdbcType=VARCHAR}),'%')
+	 		</if>
+	 </where>
+  </select>
+  <select id="queryScheduleJobEntity" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" /> 
+     from wqs_job_task
+   	<where>
+			id = #{id,jdbcType=VARCHAR}
+	 </where>
+  </select>
+  <delete id="deleteScheduleJob" parameterType="java.lang.String" >
+    delete from wqs_job_task
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.zhh.entity.ScheduleJob" >
+    insert into wqs_job_task (id, job_name, job_group, 
+      job_status, cron_expression, memo,job_url
+      )
+    values (#{id,jdbcType=VARCHAR}, #{jobName,jdbcType=VARCHAR}, #{jobGroup,jdbcType=VARCHAR}, 
+            #{jobStatus,jdbcType=CHAR}, #{cronExpression,jdbcType=VARCHAR}, 
+            #{memo,jdbcType=VARCHAR},#{jobStatus,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="addScheduleJob" parameterType="com.zhh.entity.ScheduleJob" >
+    insert into wqs_job_task
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="jobName != null" >
+        job_name,
+      </if>
+      <if test="jobGroup != null" >
+        job_group,
+      </if>
+      <if test="jobStatus != null" >
+        job_status,
+      </if>
+      <if test="cronExpression != null" >
+        cron_expression,
+      </if>
+      <if test="memo != null" >
+        memo,
+      </if>
+      <if test="jobUrl != null" >
+        job_url,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="jobName != null" >
+        #{jobName,jdbcType=VARCHAR},
+      </if>
+      <if test="jobGroup != null" >
+        #{jobGroup,jdbcType=VARCHAR},
+      </if>
+      <if test="jobStatus != null" >
+        #{jobStatus,jdbcType=CHAR},
+      </if>
+      <if test="cronExpression != null" >
+        #{cronExpression,jdbcType=VARCHAR},
+      </if>
+      <if test="memo != null" >
+        #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="jobUrl != null" >
+        #{jobUrl,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateScheduleJob" parameterType="com.zhh.entity.ScheduleJob" >
+    update wqs_job_task
+    <set >
+      <if test="jobName != null" >
+        job_name = #{jobName,jdbcType=VARCHAR},
+      </if>
+      <if test="jobGroup != null" >
+        job_group = #{jobGroup,jdbcType=VARCHAR},
+      </if>
+      <if test="jobStatus != null" >
+        job_status = #{jobStatus,jdbcType=CHAR},
+      </if>
+      <if test="cronExpression != null" >
+        cron_expression = #{cronExpression,jdbcType=VARCHAR},
+      </if>
+      <if test="memo != null" >
+        memo = #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="jobUrl != null" >
+        job_url=#{jobUrl,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zhh.entity.ScheduleJob" >
+    update wqs_job_task
+    set job_name = #{jobName,jdbcType=VARCHAR},
+      job_group = #{jobGroup,jdbcType=VARCHAR},
+      job_status = #{jobStatus,jdbcType=CHAR},
+      cron_expression = #{cronExpression,jdbcType=VARCHAR},
+      memo = #{memo,jdbcType=VARCHAR},
+      job_url = #{jobUrl,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>
