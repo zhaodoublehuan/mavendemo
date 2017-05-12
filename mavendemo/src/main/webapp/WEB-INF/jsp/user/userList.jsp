@@ -22,14 +22,14 @@
           	用户信息
         </h1>
       </section>
-
-      <!-- Main content 内容区域content-->
       <section class="content">
-        <!-- Main row -->
+        
         <div class="row">
           <section class="col-lg-12 connectedSortable">
-            <!-- quick email widget -->
             <div class="box box-info">
+              <div class="box-header">
+              	<button class="btn btn-success" onclick="addUserShow()">添加用户</button>
+              </div>
               <div class="box-body">
                 <table id="user_table" class="table table-bordered table-hover">
      				<thead>
@@ -53,6 +53,7 @@
     
   <!-- 引入编辑框 -->
   <%@include file="updateUser.jsp" %>
+  <%@include file="addUser.jsp" %>
   <%@include file="../common/footer.jsp" %>
 </div>
 <%@include file="../common/commonBottom.jsp" %>

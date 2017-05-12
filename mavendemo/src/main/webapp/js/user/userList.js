@@ -1,7 +1,53 @@
 function editUser(){
 	 $('#editUserModal .modal').modal('show');
 }
-  $(function () {
+/**
+ * 点击添加用户，展示添加modal
+ */
+function addUserShow(){
+	$(':input','#addUserModal form')
+	.not(':button,:submit,:reset')
+	.val('')
+	.removeAttr('checked')
+	.removeAttr('selected');
+	$('#addUserModal .modal').modal('show');
+}
+function addUserSave(){
+	var user={};
+	user.userName=$("#userName_add").val();
+	user.loginNo = $("#loginNo_add").val();
+	user.password = $("#password_add").val();
+	
+	$.ajax({
+		"url":"http://localhost:8080/user/addUser",
+		"type":"POST",
+		"dataType": "json",   
+		"contentType": "application/json",    
+		"data":{"loginNo":"11111"},
+		success:function(data){
+			alert(eval(data));
+		},
+		error:function(){
+			alert("系统异常，请联系系统管理员");
+		}
+	})
+}
+$(function () {
+	var user = {};
+	user.loginNo="11111";
+	$.ajax({
+		"url":"http://localhost:8080/user/addUser",
+		"type":"POST",
+		"dataType": "json",   
+		contentType:'application/json;charset=UTF-8',
+		"data":JSON.stringify(user),
+		"success":function(data){
+			alert(eval(data));
+		},
+		"error":function(){
+			alert("系统异常，请联系系统管理员");
+		}
+	})
     $("#user_table").DataTable({
     	"searching":false,
     	"ordering":false,
