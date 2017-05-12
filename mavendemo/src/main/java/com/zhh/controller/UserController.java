@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.zhh.entity.Menu;
@@ -59,8 +60,9 @@ public class UserController {
 	* @throws 
 	*/ 
 	
-	@RequestMapping("/addUser")
-	public @ResponseBody ReturnResult addUser(@RequestBody UserEntity user,HttpServletResponse response){
+	@RequestMapping(method = RequestMethod.POST,value="/addUser")
+	@ResponseBody
+	public  ReturnResult addUser(@RequestBody UserEntity user,HttpServletResponse response){
 		ReturnResult result = new ReturnResult();
 		UserEntity userEntity = userService.add(user);
 		if(userEntity==null){
@@ -81,7 +83,8 @@ public class UserController {
 	*/ 
 	
 	@RequestMapping("/updateUser")
-	public @ResponseBody ReturnResult updateUser(@RequestBody UserEntity user,HttpServletResponse response){
+	@ResponseBody
+	public ReturnResult updateUser(@RequestBody UserEntity user,HttpServletResponse response){
 		ReturnResult result = new ReturnResult();
 		UserEntity userEntity =  userService.update(user);
 		if(userEntity==null){
@@ -101,8 +104,8 @@ public class UserController {
 	* @return String    返回类型 
 	* @throws 
 	*/ 
-	
-	public @ResponseBody ReturnResult deleteUser(@RequestBody List<String> ids,HttpServletResponse response){
+	@ResponseBody
+	public ReturnResult deleteUser(@RequestBody List<String> ids,HttpServletResponse response){
 		ReturnResult result = new ReturnResult();
 		boolean isDel = userService.delete(ids);
 		if(isDel){
@@ -123,7 +126,8 @@ public class UserController {
 	* @throws 
 	*/ 
 	@RequestMapping("/userPage")
-	public @ResponseBody PageReturnParam userPage(HttpServletRequest request,HttpServletResponse response){
+	@ResponseBody
+	public PageReturnParam userPage(HttpServletRequest request,HttpServletResponse response){
 		/*查询出来的数量*/ 
 		int count = 10;
 		/*接收前台datatabel传来分页用的参数*/
