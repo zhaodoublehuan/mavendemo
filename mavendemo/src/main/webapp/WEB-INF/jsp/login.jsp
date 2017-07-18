@@ -18,7 +18,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 <div class="signin">
 	<div class="signin-head"><img src="<%=basePath%>bootstrap/images/test/head_120.png" alt="" class="img-circle"></div>
-	<form class="form-signin" role="form" action="/login" method="post">
+	<form class="form-signin" role="form" action="<%=basePath%>login" method="post">
 		<input type="text" name="userName" class="form-control" placeholder="用户名" required autofocus />
 		<input type="password" name="password" class="form-control" placeholder="密码" required />
 		<button class="btn btn-lg btn-warning btn-block" type="submit">登录</button>
