@@ -46,22 +46,6 @@ function getProjectUrl(){
 }
 $(function () {
 	var pjUrl = getProjectUrl();
-	var user = {};
-	user.loginNo="11111";
-	$.ajax({
-		"url":pjUrl+"/user/addUser",
-		"type":"POST",
-		"dataType": "json",   
-		contentType:'application/json;charset=UTF-8',
-		"data":JSON.stringify(user),
-		"success":function(data){
-			alert(eval(data));
-			console.log(JSON.stringify(data))
-		},
-		"error":function(){
-			alert("系统异常，请联系系统管理员");
-		}
-	})
     $("#user_table").DataTable({
     	"searching":false,
     	"ordering":false,
