@@ -62,7 +62,7 @@ $(function () {
 			 "targets":2,
 			 "render":function( data, type, full, meta){
 			 	var btnHtml = '<button class="btn btn-success btn-sm" onclick="editUser()"><i class="fa fa-fw fa-edit"></i>编辑</button>';
-			 	btnHtml += '<button class="btn btn-danger btn-sm"><i class="fa fa-fw fa-remove"></i>删除</button>';
+			 	btnHtml += '<button class="btn btn-danger btn-sm" onclick="delUser(this)"><i class="fa fa-fw fa-remove"></i>删除</button>';
 			 	return btnHtml;
 			 }
 			}
