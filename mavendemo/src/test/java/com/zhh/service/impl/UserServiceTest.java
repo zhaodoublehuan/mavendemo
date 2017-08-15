@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.zhh.base.BaseTest;
 import com.zhh.entity.UserEntity;
+import com.zhh.exception.UserException;
 import com.zhh.service.IUserService;
 import com.zhh.util.UUIDUtils;
 
@@ -21,7 +22,12 @@ public class UserServiceTest extends BaseTest {
 		user.setLoginNo("admin");
 		user.setUserName("赵欢欢");
 		user.setPassword("111111");
-		user = userService.add(user);
+		try {
+			user = userService.add(user);
+		} catch (UserException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	@Test
