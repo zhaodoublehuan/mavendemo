@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.alibaba.fastjson.JSON;
 import com.zhh.dao.IUserDao;
 import com.zhh.entity.UserEntity;
+import com.zhh.exception.UserException;
 import com.zhh.service.IUserService;
 import com.zhh.util.CommonParams;
 import com.zhh.util.PageUtil;
@@ -42,7 +43,7 @@ public class UserService implements IUserService {
 	* @see com.zhh.service.IUserService#add(com.zhh.entity.UserEntity) 
 	*/ 
 	
-	public UserEntity add(UserEntity user) {
+	public UserEntity add(UserEntity user) throws UserException {
 		
 		try{
 			String password = user.getPassword();
@@ -60,7 +61,7 @@ public class UserService implements IUserService {
 			return userDao.add(user);
 		}catch (Exception e) {
 			LOGGER.error("添加用户失败========"+e.getMessage());
-			return null;
+			throw new UserException("添加用户失败！");
 		}
 		
 		

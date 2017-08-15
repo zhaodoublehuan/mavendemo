@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.zhh.entity.Menu;
 import com.zhh.entity.UserEntity;
+import com.zhh.exception.UserException;
 import com.zhh.service.IMenuService;
 import com.zhh.service.IUserService;
 import com.zhh.util.PageReturnParam;
@@ -64,14 +65,15 @@ public class UserController {
 	@ResponseBody
 	public  ReturnResult addUser(@RequestBody UserEntity user,HttpServletResponse response){
 		ReturnResult result = new ReturnResult();
-		UserEntity userEntity = userService.add(user);
-		if(userEntity==null){
+		try {
+			userService.add(user);
 			result.setStatus(0);
 			result.setMsg("添加用户成功");
-		}else{
+		} catch (UserException e) {
 			result.setStatus(1);
 			result.setMsg("添加用户失败");
 		}
+		
 		return result;
 	}
 	/** 

@@ -3,6 +3,7 @@ package com.zhh.service;
 import java.util.List;
 
 import com.zhh.entity.UserEntity;
+import com.zhh.exception.UserException;
 import com.zhh.util.PageUtil;
 
 /**
@@ -14,7 +15,8 @@ import com.zhh.util.PageUtil;
 */
 public interface IUserService {
 
-	/** 
+	/**
+	 * @throws UserException  
 	* @Title: add 
 	* @Description: 新增用户
 	* @param @param user
@@ -23,7 +25,7 @@ public interface IUserService {
 	* @throws 
 	*/ 
 	
-	UserEntity add(UserEntity user);
+	UserEntity add(UserEntity user) throws UserException;
 	
 	/** 
 	* @Title: update 

@@ -41,7 +41,9 @@ public class JobManagerService implements InitializingBean, IJobManagerService {
 	
 	@Autowired
 	private IScheduleJobService scheduleJobService;
-	
+	/**
+	 * 项目启动时，会先运行该方法
+	 */
 	public void afterPropertiesSet() throws Exception {
 		try{
 			init();
@@ -63,8 +65,10 @@ public class JobManagerService implements InitializingBean, IJobManagerService {
 		LOGGER.warn("初始化定时任务");
 		ScheduleJob entity = new ScheduleJob();
 		entity.setJobStatus("1");
-		List<ScheduleJob> jobList = scheduleJobService.queryAllScheduleJob(entity);
+		
 		try {
+			/*查询数据库中所有的任务*/
+			List<ScheduleJob> jobList = scheduleJobService.queryAllScheduleJob(entity);
 			LOGGER.warn("初始化定时任务列表===="+JSON.toJSONString(jobList));
 			for (ScheduleJob scheduleJob : jobList) {
 				TriggerKey triggerKey = TriggerKey.triggerKey(scheduleJob.getJobName(), scheduleJob.getJobGroup());
