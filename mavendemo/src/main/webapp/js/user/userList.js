@@ -13,13 +13,13 @@ function addUserShow(){
 	$('#addUserModal .modal').modal('show');
 }
 function addUserSave(){
+	var pjUrl = getProjectUrl();
 	var user={};
 	user.userName=$("#userName_add").val();
 	user.loginNo = $("#loginNo_add").val();
 	user.password = $("#password_add").val();
-	
 	$.ajax({
-		"url":"http://localhost:8080/user/addUser",
+		"url":pjUrl+"/user/addUser",
 		"type":"POST",
 		"dataType": "json",   
 		"contentType": "application/json",    
@@ -32,17 +32,31 @@ function addUserSave(){
 		}
 	})
 }
+function getProjectUrl(){
+	var curWwwPath = window.document.location.href;
+	var pathName =  window.document.location.pathname;
+	console.log(pathName);
+	var pos = curWwwPath.indexOf(pathName);
+	console.log(pos);
+	var localhostPaht = curWwwPath.substring(0,pos);
+	console.log(localhostPaht);
+	var projectName = pathName.substring(0,pathName.substr(1).indexOf('/')+1);
+	console.log(projectName);
+	return localhostPaht+projectName;
+}
 $(function () {
+	var pjUrl = getProjectUrl();
 	var user = {};
 	user.loginNo="11111";
 	$.ajax({
-		"url":"http://localhost:8080/user/addUser",
+		"url":pjUrl+"/user/addUser",
 		"type":"POST",
 		"dataType": "json",   
 		contentType:'application/json;charset=UTF-8',
 		"data":JSON.stringify(user),
 		"success":function(data){
 			alert(eval(data));
+			console.log(JSON.stringify(data))
 		},
 		"error":function(){
 			alert("系统异常，请联系系统管理员");
@@ -69,7 +83,7 @@ $(function () {
 			 }
 			}
 		],
-    	"sAjaxSource":"/user/userPage",
+    	"sAjaxSource":pjUrl+"/user/userPage",
     	"fnServerData":function(sSource, aoData, fnCallback){
     		$.ajax( {    
     	        "contentType": "application/json",    
