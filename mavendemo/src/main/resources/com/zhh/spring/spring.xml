@@ -31,10 +31,12 @@
    		<!-- 加载mapper文件 -->
    		<property name="mapperLocations" value="classpath:com/zhh/mapper/*.xml"></property>
    	</bean>
+ 	<!-- spring事务管理 -->
    	<tx:annotation-driven transaction-manager="transactionManager" />
-   <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+
+   	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
        <property name="dataSource" ref="dataSource" />
-   </bean>
+   	</bean>
     <!-- 自动注解，扫描包。开启自动注解 -->
 	<context:component-scan base-package="com.zhh"/> 
 	<!-- 前台参数转换为json配置 -->
