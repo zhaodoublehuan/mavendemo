@@ -7,7 +7,7 @@
           <!-- sidebar menu: : style can be found in sidebar.less 菜单详情ul-->
           <ul class="sidebar-menu">
             <li class="header">基本功能</li>
-            <li><a href="#"><i class="fa fa-tv"></i> <span>用户管理</span></a></li>
+            <li><a href="#"><i class="fa fa-fw fa-users"></i> <span>用户管理</span></a></li>
             <li class="header">扩展功能</li>
             <li><a href="#"><i class="fa fa-bell"></i> <span>广告管理</span></a></li>
           </ul>
