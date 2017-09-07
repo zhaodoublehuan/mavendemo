@@ -93,11 +93,6 @@ public class Menu implements Serializable {
     private Date updateDate;
     
     /**
-    * @Fields parentMenu : 父级菜单
-    */
-   // private Menu parentMenu;
-    
-    /**
     * @Fields childrenMenu : 子级菜单
     */
     private List<Menu> childrenMenus;
