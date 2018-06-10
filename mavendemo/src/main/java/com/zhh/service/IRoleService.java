@@ -48,8 +48,8 @@ public interface IRoleService {
 	boolean deleteRole(String roleId);
 	/**
 	 * 根据登录账号查询对应的角色信息
-	 * @param userId
+	 * @param loginNo
 	 * @return
 	 */
-	List<Role> selectRolesByLoginNo(String loginNo);
+	List<Role> selectRolesIdByLoginNo(String loginNo);
 }

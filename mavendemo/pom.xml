@@ -169,14 +169,17 @@
     <finalName>mavendemo</finalName>
     <plugins>
 		<plugin>
-			<groupId>org.mortbay.jetty</groupId>
+			<groupId>org.eclipse.jetty</groupId>
 			<artifactId>jetty-maven-plugin</artifactId>
-			<version>8.1.16.v20140903</version>
+			<version>9.4.5.v20170502</version>
 			<configuration>
-				<scanIntervalSeconds>5</scanIntervalSeconds>
-				<webapp>
+				<scanIntervalSeconds>10</scanIntervalSeconds>
+				<httpConnector>
+					<port>8080</port>
+				</httpConnector>
+				<webApp>
 					<contextPath>/maven</contextPath>
-				</webapp>
+				</webApp>
 			</configuration>
 		</plugin>
 		<plugin>

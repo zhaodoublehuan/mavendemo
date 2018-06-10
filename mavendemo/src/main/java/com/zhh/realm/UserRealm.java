@@ -64,7 +64,7 @@ public class UserRealm extends AuthorizingRealm {
 		String loginNo = (String) principals.getPrimaryPrincipal();
 		LOGGER.info("登录用户名========"+loginNo);
 	    /*获取用户的角色集合*/
-	    List<Role> roleList =  roleService.selectRolesByLoginNo(loginNo);
+	    List<Role> roleList =  roleService.selectRolesIdByLoginNo(loginNo);
 	    LOGGER.info("登录用户角色集合========"+JSON.toJSONString(roleList));
 	    //角色名的集合
 	    Set<String> roles = new HashSet<String>();

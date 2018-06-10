@@ -2,6 +2,8 @@ package com.zhh.service.impl;
 
 import java.util.List;
 
+import com.zhh.dao.IRoleMenuDao;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.zhh.service.IRoleMenuService;
@@ -16,17 +18,17 @@ import com.zhh.service.IRoleMenuService;
 @Service
 public class RoleMenuService implements IRoleMenuService {
 
+	@Autowired
+	private IRoleMenuDao roleMenuDao;
 	/* (非 Javadoc) 
 	* <p>Title: selectMenuIdsByRoleIds</p> 
 	* <p>Description: </p> 
 	* @param roleIds
 	* @return 
 	* @see com.zhh.service.IRoleMenuService#selectMenuIdsByRoleIds(java.util.List) 
-	*/ 
-	
+	*/
 	public List<String> selectMenuIdsByRoleIds(List<String> roleIds) {
-		
-		return null;
+		return roleMenuDao.selectMenuIdsByRoleIds(roleIds);
 	}
 
 }

@@ -45,5 +45,5 @@ public interface IUserRoleService {
 	* @return List<String>    返回类型 
 	* @throws 
 	*/ 
-	public List<String> selectRolesByLoginNo(String loginNo);
+	public List<String> selectRolesIdByLoginNo(String loginNo);
 }

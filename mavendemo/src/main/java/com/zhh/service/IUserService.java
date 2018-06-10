@@ -25,7 +25,7 @@ public interface IUserService {
 	* @throws 
 	*/ 
 	
-	UserEntity add(UserEntity user) throws UserException;
+	int add(UserEntity user) throws UserException;
 	
 	/** 
 	* @Title: update 
@@ -36,7 +36,7 @@ public interface IUserService {
 	* @throws 
 	*/ 
 	
-	UserEntity update(UserEntity user);
+	int update(UserEntity user);
 	
 	/** 
 	* @Title: delete 
@@ -47,7 +47,7 @@ public interface IUserService {
 	* @throws 
 	*/ 
 	
-	boolean delete(List<String> ids);
+	int delete(List<String> ids);
 	
 	/**
 	 * @param page  

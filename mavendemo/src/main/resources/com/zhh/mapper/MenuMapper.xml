@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.zhh.entity.Menu" >
+<mapper namespace="com.zhh.dao.IMenuDao" >
   <resultMap id="BaseResultMap" type="com.zhh.entity.Menu" >
     <id column="id" property="id" jdbcType="VARCHAR" />
     <result column="menu_url" property="menuUrl" jdbcType="VARCHAR" />
     <result column="menu_name" property="menuName" jdbcType="VARCHAR" />
+    <result column="icon_class" property="iconClass" jdbcType="VARCHAR" />
     <result column="level" property="level" jdbcType="VARCHAR" />
     <result column="state" property="state" jdbcType="VARCHAR" />
     <result column="sort" property="sort" jdbcType="VARCHAR" />
@@ -18,7 +19,7 @@
   </resultMap>
   
   <sql id="Base_Column_List" >
-    id, menu_url, menu_name, level, state, sort, active, leaf, description, parent_id, 
+    id, menu_url, menu_name, icon_class, level, state, sort, active, leaf, description, parent_id,
     insert_date, update_date
   </sql>
   
@@ -150,19 +151,12 @@
   	update sys_menu set active="N" where id=#{menuId};
   </update>
   <!-- 根据查询条件查询对应的菜单集合 -->
-  <select id="selectMenus" resultMap="BaseResultMap" parameterType="com.zhh.entity.Menu">
-		 select 
-	    <include refid="Base_Column_List" />
-	    from sys_menu 
-	    where active = "Y" 
-	  <if test="menuUrl != null" >
-        and menu_url = #{menuUrl,jdbcType=VARCHAR},
-      </if>
-      <if test="menuName != null" >
-        and menu_name = #{menuName,jdbcType=VARCHAR},
-      </if>
-      <if test="description != null" >
-        and description = #{description,jdbcType=VARCHAR},
-      </if>
+  <select id="selectMenusByIds" resultMap="BaseResultMap" parameterType="java.util.List">
+    select * from  sys_menu  where id in
+    <foreach collection="menuIds" item="menuId" index="index"
+             open="(" close=")" separator=",">
+      #{menuId}
+    </foreach>
+    and active = "Y" order by sort
   </select>
 </mapper>

@@ -3,6 +3,7 @@ package com.zhh.dao;
 import java.util.List;
 
 import com.zhh.entity.UserRole;
+import org.apache.ibatis.annotations.Param;
 
 public interface IUserRoleDao {
 	/** 
@@ -35,5 +36,5 @@ public interface IUserRoleDao {
 	* @return List<String>    返回类型 
 	* @throws 
 	*/ 
-	public List<String> selectRolesByLoginNo(String loginNo);
+	public List<String> selectRolesIdByLoginNo(@Param("loginNo") String loginNo);
 }

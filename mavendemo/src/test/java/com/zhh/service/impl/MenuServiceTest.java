@@ -1,9 +1,12 @@
 package com.zhh.service.impl;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.annotation.Resource;
 
+import com.alibaba.fastjson.JSON;
 import org.junit.Test;
 
 import com.zhh.base.BaseTest;
@@ -51,4 +54,18 @@ public class MenuServiceTest extends BaseTest {
 		
 	}
 
+
+
+	@Test
+	public void testSelectMenusByLoginNo(){
+		String login_no = "zhh";
+		System.out.print(JSON.toJSONString(menuService.selectMenusByLoginNo(login_no)));
+	}
+
+	@Test
+	public void selectMenusByIds() {
+		List<String> menuIds = new ArrayList<String>();
+		menuIds.add("0eab13f9cecc4ad591ffc9576a0ddc0f");
+		System.out.print(JSON.toJSONString(menuService.selectMenusByIds(menuIds)));
+	}
 }

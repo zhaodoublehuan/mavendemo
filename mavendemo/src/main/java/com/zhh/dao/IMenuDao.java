@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.zhh.entity.Menu;
 import com.zhh.util.PageUtil;
+import org.apache.ibatis.annotations.Param;
 
 /**
 * @ClassName: IMenuDao
@@ -68,5 +69,5 @@ public interface IMenuDao {
 	* @throws 
 	*/ 
 	
-	List<Menu> selectMenusByIds(List<String> ids);
+	List<Menu> selectMenusByIds(@Param("menuIds") List<String> ids);
 }

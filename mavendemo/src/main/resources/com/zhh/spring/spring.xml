@@ -31,7 +31,12 @@
    		<!-- 加载mapper文件 -->
    		<property name="mapperLocations" value="classpath:com/zhh/mapper/*.xml"></property>
    	</bean>
- 	<!-- spring事务管理 -->
+	<!--自动生成dao实现层-->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="com.zhh.dao" />
+		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
+	</bean>
+	<!-- spring事务管理 -->
    	<tx:annotation-driven transaction-manager="transactionManager" />
 
    	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">

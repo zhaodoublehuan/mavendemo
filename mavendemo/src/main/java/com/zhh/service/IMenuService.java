@@ -70,4 +70,11 @@ public interface IMenuService {
 	
 	List<Menu> selectMenusByLoginNo(String loginNo);
 
+	/**
+	 * 根据id获取菜单
+	 * @param menuIds
+	 * @return
+	 */
+	List<Menu> selectMenusByIds(List<String> menuIds);
+
 }

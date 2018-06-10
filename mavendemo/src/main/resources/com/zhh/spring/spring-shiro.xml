@@ -22,7 +22,7 @@
          <value>
         	 <!-- anon表示此地址不需要任何权限即可访问 -->   
              /login=anon   
-            /user/** = authc
+            /** = authc
             <!-- 表示要有编辑角色的权限的用户，才能访问 -->
             <!-- /role/edit/*=perms[role:edit]  
             /role/save=perms[role:edit]  

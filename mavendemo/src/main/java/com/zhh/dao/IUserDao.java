@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.zhh.entity.UserEntity;
 import com.zhh.util.PageUtil;
+import org.apache.ibatis.annotations.Param;
 
 /**
 * @ClassName: IUserDao
@@ -24,7 +25,7 @@ public interface IUserDao {
 	* @throws 
 	*/ 
 	
-	UserEntity add(UserEntity user);
+	int add(UserEntity user);
 	
 	/** 
 	* @Title: update 
@@ -35,7 +36,7 @@ public interface IUserDao {
 	* @throws 
 	*/ 
 	
-	UserEntity update(UserEntity user);
+	int update(UserEntity user);
 	
 	/** 
 	* @Title: delete 
@@ -46,7 +47,7 @@ public interface IUserDao {
 	* @throws 
 	*/ 
 	
-	boolean delete(List<String> ids);
+	int delete(@Param("ids") List<String> ids);
 	
 	/**
 	 * @param page  

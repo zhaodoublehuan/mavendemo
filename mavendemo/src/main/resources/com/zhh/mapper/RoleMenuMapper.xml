@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="mapper.RoleMenuMapper" >
+<mapper namespace="com.zhh.dao.IRoleMenuDao" >
   <resultMap id="BaseResultMap" type="com.zhh.entity.RoleMenu" >
     <id column="id" property="id" jdbcType="VARCHAR" />
     <result column="menu_id" property="menuId" jdbcType="VARCHAR" />
@@ -103,4 +103,12 @@
       update_date = #{updateDate,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=VARCHAR}
   </update>
+  <select id="selectMenuIdsByRoleIds" parameterType="java.util.List" resultType="java.lang.String">
+    select menu_id from  sys_role_menu  where role_id in
+    <foreach collection="roleIds" item="roleId" index="index"
+             open="(" close=")" separator=",">
+      #{roleId}
+    </foreach>
+    and active = "Y"
+  </select>
 </mapper>

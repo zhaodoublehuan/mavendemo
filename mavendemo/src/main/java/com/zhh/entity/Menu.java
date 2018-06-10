@@ -1,21 +1,5 @@
 package com.zhh.entity;
-/*
- CREATE TABLE `sys_menu` (
-`id` varchar(50) NOT NULL,
-`menu_url` varchar(256) DEFAULT NULL COMMENT '菜单地址',
-`menu_name` varchar(256) DEFAULT NULL COMMENT '菜单名称',
-`level` varchar(2) DEFAULT NULL COMMENT '菜单等级',
-`state` varchar(10) DEFAULT NULL COMMENT '折叠状态',
-`sort` varchar(5) DEFAULT NULL COMMENT '菜单排序',
-`status` varchar(10) DEFAULT NULL COMMENT '菜单状态',
-`leaf` varchar(256) DEFAULT NULL COMMENT '是否子叶节点',
-`description` varchar(256) DEFAULT NULL,
-`parent_id` varchar(50) DEFAULT NULL,
-`insert_date` datetime DEFAULT NULL,
-`update_date` datetime DEFAULT NULL,
-PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-*/
+
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -46,9 +30,12 @@ public class Menu implements Serializable {
     * @Fields menuName : 菜单名称
     */
     private String menuName;
-    
-    /**
+
+    private String iconClass;
+
+	/**
     * @Fields level : 菜单级别
+
     */
     private String level;
     
@@ -416,7 +403,15 @@ public class Menu implements Serializable {
 	public void setActive(String active) {
 		this.active = active;
 	}
-	
-	
+
+	public String getIconClass() {
+		return iconClass;
+	}
+
+	public void setIconClass(String iconClass) {
+		this.iconClass = iconClass;
+	}
+
+
 
 }

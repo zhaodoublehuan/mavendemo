@@ -19,11 +19,12 @@ CREATE TABLE `sys_user_role` (
 */
 
 public class UserRole {
-	
+
 	/**
 	* @Fields userId : 用户id
+
 	*/
-	private String userId;
+	private String loginNo;
 	
 	/**
 	* @Fields roleId : 角色id
@@ -44,13 +45,13 @@ public class UserRole {
 	* @Fields updateDate : 修改时间
 	*/
 	private Date updateDate;
-	
-	public String getUserId() {
-		return userId;
+
+	public String getLoginNo() {
+		return loginNo;
 	}
 
-	public void setUserId(String userId) {
-		this.userId = userId;
+	public void setLoginNo(String loginNo) {
+		this.loginNo = loginNo;
 	}
 
 	public String getRoleId() {

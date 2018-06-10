@@ -1,5 +1,7 @@
 package com.zhh.dao;
 
+import org.apache.ibatis.annotations.Param;
+
 import java.util.List;
 
 /**
@@ -20,5 +22,5 @@ public interface IRoleMenuDao {
 	* @throws 
 	*/ 
 	
-	public List<String> selectMenuIdsByRoleIds(List<String> roleIds);
+	public List<String> selectMenuIdsByRoleIds(@Param("roleIds") List<String> roleIds);
 }

@@ -56,10 +56,10 @@ public class UserRoleService implements IUserRoleService {
 	* @see com.zhh.service.IUserRoleService#selectRolesByLoginNo(java.lang.String) 
 	*/ 
 	
-	public List<String> selectRolesByLoginNo(String loginNo) {
+	public List<String> selectRolesIdByLoginNo(String loginNo) {
 		LOGGER.info("查询用户所拥有的角色信息===="+JSON.toJSONString(loginNo));
 		try{
-			return userRoleDao.selectRolesByLoginNo(loginNo);
+			return userRoleDao.selectRolesIdByLoginNo(loginNo);
 		}catch (Exception e) {
 			LOGGER.info("查询用户所拥有的角色信息失败===="+e.getMessage());
 			return null;

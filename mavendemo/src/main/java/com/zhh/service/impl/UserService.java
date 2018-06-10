@@ -7,6 +7,7 @@ import javax.annotation.Resource;
 
 import org.apache.log4j.Logger;
 import org.apache.shiro.crypto.hash.Md5Hash;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -32,7 +33,7 @@ public class UserService implements IUserService {
 	
 	private static final Logger LOGGER = Logger.getLogger(UserService.class);
 	
-	@Resource
+	@Autowired
 	private IUserDao userDao;
 
 	/* (非 Javadoc) 
@@ -43,7 +44,7 @@ public class UserService implements IUserService {
 	* @see com.zhh.service.IUserService#add(com.zhh.entity.UserEntity) 
 	*/ 
 	
-	public UserEntity add(UserEntity user) throws UserException {
+	public int add(UserEntity user) throws UserException {
 		
 		try{
 			String password = user.getPassword();
@@ -76,15 +77,9 @@ public class UserService implements IUserService {
 	* @see com.zhh.service.IUserService#update(com.zhh.entity.UserEntity) 
 	*/ 
 	
-	public UserEntity update(UserEntity user) {
-		try{
-			LOGGER.warn("修改用户信息为========"+JSON.toJSONString(user));
-			return userDao.update(user);
-		}catch (Exception e) {
-			LOGGER.error("修改用户失败========"+e.getMessage());
-			return null;
-		}
-		
+	public int update(UserEntity user) {
+		LOGGER.warn("修改用户信息为========"+JSON.toJSONString(user));
+		return userDao.update(user);
 	}
 
 	/* (非 Javadoc) 
@@ -93,16 +88,11 @@ public class UserService implements IUserService {
 	* @param user
 	* @return 
 	* @see com.zhh.service.IUserService#delete(com.zhh.entity.UserEntity) 
-	*/ 
-	@Transactional
-	public boolean delete(List<String> ids) {
-		try{
+	*/
+	public int delete(List<String> ids) {
+
 			LOGGER.warn("删除用户信息为========"+JSON.toJSONString(ids));
 			return userDao.delete(ids);
-		}catch (Exception e) {
-			LOGGER.error("删除用户失败========"+e.getMessage());
-			return false;
-		}
 		
 	}
 	

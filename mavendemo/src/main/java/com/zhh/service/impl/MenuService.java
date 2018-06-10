@@ -6,6 +6,7 @@ import java.util.List;
 import javax.annotation.Resource;
 
 import org.apache.log4j.Logger;
+import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -133,11 +134,18 @@ public class MenuService implements IMenuService {
 	
 	public List<Menu> selectMenusByLoginNo(String loginNo) {
 		/*根据登录账号查询用户所拥有的角色*/
-		List<String> roleIds = userRoleService.selectRolesByLoginNo(loginNo);
+		List<String> roleIds = userRoleService.selectRolesIdByLoginNo(loginNo);
+		LOGGER.info("selectMenusByLoginNo---1======"+JSON.toJSONString(roleIds));
 		/*根据角色集合查询所有的菜单id*/
 		List<String> menuIds = roleMenuService.selectMenuIdsByRoleIds(roleIds);
+		LOGGER.info("selectMenusByLoginNo---2======"+JSON.toJSONString(menuIds));
 		/*根据菜单id集合查询对应的菜单*/
+		return selectMenusByIds(menuIds);
+	}
+
+	public List<Menu> selectMenusByIds(List<String> menuIds) {
 		return menuDao.selectMenusByIds(menuIds);
 	}
+
 
 }

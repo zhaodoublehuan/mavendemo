@@ -100,10 +100,10 @@ public class RoleService implements IRoleService {
 	/**
 	 * 根据登录账号查询对应的角色信息
 	 */
-	public List<Role> selectRolesByLoginNo(String loginNo) {
+	public List<Role> selectRolesIdByLoginNo(String loginNo) {
 		LOGGER.info("查询用户所拥有的的角色信息===="+loginNo);
 		try{
-			List<String> roleIds = userRoleService.selectRolesByLoginNo(loginNo);
+			List<String> roleIds = userRoleService.selectRolesIdByLoginNo(loginNo);
 			if(roleIds==null){
 				return null;
 			}else{
