@@ -16,6 +16,10 @@
 <script src="<%=basePath%>plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
 <!-- Slimscroll -->
 <script src="<%=basePath%>plugins/slimScroll/jquery.slimscroll.min.js"></script>
+
+<script src="<%=basePath%>plugins/chartjs/Chart.min.js"></script>
+
+<script src="<%=basePath%>plugins/fastclick/fastclick.js"></script>
 <!-- DataTables -->
 <script src="<%=basePath%>plugins/datatables/jquery.dataTables.min.js"></script>
 <script src="<%=basePath%>plugins/datatables/dataTables.bootstrap.min.js"></script>

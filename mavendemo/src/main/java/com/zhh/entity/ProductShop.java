@@ -1,22 +1,15 @@
 package com.zhh.entity;
 
-import java.math.BigDecimal;
 import java.util.Date;
 
-public class Product {
+public class ProductShop {
     private Integer id;
 
     private String name;
 
     private String remark;
 
-    private BigDecimal price;
-
-    private DictData unitData;
-
-    private DictData productType;
-
-    private ProductShop productShop;
+    private DictData shopType;
 
     private Date insertDate;
 
@@ -46,30 +39,6 @@ public class Product {
         this.remark = remark == null ? null : remark.trim();
     }
 
-    public BigDecimal getPrice() {
-        return price;
-    }
-
-    public void setPrice(BigDecimal price) {
-        this.price = price;
-    }
-
-    public DictData getUnitData() {
-        return unitData;
-    }
-
-    public void setUnitData(DictData unitData) {
-        this.unitData = unitData;
-    }
-
-    public ProductShop getProductShop() {
-        return productShop;
-    }
-
-    public void setProductShop(ProductShop productShop) {
-        this.productShop = productShop;
-    }
-
     public Date getInsertDate() {
         return insertDate;
     }
@@ -86,13 +55,12 @@ public class Product {
         this.updateDate = updateDate;
     }
 
-
-    public DictData getProductType() {
-        return productType;
+    public DictData getShopType() {
+        return shopType;
     }
 
-    public void setProductType(DictData productType) {
-        this.productType = productType;
+    public void setShopType(DictData shopType) {
+        this.shopType = shopType;
     }
 
 }

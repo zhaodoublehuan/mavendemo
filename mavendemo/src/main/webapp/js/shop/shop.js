@@ -46,7 +46,7 @@ function getProjectUrl(){
 }
 $(function () {
 	var pjUrl = getProjectUrl();
-    $("#product_table").DataTable({
+    $("#shop_table").DataTable({
     	"searching":false,
     	"ordering":false,
     	"pagingType":"full_numbers",
@@ -55,15 +55,12 @@ $(function () {
     	"columns": [
 		    { "data": "name" },
 		    { "data": "remark"},
-            { "data": "productType.name"},
-            { "data": "price"},
-            { "data": "unitData.name"},
-            { "data": "productShop.name"},
+            { "data": "shopType.name"},
 		    { "data": "" }
 		  ],
 		"columnDefs":[
 			{
-			 "targets":6,
+			 "targets":3,
 			 "render":function( data, type, row, meta){
 			 	var btnHtml = '<button class="btn btn-success btn-sm" onclick="editUser()"><i class="fa fa-fw fa-edit"></i>编辑</button>';
 			 	btnHtml += '<button class="btn btn-danger btn-sm" onclick="delUser(this)"><i class="fa fa-fw fa-remove"></i>删除</button>';
@@ -71,7 +68,7 @@ $(function () {
 			 }
 			}
 		],
-    	"sAjaxSource":pjUrl+"/product/productPage",
+    	"sAjaxSource":pjUrl+"/pshop/shopPage",
     	"fnServerData":function(sSource, aoData, fnCallback){
     		$.ajax( {    
     	        "contentType": "application/json",    

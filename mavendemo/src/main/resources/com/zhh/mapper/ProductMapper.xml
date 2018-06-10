@@ -6,14 +6,21 @@
     <result column="name" property="name" jdbcType="VARCHAR" />
     <result column="remark" property="remark" jdbcType="VARCHAR" />
     <result column="price" property="price" jdbcType="DECIMAL" />
-    <result column="unit_id" property="unitId" jdbcType="INTEGER" />
-    <result column="shop_id" property="shopId" jdbcType="INTEGER" />
     <result column="insert_date" property="insertDate" jdbcType="TIMESTAMP" />
     <result column="update_date" property="updateDate" jdbcType="TIMESTAMP" />
+    <association property="productShop" column="shop_id"  select="getProductShop"/>
+    <association property="unitData" column="unit_id"  select="getDictData"/>
+    <association property="productType" column="type_id"  select="getDictData"/>
   </resultMap>
   <sql id="Base_Column_List" >
     id, name, remark, price, unit_id, shop_id, insert_date, update_date
   </sql>
+  <select id="getProductShop" parameterType="int" resultType="com.zhh.entity.ProductShop">
+    select * from product_shop where id=#{id}
+  </select>
+  <select id="getDictData" parameterType="int" resultType="com.zhh.entity.DictData">
+    select * from dict_data where id=#{id}
+  </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
@@ -154,7 +161,7 @@
   </select>
   <select id="selectProductListPage" resultMap="BaseResultMap">
     select
-    <include refid="Base_Column_List" />
+      *
     from product
     <where>
       <if test="product!=null and product.name != null" >
@@ -168,9 +175,6 @@
       </if>
       <if test="product!=null and product.unitId != null" >
         unit_id = #{product.unitId,jdbcType=INTEGER},
-      </if>
-      <if test="product!=null and product.shopId != null" >
-        shop_id = #{shopId,jdbcType=INTEGER},
       </if>
       <if test="product!=null and product.insertDate != null" >
         insert_date = #{product.insertDate,jdbcType=TIMESTAMP},

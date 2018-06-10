@@ -70,7 +70,7 @@ public interface IUserDao {
 	* @throws 
 	*/ 
 	
-	UserEntity findUserByLoginNo(String userName);
+	UserEntity findUserByLoginNo(@Param("loginNo") String loginNo);
 
 	/** 
 	* @Title: selectUsersCount 

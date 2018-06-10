@@ -16,11 +16,42 @@
   <%@include file="../common/left.jsp" %>
   <!-- 内容信息 -->
   <div class="content-wrapper">
-     这里供应商管理页
+    <section class="content-header">
+      <h1>
+        产品信息
+      </h1>
+    </section>
+    <section class="content">
+
+      <div class="row">
+        <section class="col-lg-12 connectedSortable">
+          <div class="box box-info">
+            <div class="box-header">
+              <button class="btn btn-success" onclick="addUserShow()">添加产品</button>
+            </div>
+            <div class="box-body">
+              <table id="shop_table" class="table table-bordered table-hover">
+                <thead>
+                <tr>
+                  <th>供应商名称</th>
+                  <th>供应商描述</th>
+                  <th>供应商类型</th>
+                  <th>操作</th>
+                </tr>
+                </thead>
+              </table>
+            </div>
+          </div>
+
+        </section>
+      </div>
+      <!-- /.row (main row) -->
+
+    </section>
     </div>
   <%@include file="../common/footer.jsp" %>
 </div>
 <%@include file="../common/commonBottom.jsp" %>
-<script src="<%=basePath%>js/user/userList.js"></script>
+<script src="<%=basePath%>js/shop/shop.js"></script>
 </body>
 </html>

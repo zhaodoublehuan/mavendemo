@@ -66,7 +66,7 @@ public class HomeController extends BaseController{
             //根据当前登录用户查询其所能看到得菜单
             List<Menu> menuList = getUserMenus();
             model.addAttribute("menuList", menuList);
-            return "index/index";
+            return "/chart/chart";
         } catch (Exception e) {  
         	e.printStackTrace();
             return "login";  

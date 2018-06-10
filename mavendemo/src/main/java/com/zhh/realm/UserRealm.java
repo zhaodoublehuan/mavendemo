@@ -4,8 +4,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import javax.annotation.Resource;
-
 import org.apache.log4j.Logger;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
@@ -43,7 +41,7 @@ public class UserRealm extends AuthorizingRealm {
 	/**
 	* @Fields userService : 注入用户service
 	*/
-	@Resource
+	@Autowired
 	private IUserService userService;
 	
 	@Autowired

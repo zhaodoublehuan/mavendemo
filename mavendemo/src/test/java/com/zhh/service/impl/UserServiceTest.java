@@ -62,7 +62,7 @@ public class UserServiceTest extends BaseTest {
 	@Test
 	public void testFindUserByUsername(){
 
-		UserEntity user = userService.findUserByLoginNo("zhh");
+		UserEntity user = userService.findUserByLoginNo("admin");
 
 		System.out.print("####"+JSON.toJSON(user));
 	}
