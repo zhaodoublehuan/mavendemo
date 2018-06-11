@@ -1,14 +1,5 @@
 package com.zhh.entity;
-/*
-CREATE TABLE `sys_permission` (
-`id` varchar(50) NOT NULL,
-`name` varchar(32) NOT NULL COMMENT '名称',
-`description` varchar(256) DEFAULT NULL COMMENT '描述',
-`insert_date` datetime DEFAULT NULL,
-`update_date` datetime DEFAULT NULL,
-PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-*/
+
 import lombok.Getter;
 import lombok.Setter;
 

@@ -1,17 +1,4 @@
 package com.zhh.entity;
-/*
-CREATE TABLE `sys_user` (
-`id` varchar(50) NOT NULL ,
-`user_name` varchar(50) DEFAULT NULL COMMENT '姓名',
-`password` varchar(32) DEFAULT NULL,
-`mobile` varchar(16) DEFAULT NULL COMMENT '手机',
-`email` varchar(50) DEFAULT NULL COMMENT '邮箱',
-`active` varchar(10) DEFAULT NULL COMMENT '用户状态',
-`insert_date` datetime DEFAULT NULL,
-`update_date` datetime DEFAULT NULL,
-PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-*/
 import lombok.Getter;
 import lombok.Setter;
 

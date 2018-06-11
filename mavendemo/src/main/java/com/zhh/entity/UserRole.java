@@ -5,14 +5,6 @@ import lombok.Setter;
 
 import java.util.Date;
 
-/*
-CREATE TABLE `sys_user_role` (
-`user_id` varchar(50) NOT NULL,
-`role_id` varchar(50) NOT NULL,
-`insert_date` datetime DEFAULT NULL,
-`update_date` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-*/
 /**
 * @ClassName: UserRole
 * @Description: 用户角色实体
