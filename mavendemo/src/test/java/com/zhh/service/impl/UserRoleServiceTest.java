@@ -2,12 +2,11 @@ package com.zhh.service.impl;
 
 import com.alibaba.fastjson.JSON;
 import com.zhh.base.BaseTest;
+import com.zhh.service.UserRoleService;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
-
-import static org.junit.Assert.*;
 
 public class UserRoleServiceTest extends BaseTest {
 

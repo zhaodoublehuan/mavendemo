@@ -1,9 +1,7 @@
-package com.zhh.service.impl;
+package com.zhh.service;
 
 import com.zhh.dao.IProductShopDao;
-import com.zhh.entity.Product;
 import com.zhh.entity.ProductShop;
-import com.zhh.service.IProductShopService;
 import com.zhh.util.PageUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,7 +9,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class ProductShopService implements IProductShopService {
+public class ProductShopService {
 
     @Autowired
     private IProductShopDao productShopDao;

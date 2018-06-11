@@ -1,20 +1,18 @@
 package com.zhh.service.impl;
 
-import java.util.Date;
-
-import javax.annotation.Resource;
-
-import org.junit.Test;
-
 import com.zhh.base.BaseTest;
 import com.zhh.entity.Permission;
-import com.zhh.service.IPermissionService;
+import com.zhh.service.PermissionService;
 import com.zhh.util.UUIDUtils;
+import org.junit.Test;
+
+import javax.annotation.Resource;
+import java.util.Date;
 @SuppressWarnings("restriction")
 public class PermissionServiceTest extends BaseTest{
 	
 	@Resource
-	private IPermissionService permissionService; 
+	private PermissionService permissionService;
 
 	@Test
 	public void testAddPermision() {

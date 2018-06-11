@@ -1,17 +1,17 @@
 package com.zhh.service.impl;
 
-import javax.annotation.Resource;
-
-import org.junit.Test;
-
 import com.zhh.base.BaseTest;
 import com.zhh.entity.Role;
-import com.zhh.service.IRoleService;
+import com.zhh.service.RoleService;
+import org.junit.Test;
+
+import javax.annotation.Resource;
+
 @SuppressWarnings("restriction")
 public class RoleServiceTest extends BaseTest{
 	
 	@Resource
-	private IRoleService roleService;
+	private RoleService roleService;
 	@Test
 	public void testAddRole() {
 		Role role = new Role();

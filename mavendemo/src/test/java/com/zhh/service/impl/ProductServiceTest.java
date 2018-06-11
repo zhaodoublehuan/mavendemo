@@ -3,19 +3,17 @@ package com.zhh.service.impl;
 import com.alibaba.fastjson.JSON;
 import com.zhh.base.BaseTest;
 import com.zhh.entity.Product;
-import com.zhh.service.IProductService;
+import com.zhh.service.ProductService;
 import com.zhh.util.PageUtil;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
-import static org.junit.Assert.*;
-
 public class ProductServiceTest extends BaseTest {
 
     @Autowired
-    private IProductService productService;
+    private ProductService productService;
 
     @Test
     public void deleteByPrimaryKey() {

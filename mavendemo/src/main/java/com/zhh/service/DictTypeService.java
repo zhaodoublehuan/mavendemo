@@ -1,13 +1,12 @@
-package com.zhh.service.impl;
+package com.zhh.service;
 
 import com.zhh.dao.IDictTypeDao;
 import com.zhh.entity.DictType;
-import com.zhh.service.IDictTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class DictTypeService implements IDictTypeService {
+public class DictTypeService {
 
     @Autowired
     private IDictTypeDao dictTypeDao;

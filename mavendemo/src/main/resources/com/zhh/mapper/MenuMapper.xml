@@ -23,9 +23,9 @@
     insert_date, update_date
   </sql>
   
-  <select id="getChildrenMenus" parameterType="java.lang.String" resultMap="BaseResultMap">  
-        select * from sys_menu where parent_id = #{id}  
-   </select> 
+  <select id="getChildrenMenus" parameterType="java.lang.String" resultMap="BaseResultMap">
+      select * from sys_menu where parent_id = #{id} and active="Y" order by sort
+  </select>
   <!-- 新增菜单信息 -->
   <insert id="insertSelective" parameterType="com.zhh.entity.Menu" >
      insert into sys_menu

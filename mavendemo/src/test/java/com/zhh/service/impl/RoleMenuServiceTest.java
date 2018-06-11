@@ -2,19 +2,17 @@ package com.zhh.service.impl;
 
 import com.alibaba.fastjson.JSON;
 import com.zhh.base.BaseTest;
-import com.zhh.service.IRoleMenuService;
+import com.zhh.service.RoleMenuService;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.Assert.*;
-
 public class RoleMenuServiceTest extends BaseTest {
 
     @Autowired
-    private IRoleMenuService roleMenuService;
+    private RoleMenuService roleMenuService;
     @Test
     public void selectMenuIdsByRoleIds() {
         List<String> roleIds = new ArrayList<String>();

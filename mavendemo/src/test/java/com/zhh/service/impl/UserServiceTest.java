@@ -1,21 +1,20 @@
 package com.zhh.service.impl;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.alibaba.fastjson.JSON;
-import org.junit.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-
 import com.zhh.base.BaseTest;
 import com.zhh.entity.UserEntity;
 import com.zhh.exception.UserException;
-import com.zhh.service.IUserService;
+import com.zhh.service.UserService;
 import com.zhh.util.UUIDUtils;
+import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class UserServiceTest extends BaseTest {
 	@Autowired
-	private IUserService userService;
+	private UserService userService;
 	@Test
 	public void testAdd() {
 		UserEntity user = new UserEntity();

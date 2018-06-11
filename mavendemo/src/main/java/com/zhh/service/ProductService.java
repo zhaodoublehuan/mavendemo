@@ -1,8 +1,7 @@
-package com.zhh.service.impl;
+package com.zhh.service;
 
 import com.zhh.dao.IProductDao;
 import com.zhh.entity.Product;
-import com.zhh.service.IProductService;
 import com.zhh.util.PageUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,7 +10,7 @@ import java.util.Date;
 import java.util.List;
 
 @Service
-public class ProductService implements IProductService {
+public class ProductService {
 
     @Autowired
     private IProductDao productDao;

@@ -3,7 +3,7 @@ package com.zhh.controller.productshop;
 import com.zhh.controller.base.BaseController;
 import com.zhh.entity.Menu;
 import com.zhh.entity.ProductShop;
-import com.zhh.service.IProductShopService;
+import com.zhh.service.ProductShopService;
 import com.zhh.util.PageReturnParam;
 import com.zhh.util.PageUtil;
 import org.apache.log4j.Logger;
@@ -27,7 +27,7 @@ public class ProducctShopController extends BaseController {
     private static final Logger LOGGER = Logger.getLogger(ProducctShopController.class);
 
     @Autowired
-    private IProductShopService productShopService;
+    private ProductShopService productShopService;
 
     @RequestMapping("index")
     public String pshopIndex(Model model){

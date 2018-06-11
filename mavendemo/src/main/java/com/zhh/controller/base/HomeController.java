@@ -1,9 +1,9 @@
 package com.zhh.controller.base;
 
-import java.util.List;
-
-import javax.annotation.Resource;
-
+import com.alibaba.fastjson.JSON;
+import com.zhh.entity.Menu;
+import com.zhh.entity.UserEntity;
+import com.zhh.service.MenuService;
 import org.apache.log4j.Logger;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
@@ -13,10 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.alibaba.fastjson.JSON;
-import com.zhh.entity.Menu;
-import com.zhh.entity.UserEntity;
-import com.zhh.service.IMenuService;
+import javax.annotation.Resource;
+import java.util.List;
 
 /**
 * @ClassName: HomeController
@@ -33,7 +31,7 @@ public class HomeController extends BaseController{
 	private static final Logger LOGGER = Logger.getLogger(HomeController.class);
 	
 	@Resource
-	private IMenuService menuService;
+	private MenuService menuService;
 	/** 
 	* @Title: loginForm 
 	* @Description: 跳转登录页面控制 

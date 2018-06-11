@@ -1,10 +1,13 @@
 package com.zhh.controller.base;
 
-import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
+import com.zhh.entity.Menu;
+import com.zhh.entity.UserEntity;
+import com.zhh.exception.UserException;
+import com.zhh.service.MenuService;
+import com.zhh.service.UserService;
+import com.zhh.util.PageReturnParam;
+import com.zhh.util.PageUtil;
+import com.zhh.util.ReturnResult;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,14 +17,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.zhh.entity.Menu;
-import com.zhh.entity.UserEntity;
-import com.zhh.exception.UserException;
-import com.zhh.service.IMenuService;
-import com.zhh.service.IUserService;
-import com.zhh.util.PageReturnParam;
-import com.zhh.util.PageUtil;
-import com.zhh.util.ReturnResult;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.util.List;
 
 @Controller
 @RequestMapping("/user")
@@ -32,13 +30,13 @@ public class UserController {
 	* @Fields userService : 用户信息service
 	*/
 	@Autowired
-	private IUserService userService;
+	private UserService userService;
 	
 	/**
 	* @Fields menuService : 菜单信息service
 	*/
 	@Autowired
-	private IMenuService menuService;
+	private MenuService menuService;
 	
 	/** 
 	* @Title: userIndex 

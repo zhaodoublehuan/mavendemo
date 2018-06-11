@@ -1,7 +1,7 @@
 package com.zhh.controller.base;
 
-import javax.servlet.http.HttpServletResponse;
-
+import com.zhh.entity.Role;
+import com.zhh.service.RoleService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,8 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.zhh.entity.Role;
-import com.zhh.service.IRoleService;
+import javax.servlet.http.HttpServletResponse;
 
 /**
 * @ClassName: RoleController
@@ -27,7 +26,7 @@ public class RoleController {
 	private static final Logger LOGGER = Logger.getLogger(RoleController.class);
 	
 	@Autowired
-	private IRoleService roleService;
+	private RoleService roleService;
 	
 	/**
 	 * 添加角色信息

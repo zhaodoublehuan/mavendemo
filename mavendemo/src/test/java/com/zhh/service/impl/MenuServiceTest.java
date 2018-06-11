@@ -1,22 +1,21 @@
 package com.zhh.service.impl;
 
+import com.alibaba.fastjson.JSON;
+import com.zhh.base.BaseTest;
+import com.zhh.entity.Menu;
+import com.zhh.service.MenuService;
+import org.junit.Test;
+
+import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import javax.annotation.Resource;
-
-import com.alibaba.fastjson.JSON;
-import org.junit.Test;
-
-import com.zhh.base.BaseTest;
-import com.zhh.entity.Menu;
-import com.zhh.service.IMenuService;
 @SuppressWarnings("restriction")
 public class MenuServiceTest extends BaseTest {
 	
 	@Resource
-	private IMenuService menuService;
+	private MenuService menuService;
 	@Test
 	public void testAddMenu() {
 		Menu menu = new Menu();
@@ -58,7 +57,7 @@ public class MenuServiceTest extends BaseTest {
 
 	@Test
 	public void testSelectMenusByLoginNo(){
-		String login_no = "zhh";
+		String login_no = "admin";
 		System.out.print(JSON.toJSONString(menuService.selectMenusByLoginNo(login_no)));
 	}
 

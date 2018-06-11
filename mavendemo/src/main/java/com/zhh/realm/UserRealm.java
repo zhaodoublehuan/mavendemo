@@ -1,15 +1,13 @@
 package com.zhh.realm;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
+import com.alibaba.fastjson.JSON;
+import com.zhh.entity.Permission;
+import com.zhh.entity.Role;
+import com.zhh.entity.UserEntity;
+import com.zhh.service.RoleService;
+import com.zhh.service.UserService;
 import org.apache.log4j.Logger;
-import org.apache.shiro.authc.AuthenticationException;
-import org.apache.shiro.authc.AuthenticationInfo;
-import org.apache.shiro.authc.AuthenticationToken;
-import org.apache.shiro.authc.SimpleAuthenticationInfo;
-import org.apache.shiro.authc.UnknownAccountException;
+import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
@@ -17,12 +15,9 @@ import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.util.ByteSource;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.alibaba.fastjson.JSON;
-import com.zhh.entity.Permission;
-import com.zhh.entity.Role;
-import com.zhh.entity.UserEntity;
-import com.zhh.service.IRoleService;
-import com.zhh.service.IUserService;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 /**
 * @ClassName: UserRealm
@@ -42,10 +37,10 @@ public class UserRealm extends AuthorizingRealm {
 	* @Fields userService : 注入用户service
 	*/
 	@Autowired
-	private IUserService userService;
+	private UserService userService;
 	
 	@Autowired
-	private IRoleService roleService;
+	private RoleService roleService;
 	
 	/* (非 Javadoc) 
 	* <p>Title: 权限认证方法</p> 
