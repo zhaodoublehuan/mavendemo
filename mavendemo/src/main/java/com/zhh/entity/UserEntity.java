@@ -12,6 +12,9 @@ CREATE TABLE `sys_user` (
 PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 */
+import lombok.Getter;
+import lombok.Setter;
+
 import java.util.Date;
 
 /**
@@ -21,7 +24,8 @@ import java.util.Date;
 * @date 2016-8-12 上午9:16:13
 * 
 */
-
+@Getter
+@Setter
 public class UserEntity {
     /**
     * @Fields id : 主键id
@@ -69,211 +73,5 @@ public class UserEntity {
     * @Fields updateDate : 修改时间
     */
     private Date updateDate;
-    /** 
-    * @Title: getId 
-    * @Description: TODO(这里用一句话描述这个方法的作用) 
-    * @param @return    设定文件 
-    * @return String    返回类型 
-    * @throws 
-    */ 
-    
-    public String getId() {
-        return id;
-    }
 
-	/** 
-    * @Title: setId 
-    * @Description: TODO(这里用一句话描述这个方法的作用) 
-    * @param @param id    设定文件 
-    * @return void    返回类型 
-    * @throws 
-    */ 
-    
-    public void setId(String id) {
-        this.id = id == null ? null : id.trim();
-    }
-
-    /** 
-    * @Title: getUserName 
-    * @Description: TODO(这里用一句话描述这个方法的作用) 
-    * @param @return    设定文件 
-    * @return String    返回类型 
-    * @throws 
-    */ 
-    
-    public String getUserName() {
-        return userName;
-    }
-
-    /** 
-    * @Title: setUserName 
-    * @Description: TODO(这里用一句话描述这个方法的作用) 
-    * @param @param userName    设定文件 
-    * @return void    返回类型 
-    * @throws 
-    */ 
-    
-    public void setUserName(String userName) {
-        this.userName = userName == null ? null : userName.trim();
-    }
-
-    /** 
-    * @Title: getPassword 
-    * @Description: TODO(这里用一句话描述这个方法的作用) 
-    * @param @return    设定文件 
-    * @return String    返回类型 
-    * @throws 
-    */ 
-    
-    public String getPassword() {
-        return password;
-    }
-
-    /** 
-    * @Title: setPassword 
-    * @Description: TODO(这里用一句话描述这个方法的作用) 
-    * @param @param password    设定文件 
-    * @return void    返回类型 
-    * @throws 
-    */ 
-    
-    public void setPassword(String password) {
-        this.password = password == null ? null : password.trim();
-    }
-
-    /** 
-    * @Title: getMobile 
-    * @Description: TODO(这里用一句话描述这个方法的作用) 
-    * @param @return    设定文件 
-    * @return String    返回类型 
-    * @throws 
-    */ 
-    
-    public String getMobile() {
-        return mobile;
-    }
-
-    /** 
-    * @Title: setMobile 
-    * @Description: TODO(这里用一句话描述这个方法的作用) 
-    * @param @param mobile    设定文件 
-    * @return void    返回类型 
-    * @throws 
-    */ 
-    
-    public void setMobile(String mobile) {
-        this.mobile = mobile == null ? null : mobile.trim();
-    }
-
-    /** 
-    * @Title: getEmail 
-    * @Description: TODO(这里用一句话描述这个方法的作用) 
-    * @param @return    设定文件 
-    * @return String    返回类型 
-    * @throws 
-    */ 
-    
-    public String getEmail() {
-        return email;
-    }
-
-    /** 
-    * @Title: setEmail 
-    * @Description: TODO(这里用一句话描述这个方法的作用) 
-    * @param @param email    设定文件 
-    * @return void    返回类型 
-    * @throws 
-    */ 
-    
-    public void setEmail(String email) {
-        this.email = email == null ? null : email.trim();
-    }
-
-    /** 
-    * @Title: getInsertDate 
-    * @Description: TODO(这里用一句话描述这个方法的作用) 
-    * @param @return    设定文件 
-    * @return Date    返回类型 
-    * @throws 
-    */ 
-    
-    public Date getInsertDate() {
-        return insertDate;
-    }
-
-    /** 
-    * @Title: setInsertDate 
-    * @Description: TODO(这里用一句话描述这个方法的作用) 
-    * @param @param insertDate    设定文件 
-    * @return void    返回类型 
-    * @throws 
-    */ 
-    
-    public void setInsertDate(Date insertDate) {
-        this.insertDate = insertDate;
-    }
-
-    /** 
-    * @Title: getUpdateDate 
-    * @Description: TODO(这里用一句话描述这个方法的作用) 
-    * @param @return    设定文件 
-    * @return Date    返回类型 
-    * @throws 
-    */ 
-    
-    public Date getUpdateDate() {
-        return updateDate;
-    }
-
-    /** 
-    * @Title: setUpdateDate 
-    * @Description: TODO(这里用一句话描述这个方法的作用) 
-    * @param @param updateDate    设定文件 
-    * @return void    返回类型 
-    * @throws 
-    */ 
-    
-    public void setUpdateDate(Date updateDate) {
-        this.updateDate = updateDate;
-    }
-
-	/** 
-	* @Title: getActive 
-	* @Description: TODO(这里用一句话描述这个方法的作用) 
-	* @param @return    设定文件 
-	* @return String    返回类型 
-	* @throws 
-	*/ 
-	
-	public String getActive() {
-		return active;
-	}
-
-	/** 
-	* @Title: setActive 
-	* @Description: TODO(这里用一句话描述这个方法的作用) 
-	* @param @param active    设定文件 
-	* @return void    返回类型 
-	* @throws 
-	*/ 
-	
-	public void setActive(String active) {
-		this.active = active;
-	}
-
-	public String getLoginNo() {
-		return loginNo;
-	}
-
-	public void setLoginNo(String loginNo) {
-		this.loginNo = loginNo;
-	}
-
-	public String getSalt() {
-		return salt;
-	}
-
-	public void setSalt(String salt) {
-		this.salt = salt;
-	}
 }

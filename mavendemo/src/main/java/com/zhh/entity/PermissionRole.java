@@ -7,6 +7,10 @@ CREATE TABLE `sys_role_permission` (
 `update_date` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 */
+
+import lombok.Getter;
+import lombok.Setter;
+
 /**
 * @ClassName: PermissionRole
 * @Description: 角色权限实体类
@@ -14,7 +18,8 @@ CREATE TABLE `sys_role_permission` (
 * @date 2016-8-12 上午9:12:08
 * 
 */
-
+@Getter
+@Setter
 public class PermissionRole {
 
 }

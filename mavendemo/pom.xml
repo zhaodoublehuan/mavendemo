@@ -150,10 +150,18 @@
 		    <artifactId>jackson-core-asl</artifactId>
 		    <version>1.9.12</version>
 		</dependency>
-		
-		
-		
-		<!-- jsp使用jstl需要的jar -->
+
+	  <!-- 使用注解省去实体类的get set方法 -->
+	  <dependency>
+		  <groupId>org.projectlombok</groupId>
+		  <artifactId>lombok</artifactId>
+		  <version>1.18.0</version>
+		  <scope>provided</scope>
+	  </dependency>
+
+
+
+	  <!-- jsp使用jstl需要的jar -->
 		<dependency>
             <groupId>jstl</groupId>
             <artifactId>jstl</artifactId>
