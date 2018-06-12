@@ -80,12 +80,7 @@ public class ProductController extends BaseController {
         List<Product> productList = productService.selectProductListPage(null,page);
         /*查询总条数*/
         count = productService.selectProductCount(null);
-        /*返回需要的分页参数*/
-        PageReturnParam pageReturnParam = new PageReturnParam();
-        pageReturnParam.setsEcho(page.getsEcho());
-        pageReturnParam.setiTotalDisplayRecords(count);
-        pageReturnParam.setiTotalRecords(count);
-        pageReturnParam.setAaData(productList);
-        return pageReturnParam;
+
+        return new PageReturnParam(page.getsEcho(),count,productList);
     }
 }

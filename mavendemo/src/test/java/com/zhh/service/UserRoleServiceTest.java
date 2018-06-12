@@ -1,4 +1,4 @@
-package com.zhh.service.impl;
+package com.zhh.service;
 
 import com.alibaba.fastjson.JSON;
 import com.zhh.base.BaseTest;

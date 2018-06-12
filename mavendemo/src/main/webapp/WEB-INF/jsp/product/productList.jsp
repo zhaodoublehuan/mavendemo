@@ -39,7 +39,6 @@
                                     <th>产品类型</th>
                                     <th>产品价格</th>
                                     <th>单位</th>
-                                    <th>供应商</th>
                                     <th>操作</th>
                                 </tr>
                                 </thead>

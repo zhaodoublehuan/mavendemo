@@ -44,17 +44,9 @@
    	</bean>
     <!-- 自动注解，扫描包。开启自动注解 -->
 	<context:component-scan base-package="com.zhh"/> 
-	<!-- 前台参数转换为json配置 -->
-	<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
-        <property name="messageConverters">
-            <list>
-                <!-- json转换器 -->
-                <bean class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter" />
-            </list>
-        </property>
-    </bean>
-	<!-- 静态资源过滤 -->
+
 	<mvc:annotation-driven />
+	<!-- 静态资源过滤 -->
 	<mvc:resources location="/bootstrap/" mapping="/bootstrap/**"/> 
 	<mvc:resources location="/dist/" mapping="/dist/**"/> 
 	<mvc:resources location="/plugins/" mapping="/plugins/**"/>

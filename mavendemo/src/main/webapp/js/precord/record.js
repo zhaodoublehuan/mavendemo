@@ -46,23 +46,24 @@ function getProjectUrl(){
 }
 $(function () {
 	var pjUrl = getProjectUrl();
-    $("#product_table").DataTable({
+    $("#record_table").DataTable({
     	"searching":false,
     	"ordering":false,
     	"pagingType":"full_numbers",
     	"lengthChange":false,
     	"bServerSide": true, 
     	"columns": [
-		    { "data": "name" },
-		    { "data": "remark"},
-            { "data": "productType.name"},
-            { "data": "price"},
-            { "data": "unitData.name"},
+		    { "data": "product.name" },
+		    { "data": "productCount"},
+            { "data": "productPrice"},
+            { "data": "productShop.name"},
+            { "data": "productInoutType.name"},
+            { "data": "inoutDate"},
 		    { "data": "" }
 		  ],
 		"columnDefs":[
 			{
-			 "targets":5,
+			 "targets":6,
 			 "render":function( data, type, row, meta){
 			 	var btnHtml = '<button class="btn btn-success btn-sm" onclick="editUser()"><i class="fa fa-fw fa-edit"></i>编辑</button>';
 			 	btnHtml += '<button class="btn btn-danger btn-sm" onclick="delUser(this)"><i class="fa fa-fw fa-remove"></i>删除</button>';
@@ -70,7 +71,7 @@ $(function () {
 			 }
 			}
 		],
-    	"sAjaxSource":pjUrl+"/product/productPage",
+    	"sAjaxSource":pjUrl+"/precord/recordPage",
     	"fnServerData":function(sSource, aoData, fnCallback){
     		$.ajax( {    
     	        "contentType": "application/json",    

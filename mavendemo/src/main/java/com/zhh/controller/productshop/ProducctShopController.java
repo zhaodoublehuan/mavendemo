@@ -6,7 +6,7 @@ import com.zhh.entity.ProductShop;
 import com.zhh.service.ProductShopService;
 import com.zhh.util.PageReturnParam;
 import com.zhh.util.PageUtil;
-import org.apache.log4j.Logger;
+import lombok.extern.log4j.Log4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,9 +22,8 @@ import java.util.List;
  */
 @Controller
 @RequestMapping("/pshop")
+@Log4j
 public class ProducctShopController extends BaseController {
-
-    private static final Logger LOGGER = Logger.getLogger(ProducctShopController.class);
 
     @Autowired
     private ProductShopService productShopService;
@@ -48,19 +47,14 @@ public class ProducctShopController extends BaseController {
         int count = 10;
         /*接收前台datatabel传来分页用的参数*/
         String aoData=request.getParameter("aoData");
-        LOGGER.info("前台分页参数"+aoData);
+        log.info("前台分页参数"+aoData);
         /*转换需要的参数*/
         PageUtil page = PageUtil.getPageParams(aoData);
         /*查询符合条件的用户*/
         List<ProductShop> productList = productShopService.selectShopListPage(null,page);
         /*查询总条数*/
         count = productShopService.selectShopCount(null);
-        /*返回需要的分页参数*/
-        PageReturnParam pageReturnParam = new PageReturnParam();
-        pageReturnParam.setsEcho(page.getsEcho());
-        pageReturnParam.setiTotalDisplayRecords(count);
-        pageReturnParam.setiTotalRecords(count);
-        pageReturnParam.setAaData(productList);
-        return pageReturnParam;
+
+        return new PageReturnParam(page.getsEcho(),count,productList);
     }
 }

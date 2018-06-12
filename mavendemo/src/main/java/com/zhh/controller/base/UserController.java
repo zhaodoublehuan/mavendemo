@@ -138,13 +138,8 @@ public class UserController {
 		/*查询符合条件的用户*/
 		List<UserEntity> userList = userService.selectUsers(null,page);
 		/*查询总条数*/
-		count = userService.selectUsersCount(null);	
-		/*返回需要的分页参数*/
-		PageReturnParam pageReturnParam = new PageReturnParam();
-		pageReturnParam.setsEcho(page.getsEcho());
-		pageReturnParam.setiTotalDisplayRecords(count);
-		pageReturnParam.setiTotalRecords(count);
-		pageReturnParam.setAaData(userList);
-		return pageReturnParam;
+		count = userService.selectUsersCount(null);
+
+		return new PageReturnParam(page.getsEcho(),count,userList);
 	}
 }

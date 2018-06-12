@@ -21,8 +21,6 @@ public class Product {
 
     private DictData productType;
 
-    private ProductShop productShop;
-
     private Date insertDate;
 
     private Date updateDate;

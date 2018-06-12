@@ -5,20 +5,31 @@ package com.zhh.util;
 * @Description: 分页返回的参数
 * @author zhh
 * @date 2017-5-6 上午11:10:36
-* 
+*
 */
 
 public class PageReturnParam {
-	
+
 	private int sEcho;
-	
+
 	private int iTotalRecords;
-	
+
 	private int iTotalDisplayRecords;
-	
+
 	private Object aaData;
 
-	public int getsEcho() {
+	public PageReturnParam(){
+
+	}
+
+    public PageReturnParam(int sEcho, int count,Object aaData) {
+		this.sEcho = sEcho;
+		this.iTotalDisplayRecords = count;
+		this.iTotalRecords=count;
+		this.aaData = aaData;
+    }
+
+    public int getsEcho() {
 		return sEcho;
 	}
 
