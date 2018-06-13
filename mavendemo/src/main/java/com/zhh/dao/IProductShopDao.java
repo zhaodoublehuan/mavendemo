@@ -23,4 +23,6 @@ public interface IProductShopDao {
     List<ProductShop> selectShopListPage(@Param("shop")ProductShop record, @Param("page")PageUtil page);
 
     int selectShopCount(ProductShop record);
+
+    List<ProductShop> selectAllShop();
 }

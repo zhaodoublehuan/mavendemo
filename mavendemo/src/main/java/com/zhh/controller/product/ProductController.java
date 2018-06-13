@@ -6,7 +6,8 @@ import com.zhh.entity.Product;
 import com.zhh.service.ProductService;
 import com.zhh.util.PageReturnParam;
 import com.zhh.util.PageUtil;
-import org.apache.log4j.Logger;
+import com.zhh.util.ReturnResult;
+import lombok.extern.log4j.Log4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,14 +23,13 @@ import java.util.List;
  */
 @Controller
 @RequestMapping("/product")
+@Log4j
 public class ProductController extends BaseController {
-
-    private static final Logger LOGGER = Logger.getLogger(ProductController.class);
 
     @Autowired
     private ProductService productService;
 
-    @RequestMapping("index")
+    @RequestMapping("/index")
     public String productIndex(Model model){
         List<Menu> menuList = getUserMenus();
         model.addAttribute("menuList", menuList);
@@ -39,9 +39,11 @@ public class ProductController extends BaseController {
      * 添加产品
      * @return
      */
-    public String addProducct(){
-
-       return "";
+    @RequestMapping("/addProduct")
+    @ResponseBody
+    public ReturnResult addProduct(Product product){
+        int count = productService.insert(product);
+       return null;
     }
 
     /**
@@ -73,7 +75,7 @@ public class ProductController extends BaseController {
         int count = 10;
         /*接收前台datatabel传来分页用的参数*/
         String aoData=request.getParameter("aoData");
-        LOGGER.info("前台分页参数"+aoData);
+        log.info("前台分页参数"+aoData);
         /*转换需要的参数*/
         PageUtil page = PageUtil.getPageParams(aoData);
         /*查询符合条件的用户*/

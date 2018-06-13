@@ -1,16 +1,21 @@
 package com.zhh.controller.productshop;
 
+import com.alibaba.fastjson.JSON;
 import com.zhh.controller.base.BaseController;
 import com.zhh.entity.Menu;
 import com.zhh.entity.ProductShop;
 import com.zhh.service.ProductShopService;
 import com.zhh.util.PageReturnParam;
 import com.zhh.util.PageUtil;
+import com.zhh.util.ReturnResult;
 import lombok.extern.log4j.Log4j;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
@@ -23,16 +28,49 @@ import java.util.List;
 @Controller
 @RequestMapping("/pshop")
 @Log4j
-public class ProducctShopController extends BaseController {
+public class ProductShopController extends BaseController {
 
     @Autowired
     private ProductShopService productShopService;
 
-    @RequestMapping("index")
+    @RequestMapping("/index")
     public String pshopIndex(Model model){
         List<Menu> menuList = getUserMenus();
         model.addAttribute("menuList", menuList);
         return "/pshop/pshopList";
+    }
+    @RequestMapping(method = RequestMethod.POST,value="/addShop")
+    @ResponseBody
+    public ReturnResult addShop(ProductShop shop){
+        log.info(JSON.toJSONString(shop));
+        int count = productShopService.insert(shop);
+        ReturnResult returnResult = new ReturnResult();
+        returnResult.setStatus(0);
+        if(count>0){
+            returnResult.setMsg("添加成功");
+        }else{
+            returnResult.setMsg("添加失败");
+        }
+        return returnResult;
+    }
+    /**
+     * 根据id删除对应的供应商
+     * @param id
+     * @return
+     */
+    @RequestMapping("/deleteShop")
+    @ResponseBody
+    public ReturnResult deleteShop(Integer id){
+        log.info("删除合作商=="+id);
+        int count = productShopService.deleteByPrimaryKey(id);
+        ReturnResult returnResult = new ReturnResult();
+        returnResult.setStatus(0);
+        if(count>0){
+            returnResult.setMsg("删除成功");
+        }else{
+            returnResult.setMsg("未找到数据");
+        }
+        return returnResult;
     }
     /**
      * 分页查询产品信息

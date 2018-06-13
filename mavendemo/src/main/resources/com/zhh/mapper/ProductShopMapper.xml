@@ -15,7 +15,29 @@
   <select id="getDictData" parameterType="int" resultType="com.zhh.entity.DictData">
     select * from dict_data where id=#{id}
   </select>
-
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from product_shop
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <select id="selectAllShop" resultMap="BaseResultMap">
+    select
+    *
+    from product_shop
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    *
+    from product_shop
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <insert id="insert" parameterType="com.zhh.entity.ProductShop">
+    insert into product_shop ( name, remark,
+      shop_type, insert_date, update_date
+      )
+    values (#{name,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR},
+      #{shopType.id,jdbcType=INTEGER}, #{insertDate,jdbcType=TIMESTAMP}, #{updateDate,jdbcType=TIMESTAMP}
+      )
+  </insert>
   <select id="selectShopCount" parameterType="com.zhh.entity.ProductShop" resultType="java.lang.Integer">
     select count(1) from product_shop
     <where>

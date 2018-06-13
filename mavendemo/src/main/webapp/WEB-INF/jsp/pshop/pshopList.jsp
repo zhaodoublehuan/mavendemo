@@ -27,7 +27,7 @@
                 <section class="col-lg-12 connectedSortable">
                     <div class="box box-info">
                         <div class="box-header">
-                            <button class="btn btn-success" onclick="addUserShow()">添加合作商</button>
+                            <button class="btn btn-success" onclick="addShopShow()"><i class="fa fa-fw fa-plus"></i>添加合作商</button>
                         </div>
                         <div class="box-body">
                             <table id="shop_table" class="table table-bordered table-hover">
@@ -51,6 +51,7 @@
     </div>
     <%@include file="../common/footer.jsp" %>
 </div>
+<%@include file="addShop.jsp" %>
 <%@include file="../common/commonBottom.jsp" %>
 <script src="<%=basePath%>js/shop/shop.js"></script>
 </body>

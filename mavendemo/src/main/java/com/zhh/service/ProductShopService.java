@@ -6,6 +6,7 @@ import com.zhh.util.PageUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -15,19 +16,16 @@ public class ProductShopService {
     private IProductShopDao productShopDao;
 
     public int deleteByPrimaryKey(Integer id) {
-        return 0;
+        return productShopDao.deleteByPrimaryKey(id);
     }
 
     public int insert(ProductShop record) {
-        return 0;
-    }
-
-    public int insertSelective(ProductShop record) {
-        return 0;
+        record.setInsertDate(new Date());
+        return productShopDao.insert(record);
     }
 
     public ProductShop selectByPrimaryKey(Integer id) {
-        return null;
+        return productShopDao.selectByPrimaryKey(id);
     }
 
     public int updateByPrimaryKeySelective(ProductShop record) {
@@ -36,6 +34,10 @@ public class ProductShopService {
 
     public int updateByPrimaryKey(ProductShop record) {
         return 0;
+    }
+
+    public List<ProductShop> selectAllShop(){
+        return productShopDao.selectAllShop();
     }
 
     public List<ProductShop> selectShopListPage(ProductShop record, PageUtil page) {

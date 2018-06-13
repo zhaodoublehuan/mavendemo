@@ -4,32 +4,62 @@ function editUser(){
 /**
  * 点击添加用户，展示添加modal
  */
-function addUserShow(){
-	$(':input','#addUserModal form')
-	.not(':button,:submit,:reset')
-	.val('')
-	.removeAttr('checked')
-	.removeAttr('selected');
-	$('#addUserModal .modal').modal('show');
+function addShopShow(){
+    $("input[ type='text' ] ").val("");
+	$('#addShopModal .modal').modal('show');
 }
-function addUserSave(){
+function addShopSave(){
+    $('#addShopModal .modal').modal('hide');
 	var pjUrl = getProjectUrl();
-	var user={};
-	user.userName=$("#userName_add").val();
-	user.loginNo = $("#loginNo_add").val();
-	user.password = $("#password_add").val();
 	$.ajax({
-		"url":pjUrl+"/user/addUser",
+		"url":pjUrl+"/pshop/addShop",
 		"type":"POST",
-		"dataType": "json",   
-		"contentType": "application/json",    
-		"data":{"loginNo":"11111"},
+		"dataType": "json",
+		"data":$("#addShopForm").serialize(),
 		success:function(data){
-			alert(eval(data));
-		},
+
+			if(data.status==0){
+				alert(data.msg);
+			}else{
+                alert(data.msg);
+			}
+            shop_table.ajax.reload();
+        },
 		error:function(){
 			alert("系统异常，请联系系统管理员");
 		}
+	})
+}
+
+function delShop(id) {
+	$.confirm({
+        title: '确认信息',
+        content: '确定要删除该信息么?',
+        confirmButton: '删除',
+        confirmButtonClass:"btn-danger",
+        cancelButtonClass: 'btn-info',
+        cancelButton: '取消',
+        confirm: function () {
+            var pjUrl = getProjectUrl();
+            $.ajax({
+                "url":pjUrl+"/pshop/deleteShop",
+                "type":"POST",
+                "dataType": "json",
+                "contentType": "application/json",
+                "data":{"id":parseInt(id)},
+                success:function(data){
+                    if(data.status==0){
+                        alert(data.msg);
+                    }else{
+                        alert(data.msg);
+                    }
+                    shop_table.ajax.reload();
+                },
+                error:function(){
+                    alert("系统异常，请联系系统管理员");
+                }
+            })
+        }
 	})
 }
 function getProjectUrl(){
@@ -46,7 +76,7 @@ function getProjectUrl(){
 }
 $(function () {
 	var pjUrl = getProjectUrl();
-    $("#shop_table").DataTable({
+    shop_table = $("#shop_table").DataTable({
     	"searching":false,
     	"ordering":false,
     	"pagingType":"full_numbers",
@@ -63,7 +93,7 @@ $(function () {
 			 "targets":3,
 			 "render":function( data, type, row, meta){
 			 	var btnHtml = '<button class="btn btn-success btn-sm" onclick="editUser()"><i class="fa fa-fw fa-edit"></i>编辑</button>';
-			 	btnHtml += '<button class="btn btn-danger btn-sm" onclick="delUser(this)"><i class="fa fa-fw fa-remove"></i>删除</button>';
+			 	btnHtml += '<button class="btn btn-danger btn-sm" onclick="delShop('+row.id+')"><i class="fa fa-fw fa-remove"></i>删除</button>';
 			 	return btnHtml;
 			 }
 			}

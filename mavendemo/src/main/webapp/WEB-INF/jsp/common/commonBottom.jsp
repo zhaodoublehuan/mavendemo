@@ -24,6 +24,7 @@
 <script src="<%=basePath%>plugins/datatables/jquery.dataTables.min.js"></script>
 <script src="<%=basePath%>plugins/datatables/dataTables.bootstrap.min.js"></script>
 <script src="<%=basePath%>plugins/datatables/jquery.dataTables.zh.js"></script>
+<script src="<%=basePath%>plugins/bootstrap-confirm/confirm-bootstrap.js"></script>
 <!-- AdminLTE App -->
 <script src="<%=basePath%>dist/js/app.min.js"></script>
 

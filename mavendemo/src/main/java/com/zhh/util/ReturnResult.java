@@ -9,7 +9,7 @@ package com.zhh.util;
 */
 
 public class ReturnResult {
-
+	//0表示成功，1表示失败
 	private int status;
 	
 	private String msg;

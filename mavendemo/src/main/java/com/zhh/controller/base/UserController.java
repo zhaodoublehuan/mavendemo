@@ -61,7 +61,7 @@ public class UserController {
 	
 	@RequestMapping(method = RequestMethod.POST,value="/addUser")
 	@ResponseBody
-	public  ReturnResult addUser(@RequestBody UserEntity user,HttpServletResponse response){
+	public  ReturnResult addUser(@RequestBody UserEntity user){
 		ReturnResult result = new ReturnResult();
 		try {
 			userService.add(user);
