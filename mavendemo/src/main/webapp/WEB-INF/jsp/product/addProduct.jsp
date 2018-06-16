@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-  <div id="addShopModal">
+  <div id="addProductModal">
         <div class="modal">
           <div class="modal-dialog">
             <div class="modal-content">
@@ -10,31 +10,40 @@
                 <h4 class="modal-title">添加产品</h4>
               </div>
               <div class="modal-body">
-	             <form id="addShopForm" class="form-horizontal">
+	             <form id="addProductForm" class="form-horizontal">
 	             	<div class="form-group">
-	                  <label  class="col-sm-2 control-label">合作商名称</label>
+	                  <label  class="col-sm-2 control-label">产品名称</label>
 	
 	                  <div class="col-sm-10">
-	                    <input type="text" class="form-control" name="name" placeholder="合作商名称">
+	                    <input type="text" class="form-control" name="name" placeholder="产品名称">
 	                  </div>
 	                </div>
 	                <div class="form-group">
-	                  <label class="col-sm-2 control-label">合作商描述</label>
+	                  <label class="col-sm-2 control-label">产品描述</label>
 	
 	                  <div class="col-sm-10">
-	                    <input type="text" class="form-control" name="remark" placeholder="合作商描述">
+	                    <input type="text" class="form-control" name="remark" placeholder="产品描述">
 	                  </div>
 	                </div>
 	                <div class="form-group">
-	                  <label class="col-sm-2 control-label">合作商分类</label>
+	                  <label class="col-sm-2 control-label">产品类型</label>
 	
 	                  <div class="col-sm-10">
-	                    <select class="form-control" name="shopType.id">
-							<option value="5" selected>钢筋</option>
-							<option value="6">水泥</option>
+	                    <select class="form-control" name="productType.id">
+							<option value="1" selected>办公用品</option>
+							<option value="2">交通用品</option>
 						</select>
 	                  </div>
 	                </div>
+					 <div class="form-group">
+						 <label class="col-sm-2 control-label">单位</label>
+						 <div class="col-sm-10">
+							 <select class="form-control" name="unitData.id">
+								 <option value="3" selected>吨</option>
+								 <option value="4">件</option>
+							 </select>
+						 </div>
+					 </div>
 	            </form>
            	  </div>
               <div class="modal-footer">

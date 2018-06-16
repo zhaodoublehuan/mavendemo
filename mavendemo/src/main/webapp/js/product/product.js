@@ -1,21 +1,33 @@
-function editUser(){
-    $('#editUserModal .modal').modal('show');
-}
-/**
- * 点击添加用户，展示添加modal
- */
-function addShopShow(){
-    $("input[ type='text' ] ").val("");
-    $('#addShopModal .modal').modal('show');
-}
-function addShopSave(){
-    $('#addShopModal .modal').modal('hide');
+function editProduct(id){
     var pjUrl = getProjectUrl();
     $.ajax({
-        "url":pjUrl+"/pshop/addShop",
+        "url":pjUrl+"/product/getProductById",
         "type":"POST",
         "dataType": "json",
-        "data":$("#addShopForm").serialize(),
+        "data":{"id":parseInt(id)},
+        success:function(product){
+            $("#updateProductForm input[name='id']").val(product.id);
+            $("#updateProductForm input[name='name']").val(product.name);
+            $("#updateProductForm input[name='remark']").val(product.remark);
+            $("#updateProductForm select[name='productType.id']").val(product.productType.id);
+            $("#updateProductForm select[name='unitData.id']").val(product.unitData.id);
+            $('#editProductModal .modal').modal('show');
+        },
+        error:function(){
+            alert("系统异常，请联系系统管理员");
+        }
+    })
+
+}
+
+function editProductSave() {
+    $('#editProductModal .modal').modal('hide');
+    var pjUrl = getProjectUrl();
+    $.ajax({
+        "url":pjUrl+"/product/editProduct",
+        "type":"POST",
+        "dataType": "json",
+        "data":$("#updateProductForm").serialize(),
         success:function(data){
 
             if(data.status==0){
@@ -23,7 +35,36 @@ function addShopSave(){
             }else{
                 alert(data.msg);
             }
-            shop_table.ajax.reload();
+            product_table.ajax.reload();
+        },
+        error:function(){
+            alert("系统异常，请联系系统管理员");
+        }
+    })
+}
+/**
+ * 点击添加用户，展示添加modal
+ */
+function addProductShow(){
+    $("input[ type='text' ] ").val("");
+    $('#addProductModal .modal').modal('show');
+}
+function addProductSave(){
+    $('#addProductModal .modal').modal('hide');
+    var pjUrl = getProjectUrl();
+    $.ajax({
+        "url":pjUrl+"/product/addProduct",
+        "type":"POST",
+        "dataType": "json",
+        "data":$("#addProductForm").serialize(),
+        success:function(data){
+
+            if(data.status==0){
+                alert(data.msg);
+            }else{
+                alert(data.msg);
+            }
+            product_table.ajax.reload();
         },
         error:function(){
             alert("系统异常，请联系系统管理员");
@@ -31,7 +72,7 @@ function addShopSave(){
     })
 }
 
-function delShop(id) {
+function delProduct(id) {
     $.confirm({
         title: '确认信息',
         content: '确定要删除该信息么?',
@@ -42,8 +83,8 @@ function delShop(id) {
         confirm: function () {
             var pjUrl = getProjectUrl();
             $.ajax({
-                "url":pjUrl+"/pshop/deleteShop",
-                "type":"POST",
+                "url":pjUrl+"/product/deleteProduct",
+                "type":"GET",
                 "dataType": "json",
                 "contentType": "application/json",
                 "data":{"id":parseInt(id)},
@@ -53,7 +94,7 @@ function delShop(id) {
                     }else{
                         alert(data.msg);
                     }
-                    shop_table.ajax.reload();
+                    product_table.ajax.reload();
                 },
                 error:function(){
                     alert("系统异常，请联系系统管理员");
@@ -76,7 +117,7 @@ function getProjectUrl(){
 }
 $(function () {
 	var pjUrl = getProjectUrl();
-    $("#product_table").DataTable({
+    product_table =  $("#product_table").DataTable({
     	"searching":false,
     	"ordering":false,
     	"pagingType":"full_numbers",
@@ -86,16 +127,15 @@ $(function () {
 		    { "data": "name" },
 		    { "data": "remark"},
             { "data": "productType.name"},
-            { "data": "price"},
             { "data": "unitData.name"},
 		    { "data": "" }
 		  ],
 		"columnDefs":[
 			{
-			 "targets":5,
+			 "targets":4,
 			 "render":function( data, type, row, meta){
-			 	var btnHtml = '<button class="btn btn-success btn-sm" onclick="editUser('+row.id+')"><i class="fa fa-fw fa-edit"></i>编辑</button>';
-			 	btnHtml += '<button class="btn btn-danger btn-sm" onclick="delUser('+row.id+')"><i class="fa fa-fw fa-remove"></i>删除</button>';
+			 	var btnHtml = '<button class="btn btn-success btn-sm" onclick="editProduct('+row.id+')"><i class="fa fa-fw fa-edit"></i>编辑</button>';
+			 	btnHtml += '<button class="btn btn-danger btn-sm" onclick="delProduct('+row.id+')"><i class="fa fa-fw fa-remove"></i>删除</button>';
 			 	return btnHtml;
 			 }
 			}

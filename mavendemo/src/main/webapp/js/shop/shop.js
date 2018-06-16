@@ -82,7 +82,7 @@ function delShop(id) {
             var pjUrl = getProjectUrl();
             $.ajax({
                 "url":pjUrl+"/pshop/deleteShop",
-                "type":"POST",
+                "type":"GET",
                 "dataType": "json",
                 "contentType": "application/json",
                 "data":{"id":parseInt(id)},

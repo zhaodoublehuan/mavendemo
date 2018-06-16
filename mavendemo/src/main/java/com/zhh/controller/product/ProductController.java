@@ -43,15 +43,38 @@ public class ProductController extends BaseController {
     @ResponseBody
     public ReturnResult addProduct(Product product){
         int count = productService.insert(product);
-       return null;
+        ReturnResult returnResult = new ReturnResult();
+        returnResult.setStatus(0);
+        if(count>0){
+            returnResult.setMsg("添加成功");
+        }else{
+            returnResult.setMsg("添加失败");
+        }
+        return returnResult;
+    }
+
+    @RequestMapping("/getProductById")
+    @ResponseBody
+    public Product getProductById(Integer id){
+        return productService.selectByPrimaryKey(id);
     }
 
     /**
      * 修改产品信息
      * @return
      */
-    public String editProduct(){
-        return "";
+    @RequestMapping("/editProduct")
+    @ResponseBody
+    public ReturnResult editProduct(Product product){
+        int count = productService.updateByPrimaryKey(product);
+        ReturnResult returnResult = new ReturnResult();
+        returnResult.setStatus(0);
+        if(count>0){
+            returnResult.setMsg("修改成功");
+        }else{
+            returnResult.setMsg("未找到数据");
+        }
+        return returnResult;
     }
 
     /**
@@ -61,8 +84,16 @@ public class ProductController extends BaseController {
     @RequestMapping("/deleteProduct")
     @ResponseBody
     public  ReturnResult deleteProduct(Integer id){
+        log.info("删除产品id==="+id);
         int count = productService.deleteByPrimaryKey(id);
-        return null;
+        ReturnResult returnResult = new ReturnResult();
+        returnResult.setStatus(0);
+        if(count>0){
+            returnResult.setMsg("删除成功");
+        }else{
+            returnResult.setMsg("未找到数据");
+        }
+        return returnResult;
     }
 
     public ReturnResult getAllProduct(){

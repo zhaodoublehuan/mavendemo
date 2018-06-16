@@ -15,8 +15,6 @@ public class Product {
 
     private String remark;
 
-    private BigDecimal price;
-
     private DictData unitData;
 
     private DictData productType;
