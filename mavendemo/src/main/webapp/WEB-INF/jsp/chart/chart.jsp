@@ -8,7 +8,6 @@
   <%@include file="../common/commonTop.jsp" %>
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
-12
 <div class="wrapper">
   <!-- 顶部导航 -->
   <%@include file="../common/header.jsp" %>

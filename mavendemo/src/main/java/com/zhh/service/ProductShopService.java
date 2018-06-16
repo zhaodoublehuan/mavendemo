@@ -33,7 +33,7 @@ public class ProductShopService {
     }
 
     public int updateByPrimaryKey(ProductShop record) {
-        return 0;
+        return productShopDao.updateByPrimaryKey(record);
     }
 
     public List<ProductShop> selectAllShop(){

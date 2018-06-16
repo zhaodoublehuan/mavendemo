@@ -1,5 +1,45 @@
-function editUser(){
-	 $('#editUserModal .modal').modal('show');
+function editShop(id){
+    var pjUrl = getProjectUrl();
+    $.ajax({
+        "url":pjUrl+"/pshop/getShopById",
+        "type":"POST",
+        "dataType": "json",
+        "data":{"id":parseInt(id)},
+        success:function(shop){
+            $("#updateShopForm input[name='id']").val(shop.id);
+            $("#updateShopForm input[name='name']").val(shop.name);
+            $("#updateShopForm input[name='remark']").val(shop.remark);
+            $("#updateShopForm select[name='shopType.id']").val(shop.shopType.id);
+            $('#editShopModal .modal').modal('show');
+        },
+        error:function(){
+            alert("系统异常，请联系系统管理员");
+        }
+    })
+
+}
+
+function editShopSave() {
+    $('#editShopModal .modal').modal('hide');
+    var pjUrl = getProjectUrl();
+    $.ajax({
+        "url":pjUrl+"/pshop/editShop",
+        "type":"POST",
+        "dataType": "json",
+        "data":$("#updateShopForm").serialize(),
+        success:function(data){
+
+            if(data.status==0){
+                alert(data.msg);
+            }else{
+                alert(data.msg);
+            }
+            shop_table.ajax.reload();
+        },
+        error:function(){
+            alert("系统异常，请联系系统管理员");
+        }
+    })
 }
 /**
  * 点击添加用户，展示添加modal
@@ -17,7 +57,6 @@ function addShopSave(){
 		"dataType": "json",
 		"data":$("#addShopForm").serialize(),
 		success:function(data){
-
 			if(data.status==0){
 				alert(data.msg);
 			}else{
@@ -92,7 +131,7 @@ $(function () {
 			{
 			 "targets":3,
 			 "render":function( data, type, row, meta){
-			 	var btnHtml = '<button class="btn btn-success btn-sm" onclick="editUser()"><i class="fa fa-fw fa-edit"></i>编辑</button>';
+			 	var btnHtml = '<button class="btn btn-success btn-sm" onclick="editShop('+row.id+')"><i class="fa fa-fw fa-edit"></i>编辑</button>';
 			 	btnHtml += '<button class="btn btn-danger btn-sm" onclick="delShop('+row.id+')"><i class="fa fa-fw fa-remove"></i>删除</button>';
 			 	return btnHtml;
 			 }

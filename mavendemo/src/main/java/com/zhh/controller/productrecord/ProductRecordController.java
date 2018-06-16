@@ -35,6 +35,10 @@ public class ProductRecordController extends BaseController {
         model.addAttribute("menuList", menuList);
         return "/precord/precordList";
     }
+
+    public PageReturnParam addRecord(){
+        return null;
+    }
     /**
      * 分页查询记录信息
      * @param request

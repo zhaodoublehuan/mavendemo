@@ -7,7 +7,7 @@
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">添加合作商</h4>
+                <h4 class="modal-title">添加产品</h4>
               </div>
               <div class="modal-body">
 	             <form id="addShopForm" class="form-horizontal">
@@ -30,8 +30,8 @@
 	
 	                  <div class="col-sm-10">
 	                    <select class="form-control" name="shopType.id">
-							<option value="5" selected>供货商</option>
-							<option value="6">出货商</option>
+							<option value="5" selected>钢筋</option>
+							<option value="6">水泥</option>
 						</select>
 	                  </div>
 	                </div>
@@ -39,7 +39,7 @@
            	  </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-default pull-left" data-dismiss="modal">取消</button>
-                <button type="button" class="btn btn-primary" onclick="addShopSave()">保存</button>
+                <button type="button" class="btn btn-primary" onclick="addProductSave()">保存</button>
               </div>
             </div>
           </div>

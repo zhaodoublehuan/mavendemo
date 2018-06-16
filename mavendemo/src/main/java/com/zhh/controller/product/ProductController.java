@@ -58,10 +58,17 @@ public class ProductController extends BaseController {
      * 删除产品信息
      * @return
      */
-    public  String deleteProduct(){
-        return "";
+    @RequestMapping("/deleteProduct")
+    @ResponseBody
+    public  ReturnResult deleteProduct(Integer id){
+        int count = productService.deleteByPrimaryKey(id);
+        return null;
     }
 
+    public ReturnResult getAllProduct(){
+        productService.getAllProduct();
+        return null;
+    }
     /**
      * 分页查询产品信息
      * @param request

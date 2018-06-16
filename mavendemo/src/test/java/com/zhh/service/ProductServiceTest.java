@@ -17,6 +17,7 @@ public class ProductServiceTest extends BaseTest {
 
     @Test
     public void deleteByPrimaryKey() {
+        productService.deleteByPrimaryKey(0);
     }
 
     @Test

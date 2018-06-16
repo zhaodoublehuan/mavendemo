@@ -56,6 +56,7 @@
 </div>
 <%@include file="../common/footer.jsp" %>
 </div>
+<%@include file="addProduct.jsp" %>
 <%@include file="../common/commonBottom.jsp" %>
 <script src="<%=basePath%>js/product/product.js"></script>
 </body>

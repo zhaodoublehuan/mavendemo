@@ -47,4 +47,9 @@ public class ProductService {
     public int selectProductCount(Product record) {
         return productDao.selectProductCount(record);
     }
+
+    public List<Product> getAllProduct() {
+        return productDao.getAllProduct();
+    }
+
 }

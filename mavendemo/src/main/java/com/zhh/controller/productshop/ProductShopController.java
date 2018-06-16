@@ -53,6 +53,25 @@ public class ProductShopController extends BaseController {
         }
         return returnResult;
     }
+    @RequestMapping(method = RequestMethod.POST,value="/editShop")
+    @ResponseBody
+    public ReturnResult editShop(ProductShop shop){
+        int count = productShopService.updateByPrimaryKey(shop);
+        ReturnResult returnResult = new ReturnResult();
+        returnResult.setStatus(0);
+        if(count>0){
+            returnResult.setMsg("修改成功");
+        }else{
+            returnResult.setMsg("未找到数据");
+        }
+        return returnResult;
+    }
+    @RequestMapping("/getShopById")
+    @ResponseBody
+    public ProductShop getShopById(Integer id){
+        ProductShop shop = productShopService.selectByPrimaryKey(id);
+        return shop;
+    }
     /**
      * 根据id删除对应的供应商
      * @param id

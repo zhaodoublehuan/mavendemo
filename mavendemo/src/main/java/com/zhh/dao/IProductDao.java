@@ -23,4 +23,6 @@ public interface IProductDao {
     List<Product> selectProductListPage(@Param("product") Product record, @Param("page") PageUtil page);
 
     int selectProductCount(Product record);
+
+    List<Product> getAllProduct();
 }

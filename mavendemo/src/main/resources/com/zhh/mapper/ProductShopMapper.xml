@@ -30,6 +30,15 @@
     from product_shop
     where id = #{id,jdbcType=INTEGER}
   </select>
+  <update id="updateByPrimaryKey" parameterType="com.zhh.entity.ProductShop" >
+    update product_shop
+    set name = #{name,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      shop_type = #{shopType.id,jdbcType=INTEGER},
+      insert_date = #{insertDate,jdbcType=TIMESTAMP},
+      update_date = #{updateDate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
   <insert id="insert" parameterType="com.zhh.entity.ProductShop">
     insert into product_shop ( name, remark,
       shop_type, insert_date, update_date
