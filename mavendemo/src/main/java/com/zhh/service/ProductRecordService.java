@@ -21,4 +21,21 @@ public class ProductRecordService {
     public int selectRecordCount(ProductRecord record) {
         return productRecordDao.selectRecordCount(record);
     }
+
+    public int insert(ProductRecord record) {
+        return productRecordDao.insert(record);
+    }
+
+    public int updateByPrimaryKey(ProductRecord record) {
+        return productRecordDao.updateByPrimaryKey(record);
+    }
+
+    public ProductRecord selectByPrimaryKey(Integer id) {
+        return productRecordDao.selectByPrimaryKey(id);
+    }
+
+    public int deleteByPrimaryKey(Integer id) {
+        return productRecordDao.deleteByPrimaryKey(id);
+    }
+
 }

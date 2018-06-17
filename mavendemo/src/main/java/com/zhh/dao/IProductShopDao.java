@@ -25,4 +25,5 @@ public interface IProductShopDao {
     int selectShopCount(ProductShop record);
 
     List<ProductShop> selectAllShop();
+
 }

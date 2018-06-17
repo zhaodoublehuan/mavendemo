@@ -28,7 +28,7 @@
         <section class="col-lg-12 connectedSortable">
           <div class="box box-info">
             <div class="box-header">
-              <button class="btn btn-success" onclick="addUserShow()">添加记录</button>
+              <button class="btn btn-success" onclick="addRecordShow()">添加记录</button>
             </div>
             <div class="box-body">
               <table id="record_table" class="table table-bordered table-hover">
@@ -56,6 +56,8 @@
     </div>
   <%@include file="../common/footer.jsp" %>
 </div>
+<%@include file="addRecord.jsp" %>
+<%@include file="updateRecord.jsp" %>
 <%@include file="../common/commonBottom.jsp" %>
 <script src="<%=basePath%>js/precord/record.js"></script>
 </body>

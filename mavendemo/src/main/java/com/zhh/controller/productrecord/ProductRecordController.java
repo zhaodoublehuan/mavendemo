@@ -1,12 +1,14 @@
 package com.zhh.controller.productrecord;
 
 
+import com.alibaba.fastjson.JSON;
 import com.zhh.controller.base.BaseController;
 import com.zhh.entity.Menu;
 import com.zhh.entity.ProductRecord;
 import com.zhh.service.ProductRecordService;
 import com.zhh.util.PageReturnParam;
 import com.zhh.util.PageUtil;
+import com.zhh.util.ReturnResult;
 import lombok.extern.log4j.Log4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -35,9 +37,51 @@ public class ProductRecordController extends BaseController {
         model.addAttribute("menuList", menuList);
         return "/precord/precordList";
     }
-
-    public PageReturnParam addRecord(){
-        return null;
+    @RequestMapping("/addRecord")
+    @ResponseBody
+    public ReturnResult addRecord(ProductRecord record){
+        log.info("添加记录"+JSON.toJSONString(record));
+        int count = productRecordService.insert(record);
+        ReturnResult returnResult = new ReturnResult();
+        returnResult.setStatus(0);
+        if(count>0){
+            returnResult.setMsg("添加成功");
+        }else{
+            returnResult.setMsg("添加失败");
+        }
+        return returnResult;
+    }
+    @RequestMapping("/editRecord")
+    @ResponseBody
+    public ReturnResult editRecord(ProductRecord record){
+        int count = productRecordService.updateByPrimaryKey(record);
+        ReturnResult returnResult = new ReturnResult();
+        returnResult.setStatus(0);
+        if(count>0){
+            returnResult.setMsg("修改成功");
+        }else{
+            returnResult.setMsg("修改失败");
+        }
+        return returnResult;
+    }
+    @RequestMapping("/getRecordById")
+    @ResponseBody
+    public ProductRecord getRecordById(Integer id){
+        return productRecordService.selectByPrimaryKey(id);
+    }
+    @RequestMapping("/deleteReccord")
+    @ResponseBody
+    public ReturnResult deleteReccord(Integer id){
+        log.info("删除记录id==="+id);
+        int count = productRecordService.deleteByPrimaryKey(id);
+        ReturnResult returnResult = new ReturnResult();
+        returnResult.setStatus(0);
+        if(count>0){
+            returnResult.setMsg("删除成功");
+        }else{
+            returnResult.setMsg("未找到数据");
+        }
+        return returnResult;
     }
     /**
      * 分页查询记录信息

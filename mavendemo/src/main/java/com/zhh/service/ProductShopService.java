@@ -36,7 +36,7 @@ public class ProductShopService {
         return productShopDao.updateByPrimaryKey(record);
     }
 
-    public List<ProductShop> selectAllShop(){
+    public List<ProductShop> getAllShop(){
         return productShopDao.selectAllShop();
     }
 

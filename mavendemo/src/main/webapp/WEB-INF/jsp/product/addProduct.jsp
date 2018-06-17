@@ -15,14 +15,14 @@
 	                  <label  class="col-sm-2 control-label">产品名称</label>
 	
 	                  <div class="col-sm-10">
-	                    <input type="text" class="form-control" name="name" placeholder="产品名称">
+	                    <input type="text" class="form-control" autocomplete="off" name="name" placeholder="产品名称">
 	                  </div>
 	                </div>
 	                <div class="form-group">
 	                  <label class="col-sm-2 control-label">产品描述</label>
 	
 	                  <div class="col-sm-10">
-	                    <input type="text" class="form-control" name="remark" placeholder="产品描述">
+	                    <input type="text" class="form-control" autocomplete="off" name="remark" placeholder="产品描述">
 	                  </div>
 	                </div>
 	                <div class="form-group">

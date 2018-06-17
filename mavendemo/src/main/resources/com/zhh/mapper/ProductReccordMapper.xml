@@ -21,6 +21,36 @@
   <select id="getDictData" parameterType="int" resultType="com.zhh.entity.DictData">
     select * from dict_data where id=#{id}
   </select>
+  <insert id="insert" parameterType="com.zhh.entity.ProductRecord" >
+    insert into product_inout_record (product_id, product_count,
+      product_price, product_shop_id, product_inout_type,inout_date,
+      insert_date, update_date)
+    values (#{product.id,jdbcType=INTEGER}, #{productCount,jdbcType=DECIMAL},
+      #{productPrice,jdbcType=DECIMAL}, #{productShop.id,jdbcType=INTEGER}, #{productInoutType.id,jdbcType=INTEGER},
+     #{inoutDate,jdbcType=TIMESTAMP}, #{insertDate,jdbcType=TIMESTAMP}, #{updateDate,jdbcType=TIMESTAMP})
+  </insert>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    *
+    from product_inout_record
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from product_inout_record
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <update id="updateByPrimaryKey" parameterType="com.zhh.entity.ProductRecord" >
+    update product_inout_record
+    set product_id = #{product.id,jdbcType=INTEGER},
+      product_count = #{productCount,jdbcType=DECIMAL},
+      product_price = #{productPrice,jdbcType=DECIMAL},
+      product_shop_id = #{productShop.id,jdbcType=INTEGER},
+      product_inout_type = #{productInoutType.id,jdbcType=INTEGER},
+      inout_date = #{inoutDate,jdbcType=TIMESTAMP},
+      insert_date = #{insertDate,jdbcType=TIMESTAMP},
+      update_date = #{updateDate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
   <select id="selectRecordCount" parameterType="com.zhh.entity.ProductRecord" resultType="java.lang.Integer">
     select count(1) from product_inout_record
     <where>
@@ -33,9 +63,7 @@
       <if test="productPrice != null" >
         product_price = #{productPrice,jdbcType=DECIMAL},
       </if>
-      <if test="productShopId != null" >
-        product_shop_id = #{productShopId,jdbcType=INTEGER},
-      </if>
+
       <if test="productInoutType != null" >
         product_inout_type = #{productInoutType,jdbcType=INTEGER},
       </if>
@@ -61,9 +89,7 @@
       <if test="record !=null and record.productPrice != null" >
         product_price = #{record.productPrice,jdbcType=DECIMAL},
       </if>
-      <if test="record !=null and record.productShopId != null" >
-        product_shop_id = #{record.productShopId,jdbcType=INTEGER},
-      </if>
+
       <if test="record !=null and record.productInoutType != null" >
         product_inout_type = #{record.productInoutType,jdbcType=INTEGER},
       </if>

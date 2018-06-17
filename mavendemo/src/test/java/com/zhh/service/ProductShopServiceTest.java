@@ -68,7 +68,7 @@ public class ProductShopServiceTest extends BaseTest {
 
     @Test
     public void selectAllShop() {
-        List<ProductShop> products =productShopService.selectAllShop();
+        List<ProductShop> products =productShopService.getAllShop();
         System.out.print(JSON.toJSONString(products));
     }
 }

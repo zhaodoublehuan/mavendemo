@@ -3,6 +3,7 @@ package com.zhh.entity;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -22,7 +23,8 @@ public class ProductRecord {
     //进出货表示
     private DictData productInoutType;
     //进出货时间
-    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
+    @JsonFormat(pattern="yyyy-MM-dd",timezone = "GMT+8")
+    @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date inoutDate;
     //新增时间
     private Date insertDate;

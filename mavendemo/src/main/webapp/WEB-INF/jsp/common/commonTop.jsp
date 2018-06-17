@@ -14,3 +14,4 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <link rel="stylesheet" href="<%=basePath%>dist/css/skins/skin-blue.min.css">
 <link rel="stylesheet" href="<%=basePath%>plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
 <link rel="stylesheet" href="<%=basePath%>plugins/bootstrap-confirm/jquery-confirm.css">
+<link rel="stylesheet" href="<%=basePath%>plugins/datepicker/datepicker3.css">

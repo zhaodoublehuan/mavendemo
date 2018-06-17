@@ -66,6 +66,12 @@ public class ProductShopController extends BaseController {
         }
         return returnResult;
     }
+    @RequestMapping("/getAllShop")
+    @ResponseBody
+    public List<ProductShop> getAllShop(){
+        return productShopService.getAllShop();
+    }
+
     @RequestMapping("/getShopById")
     @ResponseBody
     public ProductShop getShopById(Integer id){

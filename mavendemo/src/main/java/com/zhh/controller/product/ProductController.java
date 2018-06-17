@@ -59,6 +59,11 @@ public class ProductController extends BaseController {
         return productService.selectByPrimaryKey(id);
     }
 
+    @RequestMapping("/getAllProduct")
+    @ResponseBody
+    public List<Product> getAllProduct(){
+        return productService.getAllProduct();
+    }
     /**
      * 修改产品信息
      * @return
@@ -96,10 +101,6 @@ public class ProductController extends BaseController {
         return returnResult;
     }
 
-    public ReturnResult getAllProduct(){
-        productService.getAllProduct();
-        return null;
-    }
     /**
      * 分页查询产品信息
      * @param request
