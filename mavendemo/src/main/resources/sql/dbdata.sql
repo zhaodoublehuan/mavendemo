@@ -11,7 +11,7 @@
  Target Server Version : 50556
  File Encoding         : 65001
 
- Date: 11/06/2018 13:52:41
+ Date: 17/06/2018 23:57:57
 */
 
 SET NAMES utf8mb4;
@@ -30,7 +30,7 @@ CREATE TABLE `dict_data`  (
   `insert_date` datetime NULL DEFAULT NULL COMMENT '创建时间',
   `update_date` datetime NULL DEFAULT NULL COMMENT '修改时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 9 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of dict_data
@@ -41,6 +41,8 @@ INSERT INTO `dict_data` VALUES (3, '吨', NULL, 2, NULL, NULL, NULL);
 INSERT INTO `dict_data` VALUES (4, '件', NULL, 2, NULL, NULL, NULL);
 INSERT INTO `dict_data` VALUES (5, '供货商', NULL, 3, NULL, NULL, NULL);
 INSERT INTO `dict_data` VALUES (6, '出货商', NULL, 3, NULL, NULL, NULL);
+INSERT INTO `dict_data` VALUES (7, '进货', NULL, 4, NULL, NULL, NULL);
+INSERT INTO `dict_data` VALUES (8, '出货', NULL, 4, NULL, NULL, NULL);
 
 -- ----------------------------
 -- Table structure for dict_type
@@ -73,7 +75,6 @@ CREATE TABLE `product`  (
   `price` decimal(10, 2) NULL DEFAULT NULL COMMENT '价格',
   `type_id` int(11) NULL DEFAULT NULL COMMENT '产品类型',
   `unit_id` int(11) NULL DEFAULT NULL COMMENT '单位',
-  `shop_id` int(11) NULL DEFAULT NULL COMMENT '供货商',
   `insert_date` datetime NULL DEFAULT NULL COMMENT '创建时间',
   `update_date` datetime NULL DEFAULT NULL COMMENT '修改时间',
   PRIMARY KEY (`id`) USING BTREE
@@ -82,24 +83,34 @@ CREATE TABLE `product`  (
 -- ----------------------------
 -- Records of product
 -- ----------------------------
-INSERT INTO `product` VALUES (1, '测试产品', 'cces', 12.00, 1, 3, 2, NULL, NULL);
-INSERT INTO `product` VALUES (2, '测试产品', 'sss', 11.00, 2, 4, 2, '2018-06-10 16:07:31', NULL);
+INSERT INTO `product` VALUES (1, '钢筋', '测试钢筋', 12.00, 1, 3, NULL, NULL);
+INSERT INTO `product` VALUES (2, '三角铁', '测试三角铁', 11.00, 2, 4, NULL, NULL);
 
 -- ----------------------------
 -- Table structure for product_inout_record
 -- ----------------------------
 DROP TABLE IF EXISTS `product_inout_record`;
 CREATE TABLE `product_inout_record`  (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `product_id` int(11) NULL DEFAULT NULL COMMENT '产品id',
   `product_count` decimal(10, 0) NULL DEFAULT NULL COMMENT '产品数量',
   `product_price` decimal(10, 2) NULL DEFAULT NULL COMMENT '价格',
   `product_shop_id` int(11) NULL DEFAULT NULL COMMENT '合作商id',
   `product_inout_type` int(11) NULL DEFAULT NULL COMMENT '进出货标识',
+  `inout_date` datetime NULL DEFAULT NULL COMMENT '进出货时间',
   `insert_date` datetime NULL DEFAULT NULL COMMENT '创建时间',
   `update_date` datetime NULL DEFAULT NULL COMMENT '修改时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+
+-- ----------------------------
+-- Records of product_inout_record
+-- ----------------------------
+INSERT INTO `product_inout_record` VALUES (2, 2, 1, 100.00, 1, 8, '2018-06-11 00:00:00', NULL, NULL);
+INSERT INTO `product_inout_record` VALUES (3, 1, 1, 100.00, 1, 7, '2018-06-17 00:00:00', NULL, NULL);
+INSERT INTO `product_inout_record` VALUES (4, 1, 5, 1000.00, 1, 7, '2018-06-17 00:00:00', NULL, NULL);
+INSERT INTO `product_inout_record` VALUES (5, 1, 2, 500.00, 1, 8, '2018-06-17 00:00:00', NULL, NULL);
+INSERT INTO `product_inout_record` VALUES (6, 2, 3, 500.00, 1, 7, '2018-06-06 00:00:00', NULL, NULL);
 
 -- ----------------------------
 -- Table structure for product_shop
@@ -113,13 +124,14 @@ CREATE TABLE `product_shop`  (
   `insert_date` datetime NULL DEFAULT NULL COMMENT '创建时间',
   `update_date` datetime NULL DEFAULT NULL COMMENT '修改时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 8 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of product_shop
 -- ----------------------------
 INSERT INTO `product_shop` VALUES (1, '测试供应商', '杀杀杀', 5, NULL, NULL);
 INSERT INTO `product_shop` VALUES (2, '测试111', 'aaaa', 6, NULL, NULL);
+INSERT INTO `product_shop` VALUES (3, '大连厂', '大连厂的描述', 5, NULL, NULL);
 
 -- ----------------------------
 -- Table structure for sys_menu
@@ -145,11 +157,13 @@ CREATE TABLE `sys_menu`  (
 -- ----------------------------
 -- Records of sys_menu
 -- ----------------------------
-INSERT INTO `sys_menu` VALUES ('0eab13f9cecc4ad591ffc9576a0ddc0f', '/chart/index', '首页', 'fa fa-fw fa-home', NULL, NULL, '1', 'Y', NULL, '??????', NULL, '2018-06-07 16:12:39', '2018-06-07 16:12:39');
+INSERT INTO `sys_menu` VALUES ('0eab13f9cecc4ad591ffc9576a0ddc0f', '/chart/index', '首页', 'fa fa-fw fa-home', NULL, NULL, '1', 'Y', NULL, '报表页面', NULL, '2018-06-07 16:12:39', '2018-06-07 16:12:39');
 INSERT INTO `sys_menu` VALUES ('468b07312445446f8cf909cc671dcef9', '/pshop/index', '合作商管理', 'fa fa-fw fa-group', NULL, NULL, '4', 'Y', NULL, '添加菜单描述', NULL, '2017-07-18 09:17:15', '2017-07-18 09:17:15');
 INSERT INTO `sys_menu` VALUES ('59dfa0efc3b24a6eaa2bcacea123f0a4', '/precord/index', '进出货管理', 'fa fa-fw fa-truck', NULL, NULL, '3', 'Y', NULL, NULL, NULL, '2017-05-09 11:16:46', '2017-05-09 11:16:46');
-INSERT INTO `sys_menu` VALUES ('7a5404bfd9cc48328bce04a2971f574f', '/chart/index', '系统信息维护', 'fa fa-fw fa-cog', NULL, NULL, '5', 'Y', NULL, '添加菜单描述', NULL, '2017-05-08 14:22:21', '2017-05-08 14:22:21');
-INSERT INTO `sys_menu` VALUES ('7a5404bfd9cc48328bce04a2971f57qw', '/product/index', '商品管理', 'fa fa-fw fa-cubes', NULL, NULL, '2', 'Y', NULL, NULL, NULL, '2018-06-10 16:21:51', '2018-06-10 16:21:53');
+INSERT INTO `sys_menu` VALUES ('7a5404bfd9cc48328bce04a2971f574f', '', '系统信息维护', 'fa fa-fw fa-cog', NULL, NULL, '5', 'Y', NULL, '添加菜单描述', NULL, '2017-05-08 14:22:21', '2017-05-08 14:22:21');
+INSERT INTO `sys_menu` VALUES ('7a5404bfd9cc48328bce04a2971f57qw', '/product/index', '商品管理', 'fa fa-fw fa-cubes', NULL, NULL, '2', 'Y', NULL, NULL, '', '2018-06-10 16:21:51', '2018-06-10 16:21:53');
+INSERT INTO `sys_menu` VALUES ('7a54qweree04a2971f574faaaaaaa', '/dictData/index', '类别详情管理', 'fa fa-fw fa-align-justify', NULL, NULL, '2', 'Y', NULL, NULL, '7a5404bfd9cc48328bce04a2971f574f', '2018-06-11 14:01:29', '2018-06-11 14:01:33');
+INSERT INTO `sys_menu` VALUES ('7a54qweree04a2971f574faddsddef', '/dictType/index', '类别管理', 'fa fa-fw fa-th-large', NULL, NULL, '1', 'Y', NULL, NULL, '7a5404bfd9cc48328bce04a2971f574f', '2018-06-11 14:00:20', '2018-06-11 14:00:23');
 
 -- ----------------------------
 -- Table structure for sys_permission
@@ -268,5 +282,11 @@ CREATE TABLE `sys_user_role`  (
 -- Records of sys_user_role
 -- ----------------------------
 INSERT INTO `sys_user_role` VALUES ('admin', '20206c39f81a4f39a3e76270366364dd', '2018-06-09 14:41:46', '2018-06-09 14:41:49', 'Y');
+
+-- ----------------------------
+-- View structure for chart_data
+-- ----------------------------
+DROP VIEW IF EXISTS `chart_data`;
+CREATE ALGORITHM = UNDEFINED DEFINER = `root`@`localhost` SQL SECURITY DEFINER VIEW `chart_data` AS select sum(`product_inout_record`.`product_price`) AS `price`,sum(`product_inout_record`.`product_count`) AS `number`,`product_inout_record`.`product_inout_type` AS `product_inout_type`,`product_inout_record`.`product_id` AS `product_id` from `product_inout_record` group by `product_inout_record`.`product_id`,`product_inout_record`.`product_inout_type`;
 
 SET FOREIGN_KEY_CHECKS = 1;
