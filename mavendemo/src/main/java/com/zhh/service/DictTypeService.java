@@ -1,36 +1,59 @@
 package com.zhh.service;
 
+import com.zhh.condition.DictTypeCondition;
 import com.zhh.dao.IDictTypeDao;
 import com.zhh.entity.DictType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.Date;
 
 @Service
 public class DictTypeService {
 
     @Autowired
     private IDictTypeDao dictTypeDao;
+
+    /**
+     * 产出字典类型
+     * @param id
+     * @return
+     */
     public int deleteByPrimaryKey(Integer id) {
         return 0;
     }
 
+    /**
+     * 添加字典类型
+     * @param record
+     * @return
+     */
     public int insert(DictType record) {
-        return 0;
+        record.setInsertDate(new Date());
+        return dictTypeDao.insert(record);
     }
 
-    public int insertSelective(DictType record) {
-        return 0;
-    }
-
+    /**
+     * 根据id查询单个字典类型
+     * @param id
+     * @return
+     */
     public DictType selectByPrimaryKey(Integer id) {
-        return null;
+        return dictTypeDao.selectByPrimaryKey(id);
     }
 
+    /**
+     * 修改字典类型
+     * @param record
+     * @return
+     */
     public int updateByPrimaryKeySelective(DictType record) {
+        record.setUpdateDate(new Date());
+        return dictTypeDao.updateByPrimaryKeySelective(record);
+    }
+
+    public int selectPageCountByCondition(DictTypeCondition condition){
         return 0;
     }
 
-    public int updateByPrimaryKey(DictType record) {
-        return 0;
-    }
 }

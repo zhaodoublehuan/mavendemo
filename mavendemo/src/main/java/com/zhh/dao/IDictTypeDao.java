@@ -7,11 +7,8 @@ public interface IDictTypeDao {
 
     int insert(DictType record);
 
-    int insertSelective(DictType record);
-
     DictType selectByPrimaryKey(Integer id);
 
     int updateByPrimaryKeySelective(DictType record);
 
-    int updateByPrimaryKey(DictType record);
 }
