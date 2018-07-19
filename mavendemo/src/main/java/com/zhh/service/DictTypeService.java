@@ -3,10 +3,12 @@ package com.zhh.service;
 import com.zhh.condition.DictTypeCondition;
 import com.zhh.dao.IDictTypeDao;
 import com.zhh.entity.DictType;
+import com.zhh.util.PageUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.List;
 
 @Service
 public class DictTypeService {
@@ -53,7 +55,11 @@ public class DictTypeService {
     }
 
     public int selectPageCountByCondition(DictTypeCondition condition){
-        return 0;
+        return dictTypeDao.selectPageCountByCondition(condition);
+    }
+
+    public List<DictType> selectPageList(DictTypeCondition condition, PageUtil page) {
+        return dictTypeDao.selectPageList(condition,page);
     }
 
 }

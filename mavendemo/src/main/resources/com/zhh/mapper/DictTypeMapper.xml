@@ -52,4 +52,29 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <sql id="conditionSql">
+    <where>
+      <if test="condition!=null">
+        <if test="condition.name!=null and condition.name!=''">
+           and name like concat('%',#{condition.name,jdbcType=VARCHAR},'%')
+        </if>
+        <if test="condition.remark!=null and condition.remark!=''">
+          and remark like concat('%',#{condition.remark,jdbcType=VARCHAR},'%')
+        </if>
+      </if>
+    </where>
+  </sql>
+  <sql id="pageSql">
+    <if test="page != null">
+      limit #{page.recordStart},#{page.pageSize}
+    </if>
+  </sql>
+  <select id="selectPageCountByCondition" resultType="java.lang.Integer" parameterType="com.zhh.condition.DictTypeCondition">
+    select count(0) from dict_type <include refid="conditionSql" />
+  </select>
+
+  <select id="selectPageList" resultMap="BaseResultMap">
+    select * from dict_type <include refid="conditionSql" /> <include refid="pageSql"/>
+  </select>
 </mapper>
