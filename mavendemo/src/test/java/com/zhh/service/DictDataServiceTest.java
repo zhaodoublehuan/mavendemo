@@ -1,6 +1,7 @@
 package com.zhh.service;
 
 import com.zhh.base.BaseTest;
+import com.zhh.bean.DictDataBean;
 import com.zhh.condition.DictDataCondition;
 import com.zhh.entity.DictData;
 import com.zhh.util.PageUtil;
@@ -31,7 +32,7 @@ public class DictDataServiceTest extends BaseTest {
         PageUtil page = new PageUtil();
         page.setRecordStart(0);
         page.setPageSize(10);
-        List<DictData> list = dictDataService.selectPageList(condition,page);
+        List<DictDataBean> list = dictDataService.selectPageList(condition,page);
         System.out.print(list);
     }
 }

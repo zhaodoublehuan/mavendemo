@@ -1,5 +1,6 @@
 package com.zhh.dao;
 
+import com.zhh.bean.DictDataBean;
 import com.zhh.condition.DictDataCondition;
 import com.zhh.entity.DictData;
 import com.zhh.util.PageUtil;
@@ -22,5 +23,5 @@ public interface IDictDataDao {
 
     int selectPageCountByCondition(@Param("condition") DictDataCondition condition);
 
-    List<DictData> selectPageList(@Param("condition") DictDataCondition condition,@Param("page") PageUtil page);
+    List<DictDataBean> selectPageList(@Param("condition") DictDataCondition condition, @Param("page") PageUtil page);
 }

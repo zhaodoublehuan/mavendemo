@@ -1,5 +1,6 @@
 package com.zhh.service;
 
+import com.zhh.bean.DictDataBean;
 import com.zhh.condition.DictDataCondition;
 import com.zhh.dao.IDictDataDao;
 import com.zhh.entity.DictData;
@@ -74,7 +75,7 @@ public class DictDataService{
      * @param page
      * @return
      */
-    public List<DictData> selectPageList(DictDataCondition condition, PageUtil page) {
+    public List<DictDataBean> selectPageList(DictDataCondition condition, PageUtil page) {
         return dictDataDao.selectPageList(condition,page);
     }
 }

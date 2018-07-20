@@ -138,7 +138,7 @@
     SELECT count(0) from dict_data as dd LEFT JOIN dict_type as dt on dd.type_id = dt.id <include refid="conditionSql" />
   </select>
 
-  <select id="selectPageList" resultMap="BaseResultMap">
-    SELECT dd.* from dict_data as dd LEFT JOIN dict_type as dt on dd.type_id = dt.id <include refid="conditionSql" /> <include refid="pageSql"/>
+  <select id="selectPageList" resultType="com.zhh.bean.DictDataBean">
+    SELECT dd.id as id,dd.name as name ,dd.remark as remark,dd.seq as seq ,dt.name as typeName  from dict_data as dd LEFT JOIN dict_type as dt on dd.type_id = dt.id <include refid="conditionSql" /> <include refid="pageSql"/>
   </select>
 </mapper>
