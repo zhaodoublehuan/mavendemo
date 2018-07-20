@@ -31,13 +31,6 @@ public class UserService {
 	@Autowired
 	private IUserDao userDao;
 
-	/* (非 Javadoc) 
-	* <p>Title: add</p> 
-	* <p>Description: </p> 
-	* @param user
-	* @return 
-	* @see com.zhh.service.IUserService#add(com.zhh.entity.UserEntity) 
-	*/ 
 	
 	public int add(UserEntity user) throws UserException {
 		
@@ -59,74 +52,36 @@ public class UserService {
 			LOGGER.error("添加用户失败========"+e.getMessage());
 			throw new UserException("添加用户失败！");
 		}
-		
-		
-		
 	}
 
-	/* (非 Javadoc) 
-	* <p>Title: update</p> 
-	* <p>Description: </p> 
-	* @param user
-	* @return 
-	* @see com.zhh.service.IUserService#update(com.zhh.entity.UserEntity) 
-	*/ 
 	
 	public int update(UserEntity user) {
 		LOGGER.warn("修改用户信息为========"+JSON.toJSONString(user));
 		return userDao.update(user);
 	}
 
-	/* (非 Javadoc) 
-	* <p>Title: delete</p> 
-	* <p>Description: </p> 
-	* @param user
-	* @return 
-	* @see com.zhh.service.IUserService#delete(com.zhh.entity.UserEntity) 
-	*/
+
 	public int delete(List<String> ids) {
 
 			LOGGER.warn("删除用户信息为========"+JSON.toJSONString(ids));
 			return userDao.delete(ids);
 		
 	}
-	
 
-	/* (非 Javadoc) 
-	* <p>Title: selectUsers</p> 
-	* <p>Description: </p> 
-	* @param user
-	* @return 
-	* @see com.zhh.service.IUserService#selectUsers(com.zhh.entity.UserEntity) 
-	*/ 
 	
 	public List<UserEntity> selectUsers(UserEntity user,PageUtil page) {
 		return userDao.selectUsers(user,page);
 	}
 
-	/* (非 Javadoc) 
-	* <p>Title: findUserByUsername</p> 
-	* <p>Description: 通过账号查询用户</p> 
-	* @param username
-	* @return 
-	* @see com.zhh.service.IUserService#findUserByUsername(java.lang.String) 
-	*/ 
 	
 	public UserEntity findUserByLoginNo(String loginNo) {
 		UserEntity user = userDao.findUserByLoginNo(loginNo);
 		return user;
 	}
 
-	/* (非 Javadoc) 
-	* <p>Title: selectUsersCount</p> 
-	* <p>Description: </p> 
-	* @param user
-	* @return 
-	* @see com.zhh.service.IUserService#selectUsersCount(com.zhh.entity.UserEntity) 
-	*/ 
+
 	
 	public int selectUsersCount(UserEntity user) {
-		// TODO Auto-generated method stub
 		return userDao.selectUsersCount(user);
 	}
 

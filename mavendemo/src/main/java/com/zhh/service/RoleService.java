@@ -32,13 +32,7 @@ public class RoleService {
 	private IRoleDao roleDao;
 	@Autowired
 	private UserRoleService userRoleService;
-	/* (非 Javadoc) 
-	* <p>Title: add</p> 
-	* <p>Description: </p> 
-	* @param role
-	* @return 
-	* @see com.zhh.service.IRoleService#add(com.zhh.entity.Role) 
-	*/ 
+
 	public Role addRole(Role role) {
 		LOGGER.info("添加角色信息===="+JSON.toJSONString(role));
 		try{
@@ -55,13 +49,6 @@ public class RoleService {
 		
 	}
 
-	/* (非 Javadoc) 
-	* <p>Title: update</p> 
-	* <p>Description: </p> 
-	* @param role
-	* @return 
-	* @see com.zhh.service.IRoleService#update(com.zhh.entity.Role) 
-	*/ 
 	
 	public Role updateRole(Role role) {
 		LOGGER.info("修改角色信息===="+JSON.toJSONString(role));
@@ -76,13 +63,6 @@ public class RoleService {
 		
 	}
 
-	/* (非 Javadoc) 
-	* <p>Title: delete</p> 
-	* <p>Description: </p> 
-	* @param role
-	* @return 
-	* @see com.zhh.service.IRoleService#delete(com.zhh.entity.Role) 
-	*/ 
 	
 	public boolean deleteRole(String roleId) {
 		LOGGER.info("删除角色信息===="+roleId);
@@ -93,9 +73,7 @@ public class RoleService {
 			return false;
 		}
 	}
-	/**
-	 * 根据登录账号查询对应的角色信息
-	 */
+
 	public List<Role> selectRolesIdByLoginNo(String loginNo) {
 		LOGGER.info("查询用户所拥有的的角色信息===="+loginNo);
 		try{

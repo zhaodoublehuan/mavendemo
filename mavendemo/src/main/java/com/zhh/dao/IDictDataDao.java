@@ -1,6 +1,11 @@
 package com.zhh.dao;
 
+import com.zhh.condition.DictDataCondition;
 import com.zhh.entity.DictData;
+import com.zhh.util.PageUtil;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface IDictDataDao {
     int deleteByPrimaryKey(Integer id);
@@ -14,4 +19,8 @@ public interface IDictDataDao {
     int updateByPrimaryKeySelective(DictData record);
 
     int updateByPrimaryKey(DictData record);
+
+    int selectPageCountByCondition(@Param("condition") DictDataCondition condition);
+
+    List<DictData> selectPageList(@Param("condition") DictDataCondition condition,@Param("page") PageUtil page);
 }

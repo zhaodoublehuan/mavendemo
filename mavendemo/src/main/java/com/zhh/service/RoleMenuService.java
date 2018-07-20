@@ -18,13 +18,7 @@ public class RoleMenuService {
 
 	@Autowired
 	private IRoleMenuDao roleMenuDao;
-	/* (非 Javadoc) 
-	* <p>Title: selectMenuIdsByRoleIds</p> 
-	* <p>Description: </p> 
-	* @param roleIds
-	* @return 
-	* @see com.zhh.service.IRoleMenuService#selectMenuIdsByRoleIds(java.util.List) 
-	*/
+
 	public List<String> selectMenuIdsByRoleIds(List<String> roleIds) {
 		return roleMenuDao.selectMenuIdsByRoleIds(roleIds);
 	}

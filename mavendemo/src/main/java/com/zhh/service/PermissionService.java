@@ -22,37 +22,16 @@ public class PermissionService {
 	*/
 	@Resource
 	private IPermissionDao permissionDao;
-	/* (非 Javadoc) 
-	* <p>Title: addPermision</p> 
-	* <p>Description: </p> 
-	* @param permission
-	* @return 
-	* @see com.zhh.service.IPermissionService#addPermision(com.zhh.entity.Permission) 
-	*/ 
 	
 	public Permission addPermision(Permission permission) {
 		return permissionDao.addPermision(permission);
 	}
 
-	/* (非 Javadoc) 
-	* <p>Title: updatePermission</p> 
-	* <p>Description: </p> 
-	* @param permission
-	* @return 
-	* @see com.zhh.service.IPermissionService#updatePermission(com.zhh.entity.Permission) 
-	*/ 
 	
 	public Permission updatePermission(Permission permission) {
 		return permissionDao.updatePermission(permission);
 	}
 
-	/* (非 Javadoc) 
-	* <p>Title: deletePermission</p> 
-	* <p>Description: </p> 
-	* @param permission
-	* @return 
-	* @see com.zhh.service.IPermissionService#deletePermission(com.zhh.entity.Permission) 
-	*/ 
 	
 	public Permission deletePermission(Permission permission) {
 		return permissionDao.deletePermission(permission);

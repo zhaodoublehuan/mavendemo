@@ -114,4 +114,31 @@
       update_date = #{updateDate,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <sql id="conditionSql">
+    <where>
+      <if test="condition!=null">
+        <if test="condition.name!=null and condition.name!=''">
+          and dd.name like concat('%',#{condition.name,jdbcType=VARCHAR},'%')
+        </if>
+        <if test="condition.remark!=null and condition.remark!=''">
+          and dd.remark like concat('%',#{condition.remark,jdbcType=VARCHAR},'%')
+        </if>
+        <if test="condition.typeName!=null and condition.typeName!=''">
+          and dt.name like concat('%',#{condition.typeName,jdbcType=VARCHAR},'%')
+        </if>
+      </if>
+    </where>
+  </sql>
+  <sql id="pageSql">
+    <if test="page != null">
+      limit #{page.recordStart},#{page.pageSize}
+    </if>
+  </sql>
+  <select id="selectPageCountByCondition" resultType="java.lang.Integer" parameterType="com.zhh.condition.DictDataCondition">
+    SELECT count(0) from dict_data as dd LEFT JOIN dict_type as dt on dd.type_id = dt.id <include refid="conditionSql" />
+  </select>
+
+  <select id="selectPageList" resultMap="BaseResultMap">
+    SELECT dd.* from dict_data as dd LEFT JOIN dict_type as dt on dd.type_id = dt.id <include refid="conditionSql" /> <include refid="pageSql"/>
+  </select>
 </mapper>

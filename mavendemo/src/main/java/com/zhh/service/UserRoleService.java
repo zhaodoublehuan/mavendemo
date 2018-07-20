@@ -45,14 +45,6 @@ public class UserRoleService {
 		}
 	}
 
-
-	/* (非 Javadoc) 
-	* <p>Title: selectRolesByLoginNo</p> 
-	* <p>Description: </p> 
-	* @param loginNo
-	* @return 
-	* @see com.zhh.service.IUserRoleService#selectRolesByLoginNo(java.lang.String) 
-	*/ 
 	
 	public List<String> selectRolesIdByLoginNo(String loginNo) {
 		LOGGER.info("查询用户所拥有的角色信息===="+JSON.toJSONString(loginNo));

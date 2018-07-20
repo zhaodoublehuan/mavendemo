@@ -36,14 +36,7 @@ public class MenuService {
 	private UserRoleService userRoleService;
 	@Autowired
 	private RoleMenuService roleMenuService;
-	
-	/* (非 Javadoc) 
-	* <p>Title: addMenu</p> 
-	* <p>Description: </p> 
-	* @param menu
-	* @return 
-	* @see com.zhh.service.IMenuService#addMenu(com.zhh.entity.Menu) 
-	*/ 
+
 	
 	public Menu addMenu(Menu menu) {
 		LOGGER.info("添加菜单信息===="+JSON.toJSONString(menu));
@@ -60,13 +53,6 @@ public class MenuService {
 		}
 	}
 
-	/* (非 Javadoc) 
-	* <p>Title: updateMenu</p> 
-	* <p>Description: </p> 
-	* @param menu
-	* @return 
-	* @see com.zhh.service.IMenuService#updateMenu(com.zhh.entity.Menu) 
-	*/ 
 	
 	public Menu updateMenu(Menu menu) {
 		LOGGER.info("修改菜单======"+JSON.toJSONString(menu));
@@ -80,13 +66,6 @@ public class MenuService {
 		}
 	}
 
-	/* (非 Javadoc) 
-	* <p>Title: deleteMenu</p> 
-	* <p>Description: </p> 
-	* @param menuId
-	* @return 
-	* @see com.zhh.service.IMenuService#deleteMenu(java.lang.String) 
-	*/ 
 	
 	public boolean deleteMenu(String menuId) {
 		LOGGER.info("删除菜单======"+menuId);
@@ -98,33 +77,19 @@ public class MenuService {
 		}
 	}
 
-	/* (非 Javadoc) 
-	* <p>Title: selectMenus</p> 
-	* <p>Description: </p> 
-	* @param menu
-	* @return 
-	* @see com.zhh.service.IMenuService#selectMenus(com.zhh.entity.Menu) 
-	*/ 
-	
+
 	public List<Menu> selectMenus(Menu menu, PageUtil page) {
-		try{
-			LOGGER.info("查询菜单条件======"+JSON.toJSONString(menu));
-			List<Menu> menus = menuDao.selectMenus(menu,page);
-			LOGGER.info("查询出的菜单为======"+JSON.toJSONString(menus));
-			return menus;			
-		}catch (Exception e) {
-						LOGGER.error("查询失败====="+e.getMessage());
-						return null;
-					}
-				}
-			
-				/* (非 Javadoc) 
-	* <p>Title: selectMenusByLoginNo</p> 
-	* <p>Description: </p> 
-	* @param loginNo
-	* @return 
-	* @see com.zhh.service.IMenuService#selectMenusByLoginNo(java.lang.String) 
-	*/ 
+		try {
+			LOGGER.info("查询菜单条件======" + JSON.toJSONString(menu));
+			List<Menu> menus = menuDao.selectMenus(menu, page);
+			LOGGER.info("查询出的菜单为======" + JSON.toJSONString(menus));
+			return menus;
+		} catch (Exception e) {
+			LOGGER.error("查询失败=====" + e.getMessage());
+			return null;
+		}
+	}
+
 	
 	public List<Menu> selectMenusByLoginNo(String loginNo) {
 		/*根据登录账号查询用户所拥有的角色*/

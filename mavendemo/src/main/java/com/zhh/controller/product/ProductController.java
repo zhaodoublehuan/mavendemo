@@ -43,13 +43,7 @@ public class ProductController extends BaseController {
     @ResponseBody
     public ReturnResult addProduct(Product product){
         int count = productService.insert(product);
-        ReturnResult returnResult = new ReturnResult();
-        returnResult.setStatus(0);
-        if(count>0){
-            returnResult.setMsg("添加成功");
-        }else{
-            returnResult.setMsg("添加失败");
-        }
+        ReturnResult returnResult = getReturnResult(count);
         return returnResult;
     }
 
@@ -72,13 +66,7 @@ public class ProductController extends BaseController {
     @ResponseBody
     public ReturnResult editProduct(Product product){
         int count = productService.updateByPrimaryKey(product);
-        ReturnResult returnResult = new ReturnResult();
-        returnResult.setStatus(0);
-        if(count>0){
-            returnResult.setMsg("修改成功");
-        }else{
-            returnResult.setMsg("未找到数据");
-        }
+        ReturnResult returnResult = getReturnResult(count);
         return returnResult;
     }
 
@@ -91,12 +79,17 @@ public class ProductController extends BaseController {
     public  ReturnResult deleteProduct(Integer id){
         log.info("删除产品id==="+id);
         int count = productService.deleteByPrimaryKey(id);
+        ReturnResult returnResult = getReturnResult(count);
+        return returnResult;
+    }
+
+    private ReturnResult getReturnResult(int count) {
         ReturnResult returnResult = new ReturnResult();
         returnResult.setStatus(0);
-        if(count>0){
-            returnResult.setMsg("删除成功");
-        }else{
-            returnResult.setMsg("未找到数据");
+        if (count > 0) {
+            returnResult.setMsg("操作成功");
+        } else {
+            returnResult.setMsg("操作失败");
         }
         return returnResult;
     }

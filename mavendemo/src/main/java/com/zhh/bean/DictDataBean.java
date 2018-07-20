@@ -1,26 +1,21 @@
-package com.zhh.entity;
+package com.zhh.bean;
 
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-import java.util.Date;
 @Getter
 @Setter
 @ToString
-public class DictData {
+public class DictDataBean {
+
     private Integer id;
 
     private String name;
 
     private String remark;
 
-    private Integer typeId;
+    private String typeName;
 
     private Integer seq;
-
-    private Date insertDate;
-
-    private Date updateDate;
-
 }
