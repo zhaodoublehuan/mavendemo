@@ -55,6 +55,8 @@
   <%@include file="../common/footer.jsp" %>
 </div>
 <%@include file="../common/commonBottom.jsp" %>
+<%@include file="addDictData.jsp" %>
+<%@include file="updateDictData.jsp" %>
 <script src="<%=basePath%>js/ddata/ddata.js"></script>
 </body>
 </html>
