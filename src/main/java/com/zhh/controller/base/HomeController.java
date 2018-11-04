@@ -1,9 +1,9 @@
 package com.zhh.controller.base;
 
 import com.alibaba.fastjson.JSON;
-import com.zhh.entity.Menu;
-import com.zhh.entity.UserEntity;
-import com.zhh.service.MenuService;
+import com.zhh.entity.base.Menu;
+import com.zhh.entity.base.UserEntity;
+import com.zhh.service.base.MenuService;
 import org.apache.log4j.Logger;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
@@ -64,7 +64,7 @@ public class HomeController extends BaseController{
             //根据当前登录用户查询其所能看到得菜单
             List<Menu> menuList = getUserMenus();
             model.addAttribute("menuList", menuList);
-            return "/chart/chart";
+            return "/index/index";
         } catch (Exception e) {  
         	e.printStackTrace();
             return "login";  

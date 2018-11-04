@@ -1,8 +1,8 @@
 package com.zhh.service;
 
 import com.zhh.base.BaseTest;
-import com.zhh.entity.Role;
-import com.zhh.service.RoleService;
+import com.zhh.entity.base.Role;
+import com.zhh.service.base.RoleService;
 import org.junit.Test;
 
 import javax.annotation.Resource;

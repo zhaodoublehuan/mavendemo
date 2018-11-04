@@ -1,10 +1,10 @@
 package com.zhh.controller.base;
 
-import com.zhh.entity.Menu;
-import com.zhh.entity.UserEntity;
+import com.zhh.entity.base.Menu;
+import com.zhh.entity.base.UserEntity;
 import com.zhh.exception.UserException;
-import com.zhh.service.MenuService;
-import com.zhh.service.UserService;
+import com.zhh.service.base.MenuService;
+import com.zhh.service.base.UserService;
 import com.zhh.util.PageReturnParam;
 import com.zhh.util.PageUtil;
 import com.zhh.util.ReturnResult;

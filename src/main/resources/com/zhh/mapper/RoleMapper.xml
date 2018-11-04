@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.zhh.dao.IRoleDao" >
-  <resultMap id="BaseResultMap" type="com.zhh.entity.Role" >
+<mapper namespace="com.zhh.dao.base.IRoleDao" >
+  <resultMap id="BaseResultMap" type="com.zhh.entity.base.Role" >
     <id column="id" property="id" jdbcType="VARCHAR" />
     <result column="name" property="name" jdbcType="VARCHAR" />
     <result column="code" property="code" jdbcType="VARCHAR" />
@@ -14,7 +14,7 @@
     id, name, code, description,active, insert_date, update_date
   </sql>
 <!-- 插入角色信息 -->
-  <insert id="insertSelective" parameterType="com.zhh.entity.Role" >
+  <insert id="insertSelective" parameterType="com.zhh.entity.base.Role" >
     insert into sys_role
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -64,7 +64,7 @@
     </trim>
   </insert>
   <!-- 更新角色信息 -->
-  <update id="updateByPrimaryKeySelective" parameterType="com.zhh.entity.Role" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.zhh.entity.base.Role" >
     update sys_role
     <set >
       <if test="name != null" >

@@ -1,7 +1,7 @@
 package com.zhh.controller.base;
 
-import com.zhh.entity.Role;
-import com.zhh.service.RoleService;
+import com.zhh.entity.base.Role;
+import com.zhh.service.base.RoleService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.zhh.dao.IMenuDao" >
-  <resultMap id="BaseResultMap" type="com.zhh.entity.Menu" >
+<mapper namespace="com.zhh.dao.base.IMenuDao" >
+  <resultMap id="BaseResultMap" type="com.zhh.entity.base.Menu" >
     <id column="id" property="id" jdbcType="VARCHAR" />
     <result column="menu_url" property="menuUrl" jdbcType="VARCHAR" />
     <result column="menu_name" property="menuName" jdbcType="VARCHAR" />
@@ -27,7 +27,7 @@
       select * from sys_menu where parent_id = #{id} and active="Y" order by sort
   </select>
   <!-- 新增菜单信息 -->
-  <insert id="insertSelective" parameterType="com.zhh.entity.Menu" >
+  <insert id="insertSelective" parameterType="com.zhh.entity.base.Menu" >
      insert into sys_menu
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -107,7 +107,7 @@
     </trim>
   </insert>
   <!-- 修改菜单信息 -->
-  <update id="updateByPrimaryKeySelective" parameterType="com.zhh.entity.Menu" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.zhh.entity.base.Menu" >
     update sys_menu
     <set >
       <if test="menuUrl != null" >

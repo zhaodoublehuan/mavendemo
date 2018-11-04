@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.zhh.dao.IUserDao" >
-  <resultMap id="BaseResultMap" type="com.zhh.entity.UserEntity" >
+<mapper namespace="com.zhh.dao.base.IUserDao" >
+  <resultMap id="BaseResultMap" type="com.zhh.entity.base.UserEntity" >
     <id column="id" property="id" jdbcType="VARCHAR" />
     <result column="user_name" property="userName" jdbcType="VARCHAR" />
     <result column="login_no" property="loginNo" jdbcType="VARCHAR" />
@@ -39,7 +39,7 @@
     limit #{page.recordStart},#{page.pageSize}
   </select>
   <!-- 新建用户 -->
-  <insert id="add" parameterType="com.zhh.entity.UserEntity" >
+  <insert id="add" parameterType="com.zhh.entity.base.UserEntity" >
     insert into sys_user
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -107,7 +107,7 @@
     </trim>
   </insert>
   <!-- 修改用户信息 -->
-  <update id="update" parameterType="com.zhh.entity.UserEntity" >
+  <update id="update" parameterType="com.zhh.entity.base.UserEntity" >
     update sys_user
     <set >
        <if test="userName != null" >
@@ -144,7 +144,7 @@
     login_no = #{loginNo} and active="Y"
   </select>
   <!-- 查询用户数量 -->
-  <select id="selectUsersCount" resultType="java.lang.Integer" parameterType="com.zhh.entity.UserEntity">
+  <select id="selectUsersCount" resultType="java.lang.Integer" parameterType="com.zhh.entity.base.UserEntity">
    	select count(1) from sys_user 
      <where>
    	  <if test="userName != null" >

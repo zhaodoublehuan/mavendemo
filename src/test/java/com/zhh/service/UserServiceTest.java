@@ -2,9 +2,9 @@ package com.zhh.service;
 
 import com.alibaba.fastjson.JSON;
 import com.zhh.base.BaseTest;
-import com.zhh.entity.UserEntity;
+import com.zhh.entity.base.UserEntity;
 import com.zhh.exception.UserException;
-import com.zhh.service.UserService;
+import com.zhh.service.base.UserService;
 import com.zhh.util.UUIDUtils;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;

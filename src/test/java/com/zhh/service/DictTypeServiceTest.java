@@ -2,7 +2,8 @@ package com.zhh.service;
 
 import com.zhh.base.BaseTest;
 import com.zhh.condition.dict.DictTypeCondition;
-import com.zhh.entity.DictType;
+import com.zhh.entity.dict.DictType;
+import com.zhh.service.dict.DictTypeService;
 import com.zhh.util.PageUtil;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -2,8 +2,8 @@ package com.zhh.service;
 
 import com.alibaba.fastjson.JSON;
 import com.zhh.base.BaseTest;
-import com.zhh.entity.Menu;
-import com.zhh.service.MenuService;
+import com.zhh.entity.base.Menu;
+import com.zhh.service.base.MenuService;
 import org.junit.Test;
 
 import javax.annotation.Resource;
